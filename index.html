@@ -996,6 +996,7 @@ const GROUPES_SENAT = [
     { code: 'NI',     nom: 'Non inscrits (dont RN)',                        effectif: 4,   siegesRenouveles: 3,  couleur: '#8a8a9e' }
 ];
 
+// Mapping nuance politique → groupe parlementaire
 const NUANCE_TO_GROUPE = {
     'LR': 'LR', 'LLR': 'LR', 'DVD': 'LR',
     'SOC': 'SER', 'PS': 'SER', 'SER': 'SER', 'DVG': 'SER', 'RDG': 'SER', 'UG': 'SER', 'GEN': 'SER',
@@ -1008,6 +1009,39 @@ const NUANCE_TO_GROUPE = {
     'RN': 'NI', 'UDR': 'NI', 'REC': 'NI', 'EXD': 'NI', 'EXG': 'NI',
     'DIV': 'NI'
 };
+
+// Mapping libellés longs (NosParlementaires) → code groupe
+const GROUPE_LABEL_TO_CODE = {
+    'LES RÉPUBLICAINS': 'LR',
+    'LES REPUBLICAINS': 'LR',
+    'RASSEMBLEMENT DES DÉMOCRATES, PROGRESSISTES ET INDÉPENDANTS': 'RDPI',
+    'RDPI': 'RDPI',
+    'SOCIALISTE, ÉCOLOGISTE ET RÉPUBLICAIN': 'SER',
+    'SOCIALISTE ET APPARENTÉS': 'SER',
+    'UNION CENTRISTE': 'UC',
+    'LES INDÉPENDANTS - RÉPUBLIQUE ET TERRITOIRES': 'LI-RT',
+    'LES INDÉPENDANTS': 'LI-RT',
+    'COMMUNISTE RÉPUBLICAIN CITOYEN ET ÉCOLOGISTE - KANAKY': 'CRCE-K',
+    'CRCE': 'CRCE-K',
+    'RASSEMBLEMENT DÉMOCRATIQUE ET SOCIAL EUROPÉEN': 'RDSE',
+    'RDSE': 'RDSE',
+    'ÉCOLOGISTE - SOLIDARITÉ ET TERRITOIRES': 'GEST',
+    'ÉCOLOGISTE': 'GEST',
+    'NON INSCRITS': 'NI',
+    'RASSEMBLEMENT NATIONAL': 'NI',
+    'NI': 'NI'
+};
+
+function groupeLabelVersCode(label) {
+    if (!label) return 'NI';
+    const upper = label.toUpperCase().trim();
+    if (GROUPE_LABEL_TO_CODE[upper]) return GROUPE_LABEL_TO_CODE[upper];
+    if (NUANCE_TO_GROUPE[upper]) return NUANCE_TO_GROUPE[upper];
+    for (const [key, code] of Object.entries(GROUPE_LABEL_TO_CODE)) {
+        if (upper.includes(key) || key.includes(upper)) return code;
+    }
+    return 'NI';
+}
 
 function nuanceVersGroupe(codeNuance) {
     if (!codeNuance) return 'NI';
@@ -1079,7 +1113,6 @@ async function init() {
         renderGrid();
         renderGroups();
 
-        // Exposer state pour debug en console
         window.state = state;
 
     } catch (err) {
@@ -1247,19 +1280,17 @@ function renderGroups() {
                     const eNom = normalizeName(e.nom);
                     const ePrenom = normalizeName(e.prenom);
 
-                    // Recherche par nom + prénom
                     const senateur = c.senateurs.find(s => {
                         const sNom = normalizeName(s.nom);
                         const sPrenom = normalizeName(s.prenom);
                         return sNom === eNom && sPrenom === ePrenom;
                     }) || c.senateurs.find(s => {
-                        // Fallback : nom uniquement
                         const sNom = normalizeName(s.nom);
                         return sNom === eNom;
                     });
 
                     if (senateur && senateur.groupe) {
-                        groupeKey = NUANCE_TO_GROUPE[senateur.groupe.toUpperCase()] || senateur.groupe;
+                        groupeKey = groupeLabelVersCode(senateur.groupe);
                     }
                 }
 
@@ -1284,12 +1315,11 @@ function renderGroups() {
         }
 
         // ---------- LISTES 2026 PROPORTIONNEL ----------
-        // On compte les LISTES (pas les colistiers)
         if (c.listes) {
             c.listes.forEach(l => {
                 const groupeKey = nuanceVersGroupe(l.codeNuance);
                 if (statsParGroupe[groupeKey]) {
-                    statsParGroupe[groupeKey].candidats2026++;  // 1 par liste
+                    statsParGroupe[groupeKey].candidats2026++;
                     statsParGroupe[groupeKey].listes2026++;
                 }
             });
@@ -1298,7 +1328,6 @@ function renderGroups() {
 
     const groupesArray = Object.values(statsParGroupe);
 
-    // Bandeau
     const totalRenouveles = groupesArray.reduce((s, g) => s + g.siegesRenouveles, 0);
     const totalElus2020 = groupesArray.reduce((s, g) => s + g.elus2020, 0);
     const totalCandidats2026 = groupesArray.reduce((s, g) => s + g.candidats2026, 0);
@@ -1311,7 +1340,6 @@ function renderGroups() {
         <div class="stat-card"><span class="label">Listes + cand. 2026</span><span class="value">${totalCandidats2026.toLocaleString('fr-FR')}</span></div>
     `;
 
-    // Chart
     const ctx = $('groupsChart').getContext('2d');
     if (state.groupsChart) state.groupsChart.destroy();
 
@@ -1377,7 +1405,6 @@ function renderGroups() {
         }
     });
 
-    // Panel
     const top3 = sorted.slice(0, 3);
     $('groupsPanel').innerHTML = `
         <h3>Top 3 groupes</h3>
@@ -1400,7 +1427,6 @@ function renderGroups() {
         </div>
     `;
 
-    // Tableau
     $('groupsTable').querySelector('tbody').innerHTML = sorted.map(g => {
         const pctRenouvele = g.effectif > 0 ? ((g.siegesRenouveles / g.effectif) * 100).toFixed(0) : 0;
         const evolution = g.candidats2026 - g.elus2020;
@@ -1488,7 +1514,6 @@ window.showDetail = function(code) {
         `;
     }
 
-    // Panel
     if (c.type === 'majoritaire') {
         const nuances = {};
         c.candidats.forEach(x => { nuances[x.codeNuance || 'DIV'] = (nuances[x.codeNuance || 'DIV'] || 0) + 1; });
@@ -1515,7 +1540,6 @@ window.showDetail = function(code) {
         `;
     }
 
-    // Chart
     if (state.chart) state.chart.destroy();
     const ctx = $('mainChart').getContext('2d');
     let labels = [], data = [], colors = [];
@@ -1575,7 +1599,6 @@ window.showDetail = function(code) {
         }
     });
 
-    // Table
     if (c.type === 'majoritaire') {
         $('dataTable').querySelector('thead').innerHTML = `
             <tr>
@@ -1621,7 +1644,6 @@ window.showDetail = function(code) {
         $('dataTable').querySelector('tbody').innerHTML = rows;
     }
 
-    // NP
     const npSection = $('npSection');
     npSection.innerHTML = '';
 
@@ -1668,7 +1690,6 @@ window.showDetail = function(code) {
         `;
     }
 
-    // Élus 2020
     const elus2020Section = $('elus2020Section');
     elus2020Section.innerHTML = '';
 
