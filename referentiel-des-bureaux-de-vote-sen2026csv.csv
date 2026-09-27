@@ -1,0 +1,108 @@
+Code circonscription;Libellé circonscription ;Code commune du bureau de vote;Commune du bureau de vote;Nombre d’inscrits
+1;Ain;1053;Bourg-en-Bresse;1952
+2;Aisne;2408;Laon;1746
+3;Allier;3190;Moulins;970
+4;Alpes-de-Haute-Provence;4070;Digne-les-Bains;565
+5;Hautes-Alpes;5061;Gap;449
+6;Alpes-Maritimes;6088;Nice;2093
+7;Ardèche;7186;Privas;1023
+8;Ardennes;8105;Charleville-Mézières;964
+9;Ariège;9122;Foix;628
+10;Aube;10387;Troyes;1025
+11;Aude;11069;Carcassonne;1196
+12;Aveyron;12202;Rodez;899
+13;Bouches-du-Rhône;13055;Marseille;3695
+14;Calvados;14118;Caen;2125
+15;Cantal;15014;Aurillac;534
+16;Charente;16015;Angoulême;1165
+17;Charente-Maritime;17300;La Rochelle;1856
+18;Cher;18033;Bourges;882
+19;Corrèze;19272;Tulle;761
+21;Côte-d'Or;21231;Dijon;1648
+22;Côtes-d'Armor;22278;Saint-Brieuc;1759
+23;Creuse;23096;Guéret;484
+24;Dordogne;24322;Périgueux;1382
+25;Doubs;25056;Besançon;1658
+26;Drôme;26362;Valence;1444
+27;Eure;27229;Evreux;1919
+28;Eure-et-Loir;28085;Chartres;1321
+29;Finistère;29232;Quimper;2348
+2A;Corse-du-Sud;2A004;Ajaccio;465
+2B;Haute-Corse;2B033;Bastia;616
+30;Gard;30189;Nîmes;1982
+31;Haute-Garonne;31555;Toulouse;3325
+32;Gers;32013;Auch;792
+33;Gironde;33063;Bordeaux;3743
+34;Hérault;34172;Montpellier;2729
+35;Ille-et-Vilaine;35238;Rennes;2769
+36;Indre;36044;Châteauroux;686
+37;Indre-et-Loire;37261;Tours;1544
+38;Isère;38185;Grenoble;3124
+39;Jura;39300;Lons-le-Saunier;998
+40;Landes;40192;Mont-de-Marsan;1208
+41;Loir-et-Cher;41018;Blois;968
+42;Loire;42218;Saint-Etienne;1865
+43;Haute-Loire;43157;Le Puy-en-Velay;749
+45;Loiret;45234;Orléans;1730
+46;Lot;46042;Cahors;664
+47;Lot-et-Garonne;47001;Agen;187
+48;Lozère;48095;Mende;358
+49;Maine-et-Loire;49007;Angers;1959
+50;Manche;50502;Saint-Lô;1669
+51;Marne;51108;Châlons-en-Champagne;1613
+52;Haute-Marne;52121;Chaumont;791
+53;Mayenne;53130;Laval;893
+54;Meurthe-et-Moselle;54395;Nancy;2090
+55;Meuse;55029;Bar-le-Duc;878
+56;Morbihan;56260;Vannes;1937
+57;Moselle;57463;Metz;2892
+58;Nièvre;58194;Nevers;32
+59;Nord;59350;Lille;5892
+60;Oise;60057;Beauvais;2383
+61;Orne;61001;Alençon;1054
+62;Pas-de-Calais;62041;Arras;4052
+63;Puy-de-Dôme;63113;Clermont-Ferrand;1831
+64;Pyrénées-Atlantiques;64445;Pau;1879
+65;Hautes-Pyrénées;65440;Tarbes;65
+66;Pyrénées-Orientales;66136;Perpignan;1284
+67;Bas-Rhin;67482;Strasbourg;2843
+68;Haut-Rhin;68066;Colmar;2010
+69;Rhône;69123;Lyon;3817
+70;Haute-Saône;70550;Vesoul;965
+71;Saône-et-Loire;71270;Mâcon;1682
+72;Sarthe;72181;Le Mans;1578
+73;Savoie;73065;Chambéry;1248
+74;Haute-Savoie;74010;Annecy;2112
+75;Paris;75056;Paris;2880
+76;Seine-Maritime;76540;Rouen;3207
+77;Seine-et-Marne;77288;Melun;3326
+78;Yvelines;78646;Versailles;2933
+79;Deux-Sèvres;79191;Niort;1150
+80;Somme;80021;Amiens;1819
+81;Tarn;81004;Albi;1153
+82;Tarn-et-Garonne;82121;Montauban;758
+83;Var;83137;Toulon;2348
+84;Vaucluse;84007;Avignon;1318
+85;Vendée;85191;La Roche-sur-Yon;1860
+86;Vienne;86194;Poitiers;1202
+87;Haute-Vienne;87085;Limoges;986
+88;Vosges;88160;Epinal;1196
+89;Yonne;89024;Auxerre;1115
+90;Territoire de Belfort;90010;Belfort;381
+91;Essonne;91228;Evry-Courcouronnes;2623
+92;Hauts-de-Seine;92050;Nanterre;2386
+93;Seine-Saint-Denis;93008;Bobigny;2418
+94;Val-de-Marne;94028;Créteil;2194
+95;Val-d'Oise;95127;Cergy;2368
+971;Guadeloupe;97105;Basse-Terre;811
+972;Martinique;97209;Fort-de-France;809
+973;Guyane;97302;Cayenne;577
+974;La Réunion;97411;Saint-Denis;1376
+975;Saint-Pierre-et-Miquelon;97502;Saint-Pierre;39
+976;Mayotte;97611;Mamoudzou;540
+977;Saint-Barthélemy;97701;Saint-Barthélemy;21
+978;Saint-Martin;97801;Saint-Martin;25
+986;Wallis et Futuna;98601;Wallis-Et-Futuna;22
+987;Polynésie française;98735;Papeete;733
+988;Nouvelle-Calédonie;98818;Nouméa;578
+ZZ;Français établis hors de France;ZZ000;Circonscription des français de l'étranger;533
