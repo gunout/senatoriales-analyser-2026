@@ -1,0 +1,252 @@
+Code circonscription;Libellé circonscription;N° dépôt;Sexe du candidat;Nom du candidat;Prénom du candidat;Date de naissance du candidat;Code nuance;Nuance du candidat;Profession;Code personnalité;Sortant;Sexe remplaçant;Nom remplaçant;Prénom remplaçant;Date de naissance remplaçant
+03;Allier;1;M;MALHURET;Claude;1950-03-08;HOR;Horizons;(74) - Ancien cadre;SEN;OUI;F;ROY;Christine;1967-01-23
+03;Allier;2;M;PICARD;Franck;1963-10-03;REC;Reconquête !;(21) - Artisan;;;F;SILVA;Arminda;1959-05-15
+03;Allier;3;M;DE NICOLAY;Pierre;1989-01-11;UDR;Union des droites pour la République;(23) - Chef d'entreprise de 10 salariés ou plus;;;F;BAYLE;Éléonore;1992-06-01
+03;Allier;4;M;GENESTE;Loïc;1987-06-16;SOC;Parti socialiste;(38) - Ingénieur et cadre technique d'entreprise;;;F;CABANEL;Claire;1956-09-23
+03;Allier;5;M;LEFEBRE;Joël;1961-01-01;COM;Parti communiste français;(74) - Ancien cadre;;;F;BIDAUT;Nathalie;1967-08-04
+03;Allier;6;M;ROJOUAN;Bruno;1957-03-06;DVD;Divers droite;(74) - Ancien cadre;SEN;OUI;F;DELIGEARD;Annick;1966-12-27
+03;Allier;7;M;BONAUD;Hussein;1983-12-13;FI;La France insoumise;(21) - Artisan;;;F;POLO;Céline;1975-04-16
+04;Alpes-de-Haute-Provence;1;F;MOUGEY;Marianne;1985-08-05;FI;La France insoumise;(11) - Agriculteur sur petite exploitation;;;M;MAZI;Maxime;1991-03-08
+04;Alpes-de-Haute-Provence;2;M;DURNERIN;Fabrice;1966-01-05;UDR;Union des droites pour la République;(31) - Profession libérale;;;F;ABEILLE;Aurélie;1989-06-09
+04;Alpes-de-Haute-Provence;3;F;COLOMBERO;Stéphanie;1974-03-19;DVD;Divers droite;(33) - Cadre de la fonction publique;;;M;GARNIER;Sébastien;1987-08-28
+04;Alpes-de-Haute-Provence;4;M;ROUX;Jean-Yves;1970-01-18;RDG;Parti radical de gauche;(77) - Ancien employé;SEN;OUI;F;DEPIEDS;Laurence;1972-10-26
+04;Alpes-de-Haute-Provence;5;M;DURBEC;Stéphane;1970-10-26;EXD;Extrême droite;(22) - Commerçant et assimilé;;;F;BERGERON;Agnès;1974-03-16
+05;Hautes-Alpes;1;M;PONS;Michel;1953-10-25;FI;La France insoumise;(34) - Professeur, profession scientifique;;;F;NESTERENKO;Andrée;1950-09-12
+05;Hautes-Alpes;2;M;ARNAUD;Jean-Michel;1966-04-28;DVC;Divers centre;(11) - Agriculteur sur petite exploitation;SEN;OUI;F;MAXIMIN;Christine;1961-12-12
+05;Hautes-Alpes;3;M;BAUDIN;Jean-François;1966-02-28;VEC;Les Ecologistes;(45) - Profession intermédiaire administrative de la fonction publique;;;F;VATAIN;Joëlle;1955-11-06
+05;Hautes-Alpes;4;M;SAINTE-MARIE;Jérôme;1966-01-18;RN;Rassemblement National;(35) - Profession de l'information, des arts et des spectacles;;;F;LAROCHE;Déborah;1990-04-01
+07;Ardèche;1;M;DARNAUD;Mathieu;1975-07-11;LR;Les Républicains;(33) - Cadre de la fonction publique;SEN;OUI;F;GENEST;Sandrine;1980-04-18
+07;Ardèche;2;F;VENTALON;Anne;1972-01-07;DVD;Divers droite;(34) - Professeur, profession scientifique;SEN;OUI;M;MONTEYREMARD;Cyprien;1992-08-22
+07;Ardèche;3;F;PORQUET;Céline;1977-10-06;RN;Rassemblement National;(22) - Commerçant et assimilé;;;M;ESCALIER;Jean-Claude;1959-04-07
+07;Ardèche;4;F;VOLLE;Hélène;1961-09-29;FI;La France insoumise;(75) - Ancienne profession intermédiaire;;;M;DEPLACE;Jacques;1947-10-27
+07;Ardèche;5;F;CERBAÏ;Florence;1979-07-26;VEC;Les Ecologistes;(21) - Artisan;;;M;GUILLERMAZ;Etienne;1986-11-27
+07;Ardèche;6;M;WENDLINGER;Stéphane;1968-08-22;DVG;Divers gauche;(34) - Professeur, profession scientifique;;;F;BLAND;Domitille;1979-11-26
+07;Ardèche;7;F;BOUDALI-KHEDIM;Souhila;1973-05-11;SOC;Parti socialiste;(45) - Profession intermédiaire administrative de la fonction publique;;;M;BIOLLEY;Hugo;2001-05-24
+07;Ardèche;8;F;GETTLIFFE;Nathalie;1971-02-16;DIV;Divers;(34) - Professeur, profession scientifique;;;M;GRANT;Maximilian;1993-12-29
+08;Ardennes;1;F;JOSEPH;Else;1961-12-24;LR;Les Républicains;(74) - Ancien cadre;SEN;OUI;M;WATHY;Marc;1961-05-04
+08;Ardennes;2;M;LAMÉNIE;Marc;1956-07-11;HOR;Horizons;(74) - Ancien cadre;SEN;OUI;F;RICHARD;Angélique;1978-08-11
+08;Ardennes;3;M;BACHY;Jean-Paul;1947-03-30;DVG;Divers gauche;(34) - Professeur, profession scientifique;;;F;DUFILS;Annick;1956-01-10
+08;Ardennes;4;M;LANGRENEZ;Lucas;1997-01-23;RN;Rassemblement National;(33) - Cadre de la fonction publique;;;F;VOIZEUX;Marie;2000-12-11
+08;Ardennes;5;M;VILLENET;Nicolas;1977-05-07;DVD;Divers droite;(33) - Cadre de la fonction publique;;;F;MARBAIX;Sylvie;1971-04-19
+08;Ardennes;6;M;GERARD;Corentin;1999-05-11;FI;La France insoumise;(54) - Employé administratif d'entreprise;;;F;DELOURME;Mélanie;1997-11-04
+08;Ardennes;7;F;DUMAY;Anne;1970-10-06;DVD;Divers droite;(37) - Cadre administratif et commercial d'entreprise;;;M;GOBÉ;Loïc;1983-02-05
+09;Ariège;1;M;MICHAU;Jean-Jacques;1956-07-23;DVG;Divers gauche;(74) - Ancien cadre;SEN;OUI;F;LAVEDRINE GOGUILLOT;Sylviane;1954-01-23
+09;Ariège;2;M;GARNIER;Jean-Marc;1961-03-25;RN;Rassemblement National;(48) - Contremaître, agent de maîtrise;;;F;CARRIE;Bérengère;1966-10-04
+09;Ariège;3;M;LAFON;François;1956-04-14;FI;La France insoumise;(74) - Ancien cadre;;;F;CRESPO;Martine;1956-07-21
+09;Ariège;4;M;FERNANDEZ;Jean-Luc;1958-12-16;DIV;Divers;(77) - Ancien employé;;;F;MASSAT;Delphine;1982-12-27
+09;Ariège;5;M;CHIBLI;Kamel;1977-04-23;SOC;Parti socialiste;(43) - Profession intermédiaire de la santé et du travail social;;;F;FORNEIRON;Marie-Line;1961-10-05
+09;Ariège;6;M;AZEMA;Jérôme;1973-04-25;DVC;Divers centre;(33) - Cadre de la fonction publique;;;F;TRIBOUT;Anne-Sophie;1976-10-06
+09;Ariège;7;M;MORETTO;Richard;1952-08-27;COM;Parti communiste français;(71) - Ancien agriculteur exploitant;;;F;ENGLER;Françoise;1952-08-17
+09;Ariège;8;M;DUBROCA-VOISIN;Capucine;1995-04-10;VEC;Les Ecologistes;(38) - Ingénieur et cadre technique d'entreprise;;;F;ANGRIEU-PATTAR;Salomé;1988-04-01
+10;Aube;1;M;MARTY;Laurent;1970-03-21;DIV;Divers;(33) - Cadre de la fonction publique;;;F;ODILLE;Claudie;1959-08-02
+10;Aube;2;F;BAZIN-MALGRAS;Valérie;1969-10-31;LR;Les Républicains;(33) - Cadre de la fonction publique;DEP;;M;BARONI;Dominique;1959-11-02
+10;Aube;3;F;PAOLI-GAGIN;Vanina;1967-01-25;DVD;Divers droite;(31) - Profession libérale;SEN;OUI;M;PICHERY;Philippe;1952-02-18
+10;Aube;4;F;PERROT;Evelyne;1951-06-22;UDI;Union des Démocrates et Indépendants;(74) - Ancien cadre;SEN;OUI;M;RAGUIN;Jacky;1956-02-10
+10;Aube;5;F;VIOT;Ingrid;1983-04-11;FI;La France insoumise;(43) - Profession intermédiaire de la santé et du travail social;;;M;COLLIN;François;1959-08-23
+10;Aube;6;M;THIEBAUT;Adrien;1994-11-25;RN;Rassemblement National;(37) - Cadre administratif et commercial d'entreprise;;;F;THUILLIER;Séverine;1976-11-19
+10;Aube;7;F;BRIOT;Charline;1993-04-12;COM;Parti communiste français;(34) - Professeur, profession scientifique;;;M;THURAT;Benoit;1989-12-10
+10;Aube;8;M;WYSOCINSKI;Ghislain;1964-10-18;ECO;Ecologistes;(34) - Professeur, profession scientifique;;;F;COLLOT-TOUZÉ;Nelly;1965-12-09
+11;Aude;1;M;CANTAREL;John;1974-08-13;DVD;Divers droite;(84) - Elève, étudiant;;;F;DRISS;Jeannette;1963-11-08
+11;Aude;2;M;PLA;Sébastien;1977-07-18;SOC;Parti socialiste;(11) - Agriculteur sur petite exploitation;SEN;OUI;F;SERVET;Jessica;1979-11-12
+11;Aude;3;M;PALOP;Daniel;1979-01-21;DSV;Droite souverainiste;(12) - Agriculteur sur moyenne exploitation;;;F;BIELLE FILHOL;Catherine;1956-05-15
+11;Aude;4;F;FAUCON MEJEAN;Claudie;1974-09-22;SOC;Parti socialiste;(33) - Cadre de la fonction publique;;;M;BARO;Hervé;1947-06-21
+11;Aude;5;M;BALCEREK;Quentin;1988-08-17;FI;La France insoumise;(34) - Professeur, profession scientifique;;;F;REGIS;Josiane;1956-05-11
+11;Aude;6;F;APARICIO;Marie José;1966-06-21;DVC;Divers centre;(22) - Commerçant et assimilé;;;M;DELIGNY;Gabriel;1999-07-26
+11;Aude;7;F;AMALRIC;Laure-Nelly;1982-01-09;ECO;Ecologistes;(31) - Profession libérale;;;M;SANCHEZ;Grégory;1979-05-10
+11;Aude;8;M;RANCOULE;Julien;1993-07-31;RN;Rassemblement National;(31) - Profession libérale;DEP;;F;VILCHEZ;Pauline;1998-04-28
+12;Aveyron;1;M;ANGLARS;Jean-Claude;1961-02-20;LR;Les Républicains;(74) - Ancien cadre;SEN;OUI;F;ALIES;Monique;1962-04-26
+12;Aveyron;2;M;MARC;Alain;1957-01-29;PR;Parti Radical;(74) - Ancien cadre;SEN;OUI;F;GOMBERT;Dominique;1964-02-11
+12;Aveyron;3;F;MOULIN;Alexandra;1993-05-07;VEC;Les Ecologistes;(37) - Cadre administratif et commercial d'entreprise;;;M;LONJON;Geoffrey;1984-06-19
+12;Aveyron;4;M;GONZALES;Jean-Dominique;1959-07-07;DVG;Divers gauche;(33) - Cadre de la fonction publique;;;F;DURAND;Kateline;1986-05-25
+12;Aveyron;5;F;HORVATH;Sarah;1991-06-21;RN;Rassemblement National;(22) - Commerçant et assimilé;;;M;LAFFONT;Cédric;1980-05-30
+12;Aveyron;6;M;CHARTIER;Jean-Philippe;1959-06-19;EXD;Extrême droite;(31) - Profession libérale;;;F;PAROLIN;Marie-Christine;1962-01-06
+12;Aveyron;7;M;LEBRUN;Matthieu;1966-08-07;SOC;Parti socialiste;(37) - Cadre administratif et commercial d'entreprise;;;F;BRUEL;Catherine;1974-02-17
+12;Aveyron;8;M;ESCORBIAC;Gaëtan;1989-05-04;FI;La France insoumise;(55) - Employé de commerce;;;F;ROZIÈRE;Régine;1980-12-31
+12;Aveyron;9;M;NOËL;Thierry;1961-06-10;ECO;Ecologistes;(35) - Profession de l'information, des arts et des spectacles;;;F;VIGROUX;Catie;1988-07-16
+12;Aveyron;10;M;ROBERT;Christophe;1973-02-26;DIV;Divers;(47) - Technicien;;;F;MONTBROUSSOUS;Dominique;1959-09-12
+15;Cantal;1;M;DELCROS;Bernard;1953-02-12;DVC;Divers centre;(34) - Professeur, profession scientifique;SEN;OUI;F;LEYMONIE;Mireille;1959-08-13
+15;Cantal;2;M;SAUTAREL;Stéphane;1965-01-29;DVD;Divers droite;(31) - Profession libérale;SEN;OUI;F;CHASTRE;Marie-Hélène;1957-01-25
+15;Cantal;3;F;ANDRAL;Léa;1996-08-22;FI;La France insoumise;(54) - Employé administratif d'entreprise;;;M;FERNANDEZ;Thomas;1987-07-16
+15;Cantal;4;F;DELORT;Monique;1957-02-22;SOC;Parti socialiste;(77) - Ancien employé;;;M;PRAT;Claude;1965-01-15
+15;Cantal;5;M;HEUZEY;Alexandre;1973-08-23;RN;Rassemblement National;(33) - Cadre de la fonction publique;;;F;PARET;Alexandra;1983-05-27
+16;Charente;1;M;ALEXANDRON;Cédric;1972-04-17;COM;Parti communiste français;(38) - Ingénieur et cadre technique d'entreprise;;;F;DUBOIS;Véronique;1958-12-10
+16;Charente;2;M;MONGELOUS;Aymeric;1996-08-03;RN;Rassemblement National;(33) - Cadre de la fonction publique;;;F;CHABAUDY;Patricia;1978-09-18
+16;Charente;3;M;DUDOUIT;Geoffroy;1977-08-23;FI;La France insoumise;(35) - Profession de l'information, des arts et des spectacles;;;F;PETIT-LOUBOUTIN;Anne-Aziliz;1998-01-13
+16;Charente;4;M;BONNEAU;François;1958-02-08;DVD;Divers droite;(31) - Profession libérale;SEN;OUI;F;NEESER;Mireille;1956-02-02
+16;Charente;5;F;BONNEFOY;Nicole;1958-08-11;DVG;Divers gauche;(74) - Ancien cadre;SEN;OUI;M;MUGNIER;Pierre-Hermann;1984-12-01
+16;Charente;6;M;DESVERGNE;Manuel;1981-08-25;REN;Renaissance;(47) - Technicien;;;F;WILLAUMEZ-GUILLEMETEAU;Anne-Laure;1969-10-11
+16;Charente;7;F;GODICHAUD;Fabienne;1960-07-18;SOC;Parti socialiste;(77) - Ancien employé;;;M;CANIT;Michaël;1975-07-11
+16;Charente;8;M;MARTIN;Raymond Robert;1960-08-19;VEC;Les Ecologistes;(72) - Ancien artisan, commerçant, chef d'entreprise;;;F;LAVIE-CAMBOT;Maryse;1953-02-24
+16;Charente;9;M;BESSAD;Nordine;1980-04-23;DIV;Divers;(38) - Ingénieur et cadre technique d'entreprise;;;F;BESSAD;Anissa;1983-09-18
+18;Cher;1;M;KERVRAN;Loïc;1984-02-11;HOR;Horizons;(33) - Cadre de la fonction publique;DEP;;F;CLAVIER;Florence;1978-12-26
+18;Cher;2;F;RENIER;Laurence;1966-10-04;LR;Les Républicains;(85) - Personne diverse sans activité professionnelle de moins de 60 ans (sauf retraité);;;M;COURZADET;Patrick;1963-12-07
+18;Cher;3;M;GROSJEAN;Pierre;1961-06-02;DVD;Divers droite;(72) - Ancien artisan, commerçant, chef d'entreprise;;;F;LENSKI;Nathalie;1972-02-18
+18;Cher;4;F;BAUDOUIN;Marie-Christine;1961-01-05;COM;Parti communiste français;(74) - Ancien cadre;;;M;THIAM;Mansour;1990-07-25
+18;Cher;5;M;RHIMINI;Samir;1987-06-13;LR;Les Républicains;(37) - Cadre administratif et commercial d'entreprise;;;F;CHAMPION;Jacqueline;1968-04-30
+18;Cher;6;M;IANNUZZI;Ugo;1998-10-21;RN;Rassemblement National;(37) - Cadre administratif et commercial d'entreprise;;;F;COCARD;Brigitte;1957-07-09
+18;Cher;7;M;LHONNEUR;Thibault;1987-07-28;FI;La France insoumise;(37) - Cadre administratif et commercial d'entreprise;;;F;GUNES;Dondu;1986-05-02
+18;Cher;8;M;BEATRIX;Olivier;1972-08-06;PR;Parti Radical;(37) - Cadre administratif et commercial d'entreprise;;;F;BEURDIN;Béatrice;1970-06-17
+18;Cher;9;M;FOURNIÉ;Philippe;1967-11-09;SOC;Parti socialiste;(33) - Cadre de la fonction publique;;;F;PEREZ;Isabelle;1958-09-08
+18;Cher;10;M;COLOMBIER;Luc;1982-08-08;DVD;Divers droite;(31) - Profession libérale;;;F;GOBIN;Ludivine;1979-01-12
+19;Corrèze;1;M;ELOPHE;Valéry;1974-05-11;RN;Rassemblement National;(85) - Personne diverse sans activité professionnelle de moins de 60 ans (sauf retraité);;;F;REBIÈRE;Amélie;1982-08-17
+19;Corrèze;2;F;BLONDEL;Emma;1986-05-28;DVD;Divers droite;(64) - Chauffeur;;;M;VERDONCKT;Jean-Luc;1953-02-11
+19;Corrèze;3;M;JACQUELIN;Thomas;1991-10-25;SOC;Parti socialiste;(33) - Cadre de la fonction publique;;;F;TROYA;Sonia;1983-02-02
+19;Corrèze;4;F;DEWAELE;Amandine;1960-07-22;VEC;Les Ecologistes;(47) - Technicien;;;M;MOUSSOUR;Florent;1984-07-09
+19;Corrèze;5;M;RUNFOLA;Rémy;1959-07-14;FI;La France insoumise;(77) - Ancien employé;;;F;COUDOIN;Michèle;1959-03-05
+19;Corrèze;6;M;COSTE;Pascal;1966-09-13;LR;Les Républicains;(12) - Agriculteur sur moyenne exploitation;PCD;;F;GIBOURET LAMBERT;Aurélie;1981-10-22
+19;Corrèze;7;M;BOUNIE;Julien;1978-04-12;LR;Les Républicains;(33) - Cadre de la fonction publique;;;F;CHIRAC;Claude;1962-12-06
+19;Corrèze;8;F;BOUDIN;Olga;1991-11-08;COM;Parti communiste français;(35) - Profession de l'information, des arts et des spectacles;;;M;MARLIN;Nicolas;1999-08-16
+23;Creuse;1;M;MAGANA;Antoine;1998-04-16;FI;La France insoumise;(43) - Profession intermédiaire de la santé et du travail social;;;F;DE SOUZA;Marie;1988-12-27
+23;Creuse;2;M;LEJEUNE;Etienne;1989-04-26;SOC;Parti socialiste;(34) - Professeur, profession scientifique;;;F;MARTIN SERISIER;Mathilde;1981-04-20
+23;Creuse;3;M;LOZACH;Jean-Jacques;1954-02-08;SOC;Parti socialiste;(34) - Professeur, profession scientifique;SEN;OUI;F;BERTHON;Leilha;1972-02-14
+23;Creuse;4;F;PRÉVOT;Ludivine;1986-02-22;RDG;Parti radical de gauche;(43) - Profession intermédiaire de la santé et du travail social;;;M;ASSELINEAU;Charles;1994-03-04
+23;Creuse;5;M;LABAR;Bertrand;1965-02-13;DVD;Divers droite;(31) - Profession libérale;;;F;SIMONET;Valérie;1966-10-26
+23;Creuse;6;M;BIDAN;Xavier;1981-03-26;UDR;Union des droites pour la République;(47) - Technicien;;;F;ROUX;Anne;1971-10-29
+23;Creuse;7;M;FOURNEL;Claude;1953-07-27;DIV;Divers;(74) - Ancien cadre;;;F;VILLATTE;Michelle;1961-05-09
+23;Creuse;8;M;ORVAIN;Jérôme;1969-09-01;VEC;Les Ecologistes;(11) - Agriculteur sur petite exploitation;;;F;COLLETTE;Michelle;1957-04-22
+24;Dordogne;1;F;LE BARBIER;Claudine;1952-05-18;DVD;Divers droite;(74) - Ancien cadre;;;M;PERRIER;Philippe;1972-02-26
+24;Dordogne;2;F;VARAILLAS;Marie-Claude;1950-12-18;COM;Parti communiste français;(74) - Ancien cadre;SEN;OUI;M;GEORGIADES;Olivier;1965-09-19
+24;Dordogne;3;M;FRÉTILLÈRE;Eric;1961-04-29;DVC;Divers centre;(12) - Agriculteur sur moyenne exploitation;;;F;BORAS;Marie Hélène;1959-08-18
+24;Dordogne;4;F;AUGERAUD;Hélène;1993-08-12;FI;La France insoumise;(43) - Profession intermédiaire de la santé et du travail social;;;M;DESENDER;Alain;1952-02-18
+24;Dordogne;5;M;BOUSQUET;Dominique;1953-09-23;LR;Les Républicains;(72) - Ancien artisan, commerçant, chef d'entreprise;;;F;MANDEL;Sandrine;1965-06-07
+24;Dordogne;6;M;MÉRILLOU;Serge;1952-02-14;SOC;Parti socialiste;(74) - Ancien cadre;SEN;OUI;F;DRUILLOLE;Christelle;1976-03-10
+24;Dordogne;7;M;FORQUET DE DORNE;Guillaume;1990-08-20;RN;Rassemblement National;(37) - Cadre administratif et commercial d'entreprise;;;F;BLONDY;Élodie;1990-04-09
+24;Dordogne;8;M;GERAUD;Jean Dominique;1957-09-28;DIV;Divers;(72) - Ancien artisan, commerçant, chef d'entreprise;;;F;STANISLAWSKI;Karine;1976-09-05
+2A;Corse-du-Sud;1;M;PANUNZI;Jean-Jacques;1956-04-05;LR;Les Républicains;(72) - Ancien artisan, commerçant, chef d'entreprise;SEN;OUI;F;SICHI;Annie;1958-03-21
+2A;Corse-du-Sud;2;M;PERES;René;1961-02-26;DIV;Divers;(72) - Ancien artisan, commerçant, chef d'entreprise;;;F;SARAIS-BARRAZZA;Geneviève Sabrina;1975-10-02
+2A;Corse-du-Sud;3;M;VERSINI;Christophe;1985-08-10;RN;Rassemblement National;(37) - Cadre administratif et commercial d'entreprise;;;F;CHIAPPINI;Marie-Xavière;1960-05-08
+2A;Corse-du-Sud;4;M;GIUSEPPI;Jean;1973-06-07;REG;Régionaliste;(85) - Personne diverse sans activité professionnelle de moins de 60 ans (sauf retraité);;;F;CLAUS;Cécile;1966-08-10
+2B;Haute-Corse;1;M;PARIGI;Paul Toussaint;1966-04-07;REG;Régionaliste;(34) - Professeur, profession scientifique;SEN;OUI;F;VOLPEI;Livia;1980-06-02
+2B;Haute-Corse;2;M;BATTINI;Nicolas;1993-09-12;EXD;Extrême droite;(22) - Commerçant et assimilé;;;F;MORI;Audrey Marie;1987-12-26
+32;Gers;1;M;SCUDELLARO;Alain;1969-03-18;RDG;Parti radical de gauche;(43) - Profession intermédiaire de la santé et du travail social;;;F;GOURGUES;Maryse;1969-07-01
+32;Gers;2;M;YELMA;Jean-Luc;1965-01-19;RN;Rassemblement National;(31) - Profession libérale;;;F;BERAUT;Léa;1992-07-27
+32;Gers;3;M;CADORÉ;Eric;1963-06-27;COM;Parti communiste français;(33) - Cadre de la fonction publique;;;F;HERNANDEZ;Christine;1959-01-22
+32;Gers;4;F;CASTEX;Françoise;1956-02-07;FI;La France insoumise;(33) - Cadre de la fonction publique;;;M;SORIANO;Michel;1955-12-09
+32;Gers;5;F;RICCI;Caroline;1974-06-15;LR;Les Républicains;(37) - Cadre administratif et commercial d'entreprise;;;M;CETTOLO;Serge;1953-04-22
+32;Gers;6;F;THEYE;Sylvie;1971-12-02;RDG;Parti radical de gauche;(54) - Employé administratif d'entreprise;;;M;ESCALAS;Fabien;1970-11-05
+32;Gers;7;M;GABAS;Michel;1963-02-03;DVD;Divers droite;(31) - Profession libérale;;;F;SPOERRY;Quitterie;1982-06-17
+32;Gers;8;F;ROLANDO;Carole;1976-04-23;SOC;Parti socialiste;(42) - Professeur des écoles, instituteur et assimilé;;;M;SERIN;Jacques;1954-10-01
+32;Gers;9;M;LIBRO;Gaël;1990-03-11;DVC;Divers centre;(21) - Artisan;;;F;GOMEZ;Irline;1985-11-17
+32;Gers;10;M;DUFFOURG;Alain;1950-01-22;DVD;Divers droite;(72) - Ancien artisan, commerçant, chef d'entreprise;SEN;OUI;F;TINTANE;Isabelle;1969-11-19
+32;Gers;11;F;DAVEZAC;Emma;1980-09-10;DVG;Divers gauche;(37) - Cadre administratif et commercial d'entreprise;;;M;GALLET;Jean-Christophe;1978-07-16
+32;Gers;12;F;SALLES;Céline;1963-09-07;DVG;Divers gauche;(75) - Ancienne profession intermédiaire;;;M;DUPRONT;Didier;1954-05-03
+32;Gers;13;M;CUQUEL;Patrice;1965-05-20;REG;Régionaliste;(31) - Profession libérale;;;F;DAUGE;Claire;1961-06-07
+36;Indre;1;M;BLANCHET;Régis;1952-11-06;DVC;Divers centre;(74) - Ancien cadre;;;F;ROUAH;Géraldine;1973-02-09
+36;Indre;2;F;BELLUROT;Nadine;1965-04-05;DVD;Divers droite;(33) - Cadre de la fonction publique;SEN;OUI;M;COUTURIER;Pascal;1976-09-27
+36;Indre;3;M;COMPAIN;Aymeric;1990-07-04;FI;La France insoumise;(45) - Profession intermédiaire administrative de la fonction publique;;;F;GONZALEZ;Eloïse;1979-11-12
+36;Indre;4;M;LAPOUMÉROULIE;Dominique;1960-12-08;COM;Parti communiste français;(78) - Ancien ouvrier;;;F;BAYNARD;Danielle;1952-10-19
+36;Indre;5;F;GERBAUD;Frédérique;1959-07-03;LR;Les Républicains;(74) - Ancien cadre;SEN;OUI;M;PLANTUREUX;Jean-Christophe;1965-02-13
+36;Indre;6;F;WUNSCH;Mylène;1958-09-18;RN;Rassemblement National;(72) - Ancien artisan, commerçant, chef d'entreprise;;;M;DE LA TOCNAYE;Thibaut;1958-10-20
+36;Indre;7;M;AVISSEAU;François;1989-08-19;SOC;Parti socialiste;(34) - Professeur, profession scientifique;;;F;FOUCHET;Mathilde;1991-05-16
+36;Indre;8;M;BOUÉ;Gaëtan;1994-07-29;DVD;Divers droite;(37) - Cadre administratif et commercial d'entreprise;;;F;SOULAS BARRAULT;Mélanie;1988-03-23
+70;Haute-Saône;1;F;FRITSCH;Nathalie;1965-06-21;RN;Rassemblement National;(33) - Cadre de la fonction publique;;;M;THOMASSIN;Benoît;1973-02-20
+70;Haute-Saône;2;F;BESSOT BALLOT;Barbara;1972-04-13;REN;Renaissance;(23) - Chef d'entreprise de 10 salariés ou plus;;;M;MERCIER;François;1976-11-29
+70;Haute-Saône;3;M;DOUSSOT;Dimitri;1985-05-17;LR;Les Républicains;(31) - Profession libérale;;;F;LIGEY;Alizée;2000-12-21
+70;Haute-Saône;4;M;RIETMANN;Olivier;1971-11-22;LR;Les Républicains;(85) - Personne diverse sans activité professionnelle de moins de 60 ans (sauf retraité);SEN;OUI;F;SCHNEIDER;Isabelle;1970-01-31
+70;Haute-Saône;5;M;HOULLEY;Eric;1961-07-01;SOC;Parti socialiste;(74) - Ancien cadre;;;F;CHAUVELOT-DUBAN;Claudy;1963-08-30
+70;Haute-Saône;6;F;THIERRY;Géraldine;1974-06-11;FI;La France insoumise;(42) - Professeur des écoles, instituteur et assimilé;;;M;BELLE;Corentin;1999-01-12
+73;Savoie;1;M;VIAL;Cédric;1978-03-25;DVD;Divers droite;(74) - Ancien cadre;SEN;OUI;F;JARRIAND;Isabelle;1965-11-02
+73;Savoie;2;F;BERTOLUTTI;Ludivine;1982-09-19;RN;Rassemblement National;(22) - Commerçant et assimilé;;;M;SAVARY;Sebastien;1995-12-30
+73;Savoie;3;F;BERTHET;Martine;1961-03-27;LR;Les Républicains;(86) - Personne diverse sans activité professionnelle de 60 ans et plus (sauf retraité);SEN;OUI;M;MAITRE;Florian;1990-05-03
+73;Savoie;4;M;PENAROYAS;Florian;1991-08-30;COM;Parti communiste français;(37) - Cadre administratif et commercial d'entreprise;;;F;CHRISTOL;Véronique;1962-09-10
+73;Savoie;5;F;HERGOTT;Gwenaelle;1966-05-02;FI;La France insoumise;(33) - Cadre de la fonction publique;;;M;IBANEZ;Daniel;1958-06-06
+73;Savoie;6;M;DESRUES;Guillaume;1980-11-28;DVG;Divers gauche;(34) - Professeur, profession scientifique;;;F;VALLIN-BALAS;Florence;1954-11-22
+79;Deux-Sèvres;1;F;BONNET-DERISBOURG;Céline;1981-06-26;RN;Rassemblement National;(37) - Cadre administratif et commercial d'entreprise;;;M;LACOURARIE;Laurent;1969-12-18
+79;Deux-Sèvres;2;F;LANZI;Nathalie;1965-02-06;SOC;Parti socialiste;(34) - Professeur, profession scientifique;;;M;GODET;Christophe;1964-10-24
+79;Deux-Sèvres;3;M;LEBLAN FALZONE;Thierry;1960-11-04;FI;La France insoumise;(46) - Profession intermédiaire administrative et commerciale des entreprises;;;F;OLIVIER;Karine;1968-03-05
+79;Deux-Sèvres;4;M;MOUILLER;Philippe;1969-09-20;LR;Les Républicains;(33) - Cadre de la fonction publique;SEN;OUI;F;VINATIER;Nathalie;1967-04-15
+79;Deux-Sèvres;5;F;MISSIOUX;Marie-Pierre;1964-12-22;DVD;Divers droite;(38) - Ingénieur et cadre technique d'entreprise;;;M;BRUNET;Martial;1956-11-26
+79;Deux-Sèvres;6;M;BIRONNEAU;Pascal;1980-06-19;DVG;Divers gauche;(37) - Cadre administratif et commercial d'entreprise;;;F;BRILLAUD;Chantal;1960-11-24
+79;Deux-Sèvres;7;M;GIRAUD;Frédéric;1967-10-05;COM;Parti communiste français;(34) - Professeur, profession scientifique;;;F;MAZÉ;Valérie;1964-03-29
+79;Deux-Sèvres;8;M;GAMACHE;Nicolas;1974-03-11;ECO;Ecologistes;(34) - Professeur, profession scientifique;;;F;BAMBERGER;Annick;1973-09-02
+79;Deux-Sèvres;9;M;CAILLET;Patrick;1957-06-18;DVC;Divers centre;(31) - Profession libérale;;;F;MICHEL;Patricia;1962-08-17
+81;Tarn;1;M;SÈNES;Pierre-Marie;1980-02-19;DVD;Divers droite;(37) - Cadre administratif et commercial d'entreprise;;;F;ASSÉMAT;Sophie;1986-04-18
+81;Tarn;2;M;BACOU;Julien;1986-10-29;RN;Rassemblement National;(47) - Technicien;;;F;CALLEJON;Virginie;1974-10-26
+81;Tarn;3;M;BENOIT-MARQUIÉ;Emmanuel;1982-01-27;VEC;Les Ecologistes;(38) - Ingénieur et cadre technique d'entreprise;;;F;PERRIN;Lucie;1982-12-31
+81;Tarn;4;F;ROQUES ETIENNE;Muriel;1979-03-05;DVC;Divers centre;(31) - Profession libérale;;;M;LAFON;Bernard;1958-06-17
+81;Tarn;5;F;CLAVERIE;Elisabeth;1959-06-22;SOC;Parti socialiste;(34) - Professeur, profession scientifique;;;M;CABRAL;Fabrice;1983-05-19
+81;Tarn;6;F;HOUSSEAU;Marie-Lise;1954-09-03;DVC;Divers centre;(74) - Ancien cadre;SEN;OUI;M;ALIBERT;Jean-Luc;1976-12-06
+81;Tarn;7;M;CARAYON;Bernard;1957-10-01;UDR;Union des droites pour la République;(31) - Profession libérale;;;F;BOSC-COULOMB;Martine;1954-01-16
+81;Tarn;8;M;FOLLIOT;Philippe;1963-07-14;DVC;Divers centre;(85) - Personne diverse sans activité professionnelle de moins de 60 ans (sauf retraité);SEN;OUI;F;KERBORIOU-GUIRAUD;Marie;1967-02-25
+81;Tarn;9;F;MERCIER;Pauline;1995-12-11;FI;La France insoumise;(46) - Profession intermédiaire administrative et commerciale des entreprises;;;M;COTTAZ-CORDIER;Bernard;1949-09-30
+81;Tarn;10;M;SAN ANDRES;Thierry;1970-07-23;COM;Parti communiste français;(34) - Professeur, profession scientifique;;;F;ROUQUETTE;Géraldine;1973-05-02
+81;Tarn;11;M;SICARD;Christian;1952-08-29;DIV;Divers;(74) - Ancien cadre;;;F;COQ;Yannick;1956-02-11
+82;Tarn-et-Garonne;1;M;CRAÏS;Gérard;1963-01-16;SOC;Parti socialiste;(42) - Professeur des écoles, instituteur et assimilé;;;F;BOURDONCLE;Cathie;1966-04-09
+82;Tarn-et-Garonne;2;M;LEVI;Pierre-Antoine;1965-05-15;DVD;Divers droite;(37) - Cadre administratif et commercial d'entreprise;SEN;OUI;F;BOREL;Sylvie;1968-11-15
+82;Tarn-et-Garonne;3;M;PELLICER;David;1964-02-04;FI;La France insoumise;(34) - Professeur, profession scientifique;;;F;DOLGATCHEFF;Véronique;1964-12-08
+82;Tarn-et-Garonne;4;F;IUS;Anne;1979-04-17;RDG;Parti radical de gauche;(45) - Profession intermédiaire administrative de la fonction publique;;;M;BERRIER;Serge;1945-04-03
+82;Tarn-et-Garonne;5;M;GRILHAULT DES FONTAINES;Jean-François;1962-06-27;DSV;Droite souverainiste;(21) - Artisan;;;F;BEKHEDDA;Fatima;1977-05-30
+82;Tarn-et-Garonne;6;F;ROBLIN;Cécile;1969-11-23;VEC;Les Ecologistes;(31) - Profession libérale;;;M;PRODHON;Patrick;1978-11-05
+82;Tarn-et-Garonne;7;M;BESIERS;Jean-Philippe;1968-08-28;DVC;Divers centre;(22) - Commerçant et assimilé;;;F;RIOLS;Véronique;1967-05-05
+82;Tarn-et-Garonne;8;M;LAMOTTE;Quentin;1987-09-25;RN;Rassemblement National;(33) - Cadre de la fonction publique;;;F;VAN DER MAESEN;Kézérine;1980-03-14
+82;Tarn-et-Garonne;9;M;BONHOMME;François;1969-05-05;DVD;Divers droite;(85) - Personne diverse sans activité professionnelle de moins de 60 ans (sauf retraité);SEN;OUI;F;BRINGAY;Climène;1966-12-06
+82;Tarn-et-Garonne;10;M;PORTOLES;Rodolphe;1962-02-20;COM;Parti communiste français;(42) - Professeur des écoles, instituteur et assimilé;;;F;TRICOTTET;Alexandra;1967-02-21
+82;Tarn-et-Garonne;11;F;BAREGES;Brigitte;1953-05-01;UDR;Union des droites pour la République;(31) - Profession libérale;;;M;RASPIDE;Jean-Marc;1964-05-25
+82;Tarn-et-Garonne;12;M;DELSOL;Thierry;1965-10-08;DIV;Divers;(23) - Chef d'entreprise de 10 salariés ou plus;;;F;TAPIE;Charlotte;1991-06-17
+86;Vienne;1;F;BELLAMY;Marie-Jeanne;1966-01-05;LR;Les Républicains;(86) - Personne diverse sans activité professionnelle de 60 ans et plus (sauf retraité);SEN;OUI;M;GEOFFROY;Jean-Olivier;1957-09-01
+86;Vienne;2;M;BELIN;Bruno;1962-06-08;LR;Les Républicains;(31) - Profession libérale;SEN;OUI;F;DESROSES;Marie-Renée;1970-04-14
+86;Vienne;3;F;AUGUSTIN;Myriam;1988-10-12;FI;La France insoumise;(43) - Profession intermédiaire de la santé et du travail social;;;M;MUCCIO;Jérémy;1982-12-20
+86;Vienne;4;F;AUBERT;Sylvie;1970-07-14;DVG;Divers gauche;(33) - Cadre de la fonction publique;;;M;BELLICAULT;Benjamin;1990-12-16
+86;Vienne;5;F;JACQUEMIN;Hager;1981-12-09;RN;Rassemblement National;(37) - Cadre administratif et commercial d'entreprise;;;M;JACOB;Bernard;1957-05-20
+87;Haute-Vienne;1;F;LHOMME LÉOMENT;Jacqueline;1957-04-30;COM;Parti communiste français;(77) - Ancien employé;;;M;RIGOUT;Jean-Yves;1964-01-29
+87;Haute-Vienne;2;F;TUYERAS;Sylvie;1958-02-06;COM;Parti communiste français;(75) - Ancienne profession intermédiaire;;;M;MUZETTE;Thierry;1952-10-18
+87;Haute-Vienne;3;M;REDON-SARRAZY;Christian;1959-11-18;SOC;Parti socialiste;(74) - Ancien cadre;SEN;OUI;F;LENFANT;Julie;1984-08-18
+87;Haute-Vienne;4;F;BRIQUET;Isabelle;1967-09-04;SOC;Parti socialiste;(85) - Personne diverse sans activité professionnelle de moins de 60 ans (sauf retraité);SEN;OUI;M;THOMAS;Jean-Claude;1956-11-11
+87;Haute-Vienne;5;M;BOST;Jean-Marie;1955-02-16;LR;Les Républicains;(72) - Ancien artisan, commerçant, chef d'entreprise;;;F;FAUVEL;Noémie;1989-04-27
+87;Haute-Vienne;6;M;THEILLET;Pascal;1951-05-04;DVD;Divers droite;(74) - Ancien cadre;;;F;FILLOUX;Virginie;1979-02-24
+87;Haute-Vienne;7;M;FREYCHET;Albin;1992-01-10;RN;Rassemblement National;(33) - Cadre de la fonction publique;;;F;GÉDOUX;Christiane;1951-09-14
+87;Haute-Vienne;8;M;REBÉRAT;Michel;1960-04-21;GEN;Génération.s;(75) - Ancienne profession intermédiaire;;;F;SERRES;Mélanie;1981-05-21
+87;Haute-Vienne;9;F;COQUET;Esther;1991-09-05;FI;La France insoumise;(85) - Personne diverse sans activité professionnelle de moins de 60 ans (sauf retraité);;;M;BOURRIQUET;Elis;1992-10-01
+88;Vosges;1;M;GREMILLET;Daniel;1953-07-31;LR;Les Républicains;(71) - Ancien agriculteur exploitant;SEN;OUI;F;SIVADON;Emilie;1973-06-27
+88;Vosges;2;M;FRANÇOIS;Pierre;1986-04-15;RN;Rassemblement National;(33) - Cadre de la fonction publique;;;F;PANDEV;Nadia;1986-03-08
+88;Vosges;3;F;BLAISE;Sandra;1974-08-25;COM;Parti communiste français;(85) - Personne diverse sans activité professionnelle de moins de 60 ans (sauf retraité);;;M;BERNARD;Adrien;1990-09-21
+88;Vosges;4;M;HINGRAY;Jean;1986-07-19;UDI;Union des Démocrates et Indépendants;(34) - Professeur, profession scientifique;SEN;OUI;F;WILLEMIN;Jenny;1984-08-07
+88;Vosges;5;F;BAPTISTE;Roxane;1978-01-13;DVC;Divers centre;(45) - Profession intermédiaire administrative de la fonction publique;;;M;GREGOIRE;Christian;1955-12-10
+88;Vosges;6;F;XICOLA;Julie;1980-11-05;FI;La France insoumise;(33) - Cadre de la fonction publique;;;M;PREVOT;Cédric;1987-04-17
+88;Vosges;7;M;NEDELEC;Claude;1958-10-01;LR;Les Républicains;(74) - Ancien cadre;;;F;HUMBERT;Dominique;1955-10-14
+89;Yonne;1;M;LEMOYNE;Jean-Baptiste;1977-09-15;REN;Renaissance;(37) - Cadre administratif et commercial d'entreprise;SEN;OUI;F;VAILLANT;Marie José;1962-01-05
+89;Yonne;2;M;BLAISE;Pascal;1955-06-11;RN;Rassemblement National;(75) - Ancienne profession intermédiaire;;;F;VIGNE;Marine;2000-09-02
+89;Yonne;3;M;PIRMAN;Gilles;1968-04-10;LR;Les Républicains;(33) - Cadre de la fonction publique;;;F;PICART;Sandra;1982-01-10
+89;Yonne;4;M;LARGE;Dominique;1962-11-08;DSV;Droite souverainiste;(46) - Profession intermédiaire administrative et commerciale des entreprises;;;F;THOREL;Sandrine;1967-06-07
+89;Yonne;5;F;GHERSI BURIER;Marie-France;1960-12-20;COM;Parti communiste français;(74) - Ancien cadre;;;M;JACQUET;Julien;1998-03-01
+89;Yonne;6;M;KOR;Taoufik;1979-08-06;VEC;Les Ecologistes;(22) - Commerçant et assimilé;;;F;BÄHR;Marie;1991-08-20
+89;Yonne;7;M;BÉTHENCOURT;Thibault;1994-03-01;DIV;Divers;(37) - Cadre administratif et commercial d'entreprise;;;F;ARFEUX;Alyssa;1998-09-17
+89;Yonne;8;F;JOLITON;Elsa;1985-01-12;FI;La France insoumise;(34) - Professeur, profession scientifique;;;M;ARNOUX;Stéphane;1976-12-06
+89;Yonne;9;F;VERIEN;Dominique;1965-08-29;UDI;Union des Démocrates et Indépendants;(38) - Ingénieur et cadre technique d'entreprise;SEN;OUI;M;COQUILLE;Eric;1960-04-22
+90;Territoire de Belfort;1;M;DECOSTER;Olivier;1967-07-11;RN;Rassemblement National;(23) - Chef d'entreprise de 10 salariés ou plus;;;F;SCALET;Priscillia;1986-09-13
+90;Territoire de Belfort;2;M;PERRIN;Cédric;1974-01-20;LR;Les Républicains;(37) - Cadre administratif et commercial d'entreprise;SEN;OUI;F;ORIAT;Valérie;1972-02-16
+90;Territoire de Belfort;3;F;DEWIT;Caroline;1994-03-23;FI;La France insoumise;(34) - Professeur, profession scientifique;;;M;BEAU;Frédéric;1969-10-12
+90;Territoire de Belfort;4;F;TERNANT;Muriel;1976-05-05;COM;Parti communiste français;(34) - Professeur, profession scientifique;;;M;GERARD;Francis;1968-09-30
+973;Guyane;1;M;LECANTE;Patrick;1963-01-09;DVG;Divers gauche;(34) - Professeur, profession scientifique;;;F;CABERIA;Natacha;1985-06-24
+973;Guyane;2;M;ALEXANDRE;Rodolphe;1953-09-25;DVG;Divers gauche;(74) - Ancien cadre;;;F;PIERRE;Dayna;1996-10-16
+973;Guyane;3;M;ARON;Roger;1954-04-25;DVG;Divers gauche;(72) - Ancien artisan, commerçant, chef d'entreprise;;;F;ROBINSON;Anne-Michele;1962-06-26
+973;Guyane;4;F;SIRDER;Hélène;1951-10-20;DVC;Divers centre;(31) - Profession libérale;;;M;CONSTANT;Rudy;1972-04-07
+973;Guyane;5;M;BELLONY;Rollin;1950-12-17;DVG;Divers gauche;(31) - Profession libérale;;;F;TIMANE;Tracy;1990-11-29
+973;Guyane;6;M;MIRAKOFF;Jean-Yves;1965-09-25;REG;Régionaliste;(37) - Cadre administratif et commercial d'entreprise;;;F;SABAYO;Rosalie;1979-05-17
+973;Guyane;7;M;MALARME;Ronan;1988-10-31;RN;Rassemblement National;(23) - Chef d'entreprise de 10 salariés ou plus;;;F;GUYONVARHO;Andréa;1997-08-29
+973;Guyane;8;M;JOSEPH;Victor;1949-09-04;SOC;Parti socialiste;(74) - Ancien cadre;;;F;FATI;Gisèle;1991-09-12
+973;Guyane;9;M;PERSAUD;Ryan;1994-05-28;DIV;Divers;(54) - Employé administratif d'entreprise;;;F;STEPHENSON;Clara;1980-09-04
+973;Guyane;10;M;AMAYOTA;Gérard;1970-12-12;DVG;Divers gauche;(42) - Professeur des écoles, instituteur et assimilé;;;F;RAYMOND;Marie-Jeanne;1968-03-28
+977;Saint-Barthélemy;1;M;CHAUVIN;Benoît;1971-12-20;DVC;Divers centre;(38) - Ingénieur et cadre technique d'entreprise;;;F;TELLO;Peggi;1980-12-06
+977;Saint-Barthélemy;2;F;JACQUES;Micheline;1971-10-08;LR;Les Républicains;(33) - Cadre de la fonction publique;SEN;OUI;M;LAPLACE;Jérémy;1994-11-09
+977;Saint-Barthélemy;3;M;DESOUCHES;Maxime;1963-04-07;DVC;Divers centre;(37) - Cadre administratif et commercial d'entreprise;;;F;DESOUCHES-KLEINHANS;Audrey;1996-02-16
+978;Saint-Martin;1;F;PÉTRUS;Annick;1961-01-05;DVD;Divers droite;(74) - Ancien cadre;SEN;OUI;M;CHOISY;Alexandre;1978-05-28
+978;Saint-Martin;2;M;GIBBS;Daniel;1968-01-08;LR;Les Républicains;(23) - Chef d'entreprise de 10 salariés ou plus;;;F;RAMPHORT;Marie Dominique;1956-10-28
+978;Saint-Martin;3;F;VENTHOU-DUMAINE;Bernadette;1982-06-12;DIV;Divers;(37) - Cadre administratif et commercial d'entreprise;;;M;GALVANI;Fabien;1985-09-23
+978;Saint-Martin;4;F;DAMASEAU;Valerie;1983-11-04;DVC;Divers centre;(37) - Cadre administratif et commercial d'entreprise;;;M;PETIT;Michel;1950-02-09
+978;Saint-Martin;5;M;SANCHEZ;Raphaël;1994-02-10;DVG;Divers gauche;(55) - Employé de commerce;;;F;BELDOR;Martine;1986-04-09
+978;Saint-Martin;6;M;CHOPPIN HAUDRY DE JANVRY;Tristan;1987-11-17;UDR;Union des droites pour la République;(31) - Profession libérale;;;F;GRIMALDI;Emmanuelle;1988-01-30
+986;Wallis et Futuna;1;M;VAITULUKINA;Atelea;1950-12-21;DVD;Divers droite;(86) - Personne diverse sans activité professionnelle de 60 ans et plus (sauf retraité);;;F;LAUFILITOGA;Selesitina;1947-09-14
+986;Wallis et Futuna;2;M;TUKUMULI;Lafaele;1972-11-05;DVC;Divers centre;(45) - Profession intermédiaire administrative de la fonction publique;;;F;FIAKAIFONU;Palatina;1967-12-30
+986;Wallis et Futuna;3;M;KULIMOETOKE;Mikaele;1963-06-17;REN;Renaissance;(53) - Policier et militaire;SEN;OUI;F;TAUVALE;Akata;1976-03-27
+986;Wallis et Futuna;4;F;UGATAI;Sandrine;1976-06-23;DVG;Divers gauche;(33) - Cadre de la fonction publique;;;M;TOIAVA;Clovis;1965-07-05
+987;Polynésie française;1;F;TETUANUI;Lana;1970-02-23;DVC;Divers centre;(85) - Personne diverse sans activité professionnelle de moins de 60 ans (sauf retraité);SEN;OUI;M;HAUMANI;Evans;1962-07-31
+987;Polynésie française;2;M;FRITCH;Edouard;1952-01-04;DVC;Divers centre;(74) - Ancien cadre;;;F;TERIITAHI;Tepuaraurii Marcella;1977-12-01
+987;Polynésie française;3;M;ROHFRITSCH;Teva;1975-02-03;DVC;Divers centre;(33) - Cadre de la fonction publique;SEN;OUI;F;TEMATUA-ESTALL;Vaiana;1983-04-12
+987;Polynésie française;4;M;JORDAN;Raimana;1978-11-18;RN;Rassemblement National;(55) - Employé de commerce;;;F;PAUTEHEA;Laiza;1976-11-26
+987;Polynésie française;5;M;HAMBLIN;Steeve;1973-03-08;DVD;Divers droite;(23) - Chef d'entreprise de 10 salariés ou plus;;;F;BERNARDINO;Namoeata;1964-01-03
+987;Polynésie française;6;M;VARNEY;Temarama;1975-06-07;DVC;Divers centre;(42) - Professeur des écoles, instituteur et assimilé;;;F;PUHETINI;Sylvana;1962-11-10
+987;Polynésie française;7;M;BRYANT;Jacky;1957-06-19;ECO;Ecologistes;(42) - Professeur des écoles, instituteur et assimilé;;;F;TEARIKI;Mélodie;1987-04-19
+987;Polynésie française;8;M;SANDRAS;Bruno;1961-08-04;REG;Régionaliste;(74) - Ancien cadre;;;F;LORFEVRE EPOUSE NOUVEAU;Lydia;1959-02-27
+987;Polynésie française;9;M;SALMON;Tati;1961-01-16;ECO;Ecologistes;(42) - Professeur des écoles, instituteur et assimilé;;;F;CHAPMAN;Sarah;1982-10-23
+987;Polynésie française;10;F;BIRK;Sabrina;1969-03-10;REG;Régionaliste;(21) - Artisan;;;M;PINARD;Christian Heimana;1969-11-19
