@@ -843,6 +843,40 @@ footer {
 
             <div class="circo-grid" id="grid"></div>
         </section>
+
+        <section class="section" id="groupsSection">
+            <h2 class="section-title">
+                <span class="num">3</span>
+                Groupes politiques du Sénat
+                <span class="hint">Répartition des 348 sièges</span>
+            </h2>
+
+            <div class="stats-banner" id="groupsStatsBanner"></div>
+
+            <div class="viz-grid">
+                <div class="chart-box">
+                    <canvas id="groupsChart"></canvas>
+                </div>
+                <div class="data-panel" id="groupsPanel"></div>
+            </div>
+
+            <div class="table-wrap" style="margin-top: 20px;">
+                <h3 class="table-title">Comparaison 2020 → 2026 par groupe politique</h3>
+                <table class="data-table" id="groupsTable">
+                    <thead>
+                        <tr>
+                            <th>Groupe politique</th>
+                            <th>Effectif actuel</th>
+                            <th>Sièges renouvelés</th>
+                            <th>Élus 2020</th>
+                            <th>Candidats 2026</th>
+                            <th>Évolution</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
     </div>
 
     <div id="detail" class="detail-view">
@@ -903,7 +937,8 @@ const state = {
     senateursNP: new Map(),
     stats: null,
     current: null,
-    chart: null
+    chart: null,
+    groupsChart: null
 };
 const $ = id => document.getElementById(id);
 
@@ -945,6 +980,41 @@ const NUANCES = {
     'PR':      { label: 'Parti radical', color: '#5b9bd5' },
     'DSV':     { label: 'Divers souverainiste', color: '#6b7280' }
 };
+
+// ============================================================
+// GROUPES POLITIQUES DU SÉNAT
+// ============================================================
+// Effectifs officiels avant le scrutin de septembre 2026 (source : Sénat)
+const GROUPES_SENAT = [
+    { code: 'LR',     nom: 'Les Républicains',                              effectif: 130, siegesRenouveles: 77, couleur: '#0066cc' },
+    { code: 'SER',    nom: 'Socialiste, Écologiste et Républicain',         effectif: 65,  siegesRenouveles: 31, couleur: '#e4003a' },
+    { code: 'UC',     nom: 'Union Centriste',                               effectif: 59,  siegesRenouveles: 30, couleur: '#00a0e0' },
+    { code: 'LI-RT',  nom: 'Les Indépendants – République et Territoires',  effectif: 20,  siegesRenouveles: 9,  couleur: '#5b9bd5' },
+    { code: 'RDPI',   nom: 'Rassemblement Démocrates Progressistes Indép.', effectif: 19,  siegesRenouveles: 11, couleur: '#ff8c00' },
+    { code: 'CRCE-K', nom: 'Communiste Républicain Citoyen et Écologiste',  effectif: 18,  siegesRenouveles: 8,  couleur: '#9b1b30' },
+    { code: 'RDSE',   nom: 'Rassemblement Démocratique et Social Européen', effectif: 17,  siegesRenouveles: 8,  couleur: '#ff6b9d' },
+    { code: 'GEST',   nom: 'Écologiste – Solidarité et Territoires',        effectif: 16,  siegesRenouveles: 7,  couleur: '#00a651' },
+    { code: 'NI',     nom: 'Non inscrits (dont RN)',                        effectif: 4,   siegesRenouveles: 3,  couleur: '#8a8a9e' }
+];
+
+// Mapping nuance politique → groupe parlementaire
+const NUANCE_TO_GROUPE = {
+    'LR': 'LR', 'LLR': 'LR', 'DVD': 'LR',
+    'SOC': 'SER', 'PS': 'SER', 'SER': 'SER', 'DVG': 'SER', 'RDG': 'SER', 'UG': 'SER', 'GEN': 'SER',
+    'UC': 'UC', 'UDI': 'UC', 'MDM': 'UC', 'MODEM': 'UC', 'DVC': 'UC',
+    'HOR': 'LI-RT', 'PR': 'LI-RT',
+    'REN': 'RDPI', 'ENS': 'RDPI', 'REM': 'RDPI',
+    'COM': 'CRCE-K', 'PCF': 'CRCE-K', 'LFI': 'CRCE-K', 'FI': 'CRCE-K',
+    'RDSE': 'RDSE', 'REG': 'RDSE', 'DSV': 'RDSE',
+    'VEC': 'GEST', 'ECO': 'GEST', 'PLP': 'GEST',
+    'RN': 'NI', 'UDR': 'NI', 'REC': 'NI', 'EXD': 'NI', 'EXG': 'NI',
+    'DIV': 'NI'
+};
+
+function nuanceVersGroupe(codeNuance) {
+    if (!codeNuance) return 'NI';
+    return NUANCE_TO_GROUPE[codeNuance.toUpperCase()] || 'NI';
+}
 
 function nuanceBadge(code, label) {
     const meta = NUANCES[code] || { label: label || code || 'Divers', color: '#8a8a9e' };
@@ -997,6 +1067,7 @@ async function init() {
         $('loader').style.display = 'none';
         $('dashboard').style.display = 'block';
         renderGrid();
+        renderGroups();
 
     } catch (err) {
         console.error(err);
@@ -1138,6 +1209,202 @@ function renderGrid() {
 }
 
 // ============================================================
+// GROUPES POLITIQUES
+// ============================================================
+function renderGroups() {
+    if (!state.circonscriptions || state.circonscriptions.length === 0) return;
+
+    const statsParGroupe = {};
+    GROUPES_SENAT.forEach(g => {
+        statsParGroupe[g.code] = {
+            ...g,
+            elus2020: 0,
+            candidats2026: 0,
+            sortants2026: 0
+        };
+    });
+
+    state.circonscriptions.forEach(c => {
+        // Élus 2020 → groupe (via NosParlementaires si dispo)
+        if (c.elus2020) {
+            c.elus2020.forEach(e => {
+                let groupeKey = 'NI';
+                if (c.senateurs) {
+                    const senateur = c.senateurs.find(s =>
+                        s.nom && s.prenom &&
+                        s.nom.toUpperCase() === e.nom.toUpperCase() &&
+                        s.prenom.toUpperCase() === e.prenom.toUpperCase()
+                    );
+                    if (senateur && senateur.groupe) {
+                        groupeKey = NUANCE_TO_GROUPE[senateur.groupe.toUpperCase()] || senateur.groupe;
+                    }
+                }
+                if (statsParGroupe[groupeKey]) {
+                    statsParGroupe[groupeKey].elus2020++;
+                    if (e.candidat2026) {
+                        statsParGroupe[groupeKey].candidats2026++;
+                    }
+                }
+            });
+        }
+
+        // Candidats 2026
+        if (c.candidats) {
+            c.candidats.forEach(x => {
+                const groupeKey = nuanceVersGroupe(x.codeNuance);
+                if (statsParGroupe[groupeKey]) {
+                    statsParGroupe[groupeKey].candidats2026++;
+                    if (x.sortant) statsParGroupe[groupeKey].sortants2026++;
+                }
+            });
+        }
+
+        if (c.listes) {
+            c.listes.forEach(l => {
+                const groupeKey = nuanceVersGroupe(l.codeNuance);
+                if (statsParGroupe[groupeKey]) {
+                    statsParGroupe[groupeKey].candidats2026 += l.membres.length;
+                }
+            });
+        }
+    });
+
+    const groupesArray = Object.values(statsParGroupe);
+
+    // Bandeau
+    const totalRenouveles = groupesArray.reduce((s, g) => s + g.siegesRenouveles, 0);
+    const totalElus2020 = groupesArray.reduce((s, g) => s + g.elus2020, 0);
+    const totalCandidats2026 = groupesArray.reduce((s, g) => s + g.candidats2026, 0);
+
+    $('groupsStatsBanner').innerHTML = `
+        <div class="stat-card"><span class="label">Sièges au Sénat</span><span class="value">348</span></div>
+        <div class="stat-card"><span class="label">Sièges renouvelés</span><span class="value">${totalRenouveles}</span></div>
+        <div class="stat-card"><span class="label">Groupes politiques</span><span class="value">${groupesArray.length}</span></div>
+        <div class="stat-card"><span class="label">Élus 2020</span><span class="value">${totalElus2020}</span></div>
+        <div class="stat-card"><span class="label">Candidats 2026</span><span class="value">${totalCandidats2026.toLocaleString('fr-FR')}</span></div>
+    `;
+
+    // Chart
+    const ctx = $('groupsChart').getContext('2d');
+    if (state.groupsChart) state.groupsChart.destroy();
+
+    const sorted = [...groupesArray].sort((a, b) => b.effectif - a.effectif);
+
+    state.groupsChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: sorted.map(g => g.code),
+            datasets: [
+                {
+                    label: 'Effectif actuel',
+                    data: sorted.map(g => g.effectif),
+                    backgroundColor: sorted.map(g => g.couleur + 'dd'),
+                    borderColor: sorted.map(g => g.couleur),
+                    borderWidth: 1.5,
+                    borderRadius: 4
+                },
+                {
+                    label: 'Sièges renouvelés',
+                    data: sorted.map(g => g.siegesRenouveles),
+                    backgroundColor: sorted.map(g => g.couleur + '44'),
+                    borderColor: sorted.map(g => g.couleur),
+                    borderWidth: 1,
+                    borderRadius: 4
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: { color: '#161616', font: { family: 'Inter', size: 11 }, padding: 12, boxWidth: 12 }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(22,22,22,0.95)',
+                    borderColor: 'rgba(0,0,145,0.3)',
+                    borderWidth: 1,
+                    padding: 12,
+                    cornerRadius: 4,
+                    callbacks: {
+                        afterLabel: (c) => {
+                            const g = sorted[c.dataIndex];
+                            return g.nom;
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    ticks: { color: '#666', font: { family: 'JetBrains Mono', size: 10 } },
+                    grid: { color: 'rgba(0,0,0,0.06)' },
+                    beginAtZero: true
+                },
+                x: {
+                    ticks: { color: '#161616', font: { family: 'Inter', size: 11, weight: '700' } },
+                    grid: { display: false }
+                }
+            }
+        }
+    });
+
+    // Panel
+    const top3 = sorted.slice(0, 3);
+    $('groupsPanel').innerHTML = `
+        <h3>Top 3 groupes</h3>
+        ${top3.map((g, i) => `
+            <div class="data-row" style="border-left: 3px solid ${g.couleur}; padding-left: 10px;">
+                <span>
+                    <strong>${i + 1}. ${g.code}</strong><br>
+                    <small style="color: var(--text-mention); font-size: 0.7rem;">${g.nom}</small>
+                </span>
+                <span class="data-val" style="font-size: 1.1rem;">${g.effectif}</span>
+            </div>
+        `).join('')}
+        <div class="data-row" style="margin-top: 12px; border-top: 1px solid var(--border); padding-top: 12px;">
+            <span class="data-label">Total Sénat</span>
+            <span class="data-val">348 sièges</span>
+        </div>
+        <div class="data-row">
+            <span class="data-label">Renouvelés 2026</span>
+            <span class="data-val">178 sièges</span>
+        </div>
+    `;
+
+    // Tableau
+    $('groupsTable').querySelector('tbody').innerHTML = sorted.map(g => {
+        const pctRenouvele = g.effectif > 0 ? ((g.siegesRenouveles / g.effectif) * 100).toFixed(0) : 0;
+        const evolution = g.candidats2026 - g.elus2020;
+        const evoBadge = evolution > 0
+            ? badge('+' + evolution, 'candidat', '▲')
+            : evolution < 0
+                ? badge(String(evolution), 'sortant', '▼')
+                : badge('=', 'neutre', '—');
+
+        return `
+            <tr>
+                <td>
+                    <span style="display: inline-block; width: 8px; height: 8px; background: ${g.couleur}; border-radius: 2px; margin-right: 8px;"></span>
+                    <strong>${g.code}</strong>
+                    <br>
+                    <small style="color: var(--text-mention); font-size: 0.75rem;">${g.nom}</small>
+                </td>
+                <td style="font-family: var(--font-mono); font-weight: 700;">${g.effectif}</td>
+                <td>
+                    <span style="font-family: var(--font-mono);">${g.siegesRenouveles}</span>
+                    <small style="color: var(--text-mention); font-size: 0.7rem;">(${pctRenouvele}%)</small>
+                </td>
+                <td style="font-family: var(--font-mono);">${g.elus2020}</td>
+                <td style="font-family: var(--font-mono);">${g.candidats2026}</td>
+                <td>${evoBadge}</td>
+            </tr>
+        `;
+    }).join('');
+}
+
+// ============================================================
 // DETAIL
 // ============================================================
 window.showDetail = function(code) {
@@ -1150,7 +1417,6 @@ window.showDetail = function(code) {
     const inscritsTxt = c.inscrits ? ' · ' + c.inscrits.toLocaleString('fr-FR') + ' électeurs' : '';
     $('detailMeta').textContent = `Département ${c.code} · ${c.type === 'majoritaire' ? 'Majoritaire' : 'Proportionnel'}${inscritsTxt}`;
 
-    // Stats détail
     if (c.type === 'majoritaire') {
         const nbSortants = c.candidats.filter(x => x.sortant).length;
         const nbF = c.candidats.filter(x => x.sexe === 'F').length;
@@ -1192,7 +1458,7 @@ window.showDetail = function(code) {
         `;
     }
 
-    // Panel analyse
+    // Panel
     if (c.type === 'majoritaire') {
         const nuances = {};
         c.candidats.forEach(x => { nuances[x.codeNuance || 'DIV'] = (nuances[x.codeNuance || 'DIV'] || 0) + 1; });
@@ -1279,7 +1545,7 @@ window.showDetail = function(code) {
         }
     });
 
-    // Table principale
+    // Table
     if (c.type === 'majoritaire') {
         $('dataTable').querySelector('thead').innerHTML = `
             <tr>
@@ -1325,7 +1591,7 @@ window.showDetail = function(code) {
         $('dataTable').querySelector('tbody').innerHTML = rows;
     }
 
-    // Section NosParlementaires
+    // NP
     const npSection = $('npSection');
     npSection.innerHTML = '';
 
@@ -1372,7 +1638,7 @@ window.showDetail = function(code) {
         `;
     }
 
-    // Section élus 2020
+    // Élus 2020
     const elus2020Section = $('elus2020Section');
     elus2020Section.innerHTML = '';
 
