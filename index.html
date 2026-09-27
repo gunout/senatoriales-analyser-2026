@@ -438,6 +438,8 @@ select.sort-btn:focus { outline: none; border-color: var(--bleu-france); box-sha
 .badge-homme { color: #0369a1; background: #e0f2fe; border-color: rgba(3, 105, 161, 0.15); }
 .badge-electeurs { color: #8a6500; background: #fef9c3; border-color: rgba(195, 153, 42, 0.3); font-weight: 700; }
 .badge-np { color: #5b21b6; background: #ede9fe; border-color: rgba(91, 33, 182, 0.2); }
+.badge-2020 { color: #0d5a7d; background: #e0f5ff; border-color: rgba(13, 90, 125, 0.25); }
+.badge-candidat { color: #14532d; background: #dcfce7; border-color: rgba(20, 83, 45, 0.25); }
 
 /* NUANCES */
 .nuance {
@@ -791,6 +793,7 @@ footer {
                 Source officielle data.gouv.fr
             </a>
             <span class="info-item">Activité : <strong>NosParlementaires</strong></span>
+            <span class="info-item">Élus 2020 : <strong>Sénat</strong></span>
             <span class="info-item" id="metaGenere"></span>
         </div>
     </div>
@@ -834,6 +837,7 @@ footer {
                     <option value="nom">Tri : nom</option>
                     <option value="candidats">Tri : nb candidats</option>
                     <option value="inscrits">Tri : nb électeurs</option>
+                    <option value="elus2020">Tri : nb élus 2020</option>
                 </select>
             </div>
 
@@ -864,6 +868,7 @@ footer {
         </div>
 
         <div id="npSection"></div>
+        <div id="elus2020Section"></div>
     </div>
 
 </div>
@@ -879,7 +884,7 @@ footer {
             </span>
         </div>
         <div>
-            Données : Ministère de l'Intérieur · NosParlementaires · data.gouv.fr
+            Données : Ministère de l'Intérieur · NosParlementaires · Sénat · data.gouv.fr
             <br>
             Élections sénatoriales 2026 · Série 2 · 178 sièges renouvelés
         </div>
@@ -909,6 +914,7 @@ const NUANCES = {
     'HOR':     { label: 'Horizons', color: '#1e90ff' },
     'ENS':     { label: 'Ensemble', color: '#ff8c00' },
     'REN':     { label: 'Renaissance', color: '#ff8c00' },
+    'REM':     { label: 'Renaissance', color: '#ff8c00' },
     'MODEM':   { label: 'MoDem', color: '#ffa500' },
     'MDM':     { label: 'MoDem', color: '#ffa500' },
     'UDI':     { label: 'UDI', color: '#5b9bd5' },
@@ -1026,6 +1032,11 @@ function computeStats() {
 
     const nbActifs = [...state.senateursNP.values()].filter(x => x.enMandat).length;
 
+    const elus2020Card = s.elus2020Total ? `
+        <div class="stat-card"><span class="label">Élus 2020</span><span class="value">${s.elus2020Total}</span></div>
+        <div class="stat-card"><span class="label">Sortants candidats</span><span class="value">${s.elus2020Candidats2026}</span></div>
+    ` : '';
+
     $('statsBanner').innerHTML = `
         <div class="stat-card"><span class="label">Circo. majoritaires</span><span class="value">${nbMaj}</span></div>
         <div class="stat-card"><span class="label">Circo. proportionnelles</span><span class="value">${nbProp}</span></div>
@@ -1038,6 +1049,7 @@ function computeStats() {
             <div class="stat-card"><span class="label">En mandat</span><span class="value">${nbActifs.toLocaleString('fr-FR')}</span></div>
             <div class="stat-card"><span class="label">Scrutins NP</span><span class="value">${state.scrutinsNP.size.toLocaleString('fr-FR')}</span></div>
         ` : ''}
+        ${elus2020Card}
     `;
 
     $('countHint').textContent = state.circonscriptions.length + ' circonscriptions';
@@ -1066,12 +1078,13 @@ function renderGrid() {
     filtered.sort((a, b) => {
         if (sort === 'nom') return (a.nom || '').localeCompare(b.nom || '');
         if (sort === 'inscrits') return (b.inscrits || 0) - (a.inscrits || 0);
+        if (sort === 'elus2020') return ((b.elus2020 || []).length) - ((a.elus2020 || []).length);
         if (sort === 'candidats') {
             const ca = a.type === 'majoritaire' ? a.candidats.length : a.listes.length;
             const cb = b.type === 'majoritaire' ? b.candidats.length : b.listes.length;
             return cb - ca;
         }
-        return a.code.localeCompare(b.code);
+        return a.code.localeCompare(b.code, 'fr', { numeric: true });
     });
 
     if (filtered.length === 0) {
@@ -1093,6 +1106,15 @@ function renderGrid() {
         const npBadge = c.senateurs && c.senateurs.length > 0
             ? badge(c.senateurs.length + ' sénateur' + (c.senateurs.length > 1 ? 's' : ''), 'np', '🏛')
             : '';
+        const elus2020Badge = c.elus2020 && c.elus2020.length > 0
+            ? badge(c.elus2020.length + ' élu' + (c.elus2020.length > 1 ? 's' : '') + ' 2020', '2020', '📜')
+            : '';
+        const candidats2020Badge = c.elus2020
+            ? (() => {
+                const nb = c.elus2020.filter(e => e.candidat2026).length;
+                return nb > 0 ? badge(nb + ' candidat' + (nb > 1 ? 's' : '') + ' 2026', 'candidat', '→') : '';
+            })()
+            : '';
 
         return `
             <div class="circo-card ${c.type}" onclick="showDetail('${c.code}')">
@@ -1106,6 +1128,8 @@ function renderGrid() {
                     ${badge(count + ' ' + countLabel, 'neutre', '📋')}
                     ${inscritsBadge}
                     ${npBadge}
+                    ${elus2020Badge}
+                    ${candidats2020Badge}
                     ${nbSortants > 0 ? badge(nbSortants + ' sortant' + (nbSortants > 1 ? 's' : ''), 'sortant', '★') : ''}
                 </div>
             </div>
@@ -1126,6 +1150,7 @@ window.showDetail = function(code) {
     const inscritsTxt = c.inscrits ? ' · ' + c.inscrits.toLocaleString('fr-FR') + ' électeurs' : '';
     $('detailMeta').textContent = `Département ${c.code} · ${c.type === 'majoritaire' ? 'Majoritaire' : 'Proportionnel'}${inscritsTxt}`;
 
+    // Stats détail
     if (c.type === 'majoritaire') {
         const nbSortants = c.candidats.filter(x => x.sortant).length;
         const nbF = c.candidats.filter(x => x.sexe === 'F').length;
@@ -1133,12 +1158,17 @@ window.showDetail = function(code) {
         const inscritsCard = c.inscrits
             ? `<div class="stat-card"><span class="label">Grands électeurs</span><span class="value">${c.inscrits.toLocaleString('fr-FR')}</span></div>`
             : '';
+        const elus2020Card = c.elus2020 && c.elus2020.length > 0
+            ? `<div class="stat-card"><span class="label">Élus 2020</span><span class="value">${c.elus2020.length}</span></div>
+               <div class="stat-card"><span class="label">Candidats 2026</span><span class="value">${c.elus2020.filter(e => e.candidat2026).length}</span></div>`
+            : '';
         $('detailStats').innerHTML = `
             <div class="stat-card"><span class="label">Candidats</span><span class="value">${c.candidats.length}</span></div>
             <div class="stat-card"><span class="label">Sortants</span><span class="value">${nbSortants}</span></div>
             <div class="stat-card"><span class="label">Femmes</span><span class="value">${nbF}</span></div>
             <div class="stat-card"><span class="label">Hommes</span><span class="value">${nbH}</span></div>
             ${inscritsCard}
+            ${elus2020Card}
         `;
     } else {
         const nbL = c.listes.length;
@@ -1148,15 +1178,21 @@ window.showDetail = function(code) {
         const inscritsCard = c.inscrits
             ? `<div class="stat-card"><span class="label">Grands électeurs</span><span class="value">${c.inscrits.toLocaleString('fr-FR')}</span></div>`
             : '';
+        const elus2020Card = c.elus2020 && c.elus2020.length > 0
+            ? `<div class="stat-card"><span class="label">Élus 2020</span><span class="value">${c.elus2020.length}</span></div>
+               <div class="stat-card"><span class="label">Candidats 2026</span><span class="value">${c.elus2020.filter(e => e.candidat2026).length}</span></div>`
+            : '';
         $('detailStats').innerHTML = `
             <div class="stat-card"><span class="label">Listes</span><span class="value">${nbL}</span></div>
             <div class="stat-card"><span class="label">Colistiers</span><span class="value">${nbCol}</span></div>
             <div class="stat-card"><span class="label">Sortants</span><span class="value">${nbSort}</span></div>
             <div class="stat-card"><span class="label">Femmes</span><span class="value">${nbF}</span></div>
             ${inscritsCard}
+            ${elus2020Card}
         `;
     }
 
+    // Panel analyse
     if (c.type === 'majoritaire') {
         const nuances = {};
         c.candidats.forEach(x => { nuances[x.codeNuance || 'DIV'] = (nuances[x.codeNuance || 'DIV'] || 0) + 1; });
@@ -1183,6 +1219,7 @@ window.showDetail = function(code) {
         `;
     }
 
+    // Chart
     if (state.chart) state.chart.destroy();
     const ctx = $('mainChart').getContext('2d');
     let labels = [], data = [], colors = [];
@@ -1242,6 +1279,7 @@ window.showDetail = function(code) {
         }
     });
 
+    // Table principale
     if (c.type === 'majoritaire') {
         $('dataTable').querySelector('thead').innerHTML = `
             <tr>
@@ -1326,6 +1364,47 @@ window.showDetail = function(code) {
                             <th style="text-align:right;">Pour</th>
                             <th style="text-align:right;">Contre</th>
                             <th style="text-align:right;">Abst.</th>
+                        </tr>
+                    </thead>
+                    <tbody>${rows}</tbody>
+                </table>
+            </div>
+        `;
+    }
+
+    // Section élus 2020
+    const elus2020Section = $('elus2020Section');
+    elus2020Section.innerHTML = '';
+
+    if (c.elus2020 && c.elus2020.length > 0) {
+        const nbCandidats = c.elus2020.filter(e => e.candidat2026).length;
+        const rows = c.elus2020.map(e => {
+            const badgeStatut = e.reelu
+                ? badge('Réélu(e)', 'sortant', '★')
+                : badge('Nouveau', 'neutre', '○');
+            const badgeCandidat = e.candidat2026
+                ? badge('Candidat 2026', 'candidat', '→')
+                : badge('—', 'neutre');
+            return `
+                <tr class="${e.candidat2026 ? 'np-active-row' : ''}">
+                    <td>${e.civilite} <strong>${e.prenom} ${e.nom}</strong></td>
+                    <td style="font-family:var(--font-mono); color:var(--text-mention);">${e.dateNaissance || '—'}</td>
+                    <td>${badgeStatut}</td>
+                    <td>${badgeCandidat}</td>
+                </tr>
+            `;
+        }).join('');
+
+        elus2020Section.innerHTML = `
+            <div class="table-wrap" style="margin-top: 24px;">
+                <h3 class="table-title">Sénateurs élus en 2020 — ${c.nom} · ${nbCandidats} candidat${nbCandidats > 1 ? 's' : ''} en 2026</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Sénateur</th>
+                            <th>Date de naissance</th>
+                            <th>Statut 2020</th>
+                            <th>En 2026</th>
                         </tr>
                     </thead>
                     <tbody>${rows}</tbody>
