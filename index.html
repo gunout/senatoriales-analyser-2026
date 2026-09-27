@@ -8,28 +8,17 @@
 <meta name="description" content="Analyseur officiel des candidatures aux élections sénatoriales 2026.">
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Marianne:wght@400;500;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-/* ============================================
-   DESIGN SYSTÈME DE L'ÉTAT — MARIANNE
-   Basé sur le DSFR (Système de Design de l'État)
-   ============================================ */
-
 :root {
-    /* Couleurs officielles de l'État */
     --bleu-france: #000091;
     --bleu-france-hover: #1212ff;
-    --bleu-france-light: #6a6af4;
     --bleu-france-pale: #e3e3fd;
     --rouge-marianne: #e1000f;
-    --rouge-marianne-hover: #ff292f;
     --rouge-marianne-pale: #ffe9e9;
     --or-marianne: #c3992a;
     --vert-emeraude: #18753c;
-    --vert-bourgeon: #27a658;
     --vert-menthe: #b8fec9;
-
-    /* Neutres DSFR */
     --gris-50: #f6f6f6;
     --gris-100: #ededed;
     --gris-200: #e3e3e3;
@@ -39,30 +28,21 @@
     --gris-600: #3a3a3a;
     --gris-700: #242424;
     --gris-800: #1e1e1e;
-    --gris-900: #161616;
-
-    /* Fond et texte */
     --bg: #ffffff;
     --bg-alt: #f6f6f6;
-    --bg-elev: #ffffff;
     --text: #161616;
     --text-mention: #666666;
     --text-disabled: #929292;
     --border: #e3e3e3;
     --border-strong: #d1d1d1;
-
-    /* Ombres DSFR */
     --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
     --shadow-md: 0 4px 8px rgba(0,0,0,0.08);
     --shadow-lg: 0 8px 24px rgba(0,0,0,0.1);
-
-    /* Typo */
-    --font-main: 'Marianne', 'Inter', -apple-system, system-ui, sans-serif;
+    --font-main: 'Inter', -apple-system, system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
 
 body {
@@ -73,10 +53,9 @@ body {
     line-height: 1.5;
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
-/* ---------- BANDEAU RÉPUBLIQUE FRANÇAISE ---------- */
+/* BANDEAU OFFICIEL */
 .official-banner {
     background: white;
     border-bottom: 1px solid var(--border);
@@ -101,7 +80,6 @@ body {
     font-weight: 700;
     color: var(--gris-800);
     font-size: 0.8rem;
-    letter-spacing: 0.3px;
 }
 
 .official-banner .marianne-logo::before {
@@ -110,7 +88,6 @@ body {
     width: 3px;
     height: 18px;
     background: var(--bleu-france);
-    margin-right: 2px;
 }
 
 .official-banner .marianne-logo .rf {
@@ -133,7 +110,7 @@ body {
     color: var(--text-mention);
 }
 
-/* ---------- HEADER ---------- */
+/* HEADER */
 header {
     background: white;
     border-bottom: 4px solid var(--bleu-france);
@@ -155,15 +132,10 @@ header {
     margin-bottom: 20px;
 }
 
-.brand-block {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
+.brand-block { display: flex; align-items: center; gap: 16px; }
 
 .brand-flag {
-    width: 56px;
-    height: 56px;
+    width: 56px; height: 56px;
     border-radius: 8px;
     overflow: hidden;
     display: flex;
@@ -184,9 +156,7 @@ header {
     margin-bottom: 4px;
 }
 
-.brand-text h1 span {
-    color: var(--bleu-france);
-}
+.brand-text h1 span { color: var(--bleu-france); }
 
 .brand-text .subtitle {
     font-size: 0.95rem;
@@ -194,11 +164,7 @@ header {
     font-weight: 500;
 }
 
-.header-badges {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
+.header-badges { display: flex; gap: 8px; flex-wrap: wrap; }
 
 .badge-officiel {
     display: inline-flex;
@@ -210,22 +176,16 @@ header {
     font-size: 0.8rem;
     font-weight: 700;
     border-radius: 4px;
-    letter-spacing: 0.2px;
 }
 
 .badge-officiel::before {
     content: "";
-    width: 8px;
-    height: 8px;
+    width: 8px; height: 8px;
     border-radius: 50%;
     background: var(--bleu-france);
 }
 
-.badge-officiel.rouge {
-    background: var(--rouge-marianne-pale);
-    color: var(--rouge-marianne);
-}
-
+.badge-officiel.rouge { background: var(--rouge-marianne-pale); color: var(--rouge-marianne); }
 .badge-officiel.rouge::before { background: var(--rouge-marianne); }
 
 .header-meta {
@@ -257,10 +217,7 @@ header {
     box-shadow: var(--shadow-md);
 }
 
-.header-meta .source-link svg {
-    width: 16px;
-    height: 16px;
-}
+.header-meta .source-link svg { width: 16px; height: 16px; }
 
 .header-meta .info-item {
     display: inline-flex;
@@ -270,21 +227,13 @@ header {
     color: var(--text-mention);
 }
 
-.header-meta .info-item strong {
-    color: var(--gris-800);
-}
+.header-meta .info-item strong { color: var(--gris-800); }
 
-/* ---------- CONTAINER ---------- */
-.container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 32px 20px 60px;
-}
+/* CONTAINER */
+.container { max-width: 1400px; margin: 0 auto; padding: 32px 20px 60px; }
 
-/* ---------- SECTIONS ---------- */
-.section {
-    margin-bottom: 32px;
-}
+/* SECTIONS */
+.section { margin-bottom: 32px; }
 
 .section-title {
     display: flex;
@@ -296,15 +245,13 @@ header {
     margin-bottom: 16px;
     padding-bottom: 8px;
     border-bottom: 2px solid var(--bleu-france);
-    padding-left: 0;
 }
 
 .section-title .num {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 28px;
-    height: 28px;
+    width: 28px; height: 28px;
     border-radius: 50%;
     background: var(--bleu-france);
     color: white;
@@ -319,7 +266,7 @@ header {
     margin-left: auto;
 }
 
-/* ---------- DROP ZONES ---------- */
+/* DROP ZONES */
 .drop-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -334,35 +281,18 @@ header {
     transition: all 0.2s;
     cursor: pointer;
     border-radius: 8px;
-    position: relative;
 }
 
-.drop-zone:hover {
-    border-color: var(--bleu-france);
-    background: var(--bleu-france-pale);
-}
-
-.drop-zone.dragover {
-    border-color: var(--bleu-france);
-    border-style: solid;
-    background: var(--bleu-france-pale);
-    transform: scale(1.01);
-}
-
-.drop-zone.loaded {
-    border-color: var(--vert-emeraude);
-    border-style: solid;
-    background: #e6f7ed;
-}
-
+.drop-zone:hover { border-color: var(--bleu-france); background: var(--bleu-france-pale); }
+.drop-zone.dragover { border-color: var(--bleu-france); border-style: solid; background: var(--bleu-france-pale); transform: scale(1.01); }
+.drop-zone.loaded { border-color: var(--vert-emeraude); border-style: solid; background: #e6f7ed; }
 .drop-zone input { display: none; }
 
 .drop-zone .icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 48px;
-    height: 48px;
+    width: 48px; height: 48px;
     border-radius: 50%;
     background: var(--bleu-france-pale);
     color: var(--bleu-france);
@@ -371,23 +301,10 @@ header {
     transition: all 0.2s;
 }
 
-.drop-zone.loaded .icon {
-    background: var(--vert-menthe);
-    color: var(--vert-emeraude);
-}
+.drop-zone.loaded .icon { background: var(--vert-menthe); color: var(--vert-emeraude); }
 
-.drop-zone .title {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--gris-800);
-    margin-bottom: 4px;
-}
-
-.drop-zone .desc {
-    font-size: 0.8rem;
-    color: var(--text-mention);
-    margin-bottom: 14px;
-}
+.drop-zone .title { font-size: 0.95rem; font-weight: 700; color: var(--gris-800); margin-bottom: 4px; }
+.drop-zone .desc { font-size: 0.8rem; color: var(--text-mention); margin-bottom: 14px; }
 
 .file-name {
     display: inline-flex;
@@ -413,7 +330,7 @@ header {
     font-weight: 600;
 }
 
-/* ---------- STATS ---------- */
+/* STATS */
 .stats-banner {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -425,16 +342,8 @@ header {
     margin-bottom: 24px;
 }
 
-.stat-card {
-    background: white;
-    padding: 18px 20px;
-    transition: all 0.2s;
-    position: relative;
-}
-
-.stat-card:hover {
-    background: var(--gris-50);
-}
+.stat-card { background: white; padding: 18px 20px; transition: all 0.2s; }
+.stat-card:hover { background: var(--gris-50); }
 
 .stat-card .label {
     display: block;
@@ -456,15 +365,7 @@ header {
     line-height: 1.1;
 }
 
-.stat-card .unit {
-    font-size: 0.75rem;
-    color: var(--text-mention);
-    font-weight: 500;
-    margin-top: 2px;
-    display: block;
-}
-
-/* ---------- CONTROLS ---------- */
+/* CONTROLS */
 .controls {
     display: flex;
     gap: 12px;
@@ -514,17 +415,10 @@ select.sort-btn {
     background-position: right 12px center;
 }
 
-select.sort-btn:hover {
-    border-color: var(--bleu-france);
-}
+select.sort-btn:hover { border-color: var(--bleu-france); }
+select.sort-btn:focus { outline: none; border-color: var(--bleu-france); box-shadow: 0 0 0 2px var(--bleu-france-pale); }
 
-select.sort-btn:focus {
-    outline: none;
-    border-color: var(--bleu-france);
-    box-shadow: 0 0 0 2px var(--bleu-france-pale);
-}
-
-/* ---------- GRID ---------- */
+/* GRID */
 .circo-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -547,12 +441,9 @@ select.sort-btn:focus {
     padding: 18px;
     cursor: pointer;
     transition: all 0.2s;
-    position: relative;
 }
 
-.circo-card.proportionnel {
-    border-left-color: var(--vert-emeraude);
-}
+.circo-card.proportionnel { border-left-color: var(--vert-emeraude); }
 
 .circo-card:hover {
     border-color: var(--bleu-france);
@@ -585,13 +476,9 @@ select.sort-btn:focus {
     border-bottom: 1px solid var(--border);
 }
 
-.badge-row {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-}
+.badge-row { display: flex; gap: 6px; flex-wrap: wrap; }
 
-/* ---------- BADGES ---------- */
+/* BADGES */
 .badge {
     display: inline-flex;
     align-items: center;
@@ -606,56 +493,17 @@ select.sort-btn:focus {
     border: 1px solid transparent;
 }
 
-.badge-majoritaire {
-    color: var(--bleu-france);
-    background: var(--bleu-france-pale);
-    border-color: rgba(0, 0, 145, 0.15);
-}
+.badge-majoritaire { color: var(--bleu-france); background: var(--bleu-france-pale); border-color: rgba(0, 0, 145, 0.15); }
+.badge-proportionnel { color: var(--vert-emeraude); background: var(--vert-menthe); border-color: rgba(24, 117, 60, 0.15); }
+.badge-neutre { color: var(--gris-600); background: var(--gris-100); border-color: var(--border); }
+.badge-sortant { color: #8a6500; background: #fff5d6; border-color: rgba(195, 153, 42, 0.3); }
+.badge-tete { color: #5b21b6; background: #ede9fe; border-color: rgba(91, 33, 182, 0.2); }
+.badge-femme { color: #9d174d; background: #fce7f3; border-color: rgba(157, 23, 77, 0.15); }
+.badge-homme { color: #0369a1; background: #e0f2fe; border-color: rgba(3, 105, 161, 0.15); }
+.badge-electeurs { color: #8a6500; background: #fef9c3; border-color: rgba(195, 153, 42, 0.3); font-weight: 700; }
+.badge-np { color: #5b21b6; background: #ede9fe; border-color: rgba(91, 33, 182, 0.2); }
 
-.badge-proportionnel {
-    color: var(--vert-emeraude);
-    background: var(--vert-menthe);
-    border-color: rgba(24, 117, 60, 0.15);
-}
-
-.badge-neutre {
-    color: var(--gris-600);
-    background: var(--gris-100);
-    border-color: var(--border);
-}
-
-.badge-sortant {
-    color: #8a6500;
-    background: #fff5d6;
-    border-color: rgba(195, 153, 42, 0.3);
-}
-
-.badge-tete {
-    color: #5b21b6;
-    background: #ede9fe;
-    border-color: rgba(91, 33, 182, 0.2);
-}
-
-.badge-femme {
-    color: #9d174d;
-    background: #fce7f3;
-    border-color: rgba(157, 23, 77, 0.15);
-}
-
-.badge-homme {
-    color: #0369a1;
-    background: #e0f2fe;
-    border-color: rgba(3, 105, 161, 0.15);
-}
-
-.badge-electeurs {
-    color: #8a6500;
-    background: #fef9c3;
-    border-color: rgba(195, 153, 42, 0.3);
-    font-weight: 700;
-}
-
-/* ---------- NUANCES ---------- */
+/* NUANCES */
 .nuance {
     display: inline-flex;
     align-items: center;
@@ -669,13 +517,9 @@ select.sort-btn:focus {
     white-space: nowrap;
 }
 
-.nuance-swatch {
-    width: 8px;
-    height: 8px;
-    border-radius: 2px;
-}
+.nuance-swatch { width: 8px; height: 8px; border-radius: 2px; }
 
-/* ---------- DETAIL VIEW ---------- */
+/* DETAIL VIEW */
 .detail-view {
     display: none;
     margin-top: 40px;
@@ -733,7 +577,6 @@ select.sort-btn:focus {
     background: var(--gris-100);
     border: 1px solid var(--border);
     border-radius: 4px;
-    letter-spacing: 0.3px;
 }
 
 .viz-grid {
@@ -758,8 +601,7 @@ select.sort-btn:focus {
 .chart-box::before {
     content: "RÉPARTITION POLITIQUE";
     position: absolute;
-    top: 12px;
-    left: 20px;
+    top: 12px; left: 20px;
     font-size: 0.7rem;
     font-weight: 700;
     color: var(--text-mention);
@@ -802,20 +644,26 @@ select.sort-btn:focus {
 
 .data-row:last-child { border-bottom: none; }
 .data-label { color: var(--text-mention); font-size: 0.8rem; }
-.data-val {
-    font-weight: 700;
-    color: var(--gris-800);
-    text-align: right;
-    font-variant-numeric: tabular-nums;
-}
+.data-val { font-weight: 700; color: var(--gris-800); text-align: right; font-variant-numeric: tabular-nums; }
 
-/* ---------- TABLE ---------- */
+/* TABLE */
 .table-wrap {
     background: white;
     border: 1px solid var(--border);
     border-radius: 8px;
     overflow: hidden;
     box-shadow: var(--shadow-sm);
+}
+
+.table-wrap h3.table-title {
+    padding: 16px 20px 12px;
+    margin: 0;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-mention);
+    border-bottom: 1px solid var(--border);
+    font-weight: 700;
 }
 
 .data-table {
@@ -849,36 +697,18 @@ select.sort-btn:focus {
     vertical-align: middle;
 }
 
-.data-table tbody tr {
-    transition: background 0.15s;
-}
-
-.data-table tbody tr:hover {
-    background: var(--gris-50);
-}
-
-.data-table tbody tr.sortant-row {
-    background: #fffbf0;
-    border-left: 3px solid var(--or-marianne);
-}
-
-.data-table tbody tr.tete-row {
-    background: #faf5ff;
-    border-left: 3px solid #7c3aed;
-}
-
+.data-table tbody tr { transition: background 0.15s; }
+.data-table tbody tr:hover { background: var(--gris-50); }
+.data-table tbody tr.sortant-row { background: #fffbf0; border-left: 3px solid var(--or-marianne); }
+.data-table tbody tr.tete-row { background: #faf5ff; border-left: 3px solid #7c3aed; }
+.data-table tbody tr.np-active-row { background: #f0fdf4; border-left: 3px solid var(--vert-emeraude); }
 .data-table tbody tr:last-child td { border-bottom: none; }
 
-/* ---------- LOADING / ERROR ---------- */
-.loading {
-    text-align: center;
-    padding: 60px 20px;
-    color: var(--text-mention);
-}
+/* LOADING / ERROR */
+.loading { text-align: center; padding: 60px 20px; color: var(--text-mention); }
 
 .spinner {
-    width: 40px;
-    height: 40px;
+    width: 40px; height: 40px;
     border: 3px solid var(--gris-200);
     border-top-color: var(--bleu-france);
     border-radius: 50%;
@@ -908,7 +738,7 @@ select.sort-btn:focus {
     font-size: 0.9rem;
 }
 
-/* ---------- FOOTER ---------- */
+/* FOOTER */
 footer {
     background: white;
     border-top: 1px solid var(--border);
@@ -960,7 +790,6 @@ footer {
 .footer-flag .w { background: white; }
 .footer-flag .r { background: var(--rouge-marianne); }
 
-/* ---------- RESPONSIVE ---------- */
 @media (max-width: 700px) {
     .header-top { flex-direction: column; align-items: flex-start; }
     .brand-flag { width: 48px; height: 48px; }
@@ -972,7 +801,6 @@ footer {
 </head>
 <body>
 
-<!-- BANDEAU OFFICIEL -->
 <div class="official-banner">
     <div class="container-banner">
         <span class="marianne-logo">
@@ -984,7 +812,6 @@ footer {
     </div>
 </div>
 
-<!-- HEADER -->
 <header>
     <div class="header-inner">
         <div class="header-top">
@@ -1015,13 +842,13 @@ footer {
                 Télécharger les données officielles
             </a>
             <span class="info-item">Source : <strong>data.gouv.fr</strong></span>
+            <span class="info-item">Activité : <strong>NosParlementaires</strong></span>
         </div>
     </div>
 </header>
 
 <div class="container">
 
-    <!-- SECTION 1 : CHARGEMENT -->
     <section class="section">
         <h2 class="section-title">
             <span class="num">1</span>
@@ -1052,6 +879,14 @@ footer {
                 <div class="desc">Nombre de grands électeurs</div>
                 <div class="file-name" id="fileNameInscrits">Aucun fichier sélectionné</div>
             </div>
+
+            <div class="drop-zone" id="dropNosParlementaires">
+                <input type="file" id="fileNosParlementaires" accept=".csv" multiple>
+                <div class="icon">🏛️</div>
+                <div class="title">Activité parlementaire</div>
+                <div class="desc">Sélectionnez : senateurs.csv + scrutins_senat.csv + votes_senat.csv</div>
+                <div class="file-name" id="fileNameNosParlementaires">Aucun fichier sélectionné</div>
+            </div>
         </div>
     </section>
 
@@ -1063,7 +898,6 @@ footer {
 
     <div id="errorBox" class="error" style="display:none;"></div>
 
-    <!-- SECTION 2 : TABLEAU DE BORD -->
     <section class="section" id="dashboard" style="display:none;">
         <h2 class="section-title">
             <span class="num">2</span>
@@ -1096,7 +930,6 @@ footer {
         <div class="circo-grid" id="grid"></div>
     </section>
 
-    <!-- DÉTAIL -->
     <div id="detail" class="detail-view">
         <div class="detail-header">
             <h2 id="detailTitle">Circonscription</h2>
@@ -1112,17 +945,18 @@ footer {
             <div class="data-panel" id="analysisPanel"></div>
         </div>
 
-        <div class="table-wrap">
+        <div class="table-wrap" id="mainTableWrap">
             <table class="data-table" id="dataTable">
                 <thead></thead>
                 <tbody></tbody>
             </table>
         </div>
+
+        <div id="npSection"></div>
     </div>
 
 </div>
 
-<!-- FOOTER -->
 <footer>
     <div class="footer-inner">
         <div class="footer-brand">
@@ -1134,7 +968,7 @@ footer {
             </span>
         </div>
         <div>
-            Données : Ministère de l'Intérieur · data.gouv.fr
+            Données : Ministère de l'Intérieur · NosParlementaires · data.gouv.fr
             <br>
             Élections sénatoriales 2026 · Série 2 · 178 sièges renouvelés
         </div>
@@ -1147,12 +981,15 @@ const state = {
     proportionnel: [],
     inscrits: new Map(),
     circonscriptions: [],
+    senateursNP: new Map(),
+    scrutinsNP: new Map(),
+    votesNP: new Map(),
+    npLoaded: false,
     current: null,
     chart: null
 };
 const $ = id => document.getElementById(id);
 
-// ---------- NUANCES ----------
 const NUANCES = {
     'LR':      { label: 'Les Républicains', color: '#0066cc' },
     'LLR':     { label: 'Liste Les Républicains', color: '#0066cc' },
@@ -1202,7 +1039,6 @@ function badge(text, type = 'neutre', icon = '') {
     return `<span class="badge badge-${type}">${icon ? icon + ' ' : ''}${text}</span>`;
 }
 
-// ---------- NORMALISATION ----------
 function norm(h) {
     return h.replace(/"/g, '')
         .replace(/’/g, "'")
@@ -1227,10 +1063,29 @@ function splitLine(text, delim) {
     return res;
 }
 
+function splitCSVLine(line) {
+    const res = [];
+    let curr = '', inQ = false;
+    for (let i = 0; i < line.length; i++) {
+        const ch = line[i];
+        if (ch === '"') {
+            if (inQ && line[i + 1] === '"') { curr += '"'; i++; }
+            else inQ = !inQ;
+        } else if (ch === ',' && !inQ) {
+            res.push(curr); curr = '';
+        } else {
+            curr += ch;
+        }
+    }
+    res.push(curr);
+    return res;
+}
+
 // ---------- DROP ZONES ----------
 setupDropZone('dropMajoritaire', 'fileMajoritaire', 'fileNameMajoritaire', 'majoritaire');
 setupDropZone('dropProportionnel', 'fileProportionnel', 'fileNameProportionnel', 'proportionnel');
 setupDropZone('dropInscrits', 'fileInscrits', 'fileNameInscrits', 'inscrits');
+setupDropZone('dropNosParlementaires', 'fileNosParlementaires', 'fileNameNosParlementaires', 'nosparlementaires');
 
 function setupDropZone(zoneId, inputId, nameId, type) {
     const zone = $(zoneId);
@@ -1238,7 +1093,12 @@ function setupDropZone(zoneId, inputId, nameId, type) {
 
     zone.addEventListener('click', () => input.click());
     input.addEventListener('change', e => {
-        if (e.target.files[0]) processFile(e.target.files[0], type);
+        if (e.target.files.length === 0) return;
+        if (type === 'nosparlementaires') {
+            processNosParlementaires(e.target.files);
+        } else {
+            processFile(e.target.files[0], type);
+        }
     });
 
     ['dragenter', 'dragover'].forEach(evt => {
@@ -1249,7 +1109,12 @@ function setupDropZone(zoneId, inputId, nameId, type) {
     });
     zone.addEventListener('drop', e => {
         e.preventDefault();
-        if (e.dataTransfer.files[0]) processFile(e.dataTransfer.files[0], type);
+        if (e.dataTransfer.files.length === 0) return;
+        if (type === 'nosparlementaires') {
+            processNosParlementaires(e.dataTransfer.files);
+        } else {
+            processFile(e.dataTransfer.files[0], type);
+        }
     });
 }
 
@@ -1283,6 +1148,7 @@ function processFile(file, type) {
             if (state.majoritaire.length > 0 || state.proportionnel.length > 0) {
                 state.circonscriptions = buildCirconscriptions(state.majoritaire, state.proportionnel);
                 attachInscrits();
+                attachSenateursNP();
                 computeStats();
                 $('loader').style.display = 'none';
                 $('dashboard').style.display = 'block';
@@ -1404,6 +1270,175 @@ function parseInscrits(content) {
     });
 }
 
+// ---------- NOSPARLEMENTAIRES ----------
+function processNosParlementaires(files) {
+    $('fileNameNosParlementaires').textContent = `📄 ${files.length} fichier(s)`;
+    $('dropNosParlementaires').classList.add('loaded');
+    $('loader').style.display = 'block';
+    $('errorBox').style.display = 'none';
+
+    let pending = files.length;
+    const done = () => {
+        if (--pending === 0) finalizeNosParlementaires();
+    };
+
+    Array.from(files).forEach(file => {
+        const reader = new FileReader();
+        reader.onload = e => {
+            try {
+                const content = e.target.result;
+                const name = file.name.toLowerCase();
+                if (name.includes('senateur')) parseSenateursNP(content);
+                else if (name.includes('scrutin')) parseScrutinsNP(content);
+                else if (name.includes('vote')) parseVotesNP(content);
+            } catch (err) {
+                console.error('Erreur parsing', file.name, err);
+            }
+            done();
+        };
+        reader.onerror = () => done();
+        reader.readAsText(file, 'UTF-8');
+    });
+}
+
+function parseSenateursNP(content) {
+    if (content.charCodeAt(0) === 0xFEFF) content = content.slice(1);
+    const lines = content.split('\n').filter(l => l.trim());
+    if (lines.length < 2) return;
+    const headers = splitLine(lines[0], ',').map(h => h.trim().toLowerCase());
+
+    const col = {
+        slug: headers.indexOf('slug'),
+        prenom: headers.indexOf('first_name'),
+        nom: headers.indexOf('last_name'),
+        fullName: headers.indexOf('full_name'),
+        groupe: headers.indexOf('group_short'),
+        groupeLabel: headers.indexOf('group_label'),
+        deptCode: headers.indexOf('department_code'),
+        deptLabel: headers.indexOf('department_label'),
+        active: headers.indexOf('active')
+    };
+
+    lines.slice(1).forEach(l => {
+        const c = splitCSVLine(l);
+        const slug = c[col.slug];
+        if (!slug || slug === 'slug') return;
+        state.senateursNP.set(slug, {
+            slug,
+            prenom: c[col.prenom] || '',
+            nom: c[col.nom] || '',
+            fullName: c[col.fullName] || '',
+            groupe: c[col.groupe] || '',
+            groupeLabel: c[col.groupeLabel] || '',
+            deptCode: c[col.deptCode] || '',
+            deptLabel: c[col.deptLabel] || '',
+            active: (c[col.active] || '').toLowerCase() === 'true'
+        });
+    });
+}
+
+function parseScrutinsNP(content) {
+    if (content.charCodeAt(0) === 0xFEFF) content = content.slice(1);
+    const lines = content.split('\n').filter(l => l.trim());
+    if (lines.length < 2) return;
+    const headers = splitLine(lines[0], ',').map(h => h.trim().toLowerCase());
+
+    const col = {
+        id: headers.indexOf('id'),
+        date: headers.indexOf('date'),
+        title: headers.indexOf('title'),
+        votants: headers.indexOf('votants'),
+        exprimes: headers.indexOf('suffrages_exprimes'),
+        pour: headers.indexOf('pour'),
+        contre: headers.indexOf('contre'),
+        url: headers.indexOf('url')
+    };
+
+    lines.slice(1).forEach(l => {
+        const c = splitCSVLine(l);
+        const id = c[col.id];
+        if (!id || id === 'id') return;
+        state.scrutinsNP.set(id, {
+            id,
+            date: c[col.date] || '',
+            title: c[col.title] || '',
+            votants: parseInt(c[col.votants]) || 0,
+            exprimes: parseInt(c[col.exprimes]) || 0,
+            pour: parseInt(c[col.pour]) || 0,
+            contre: parseInt(c[col.contre]) || 0,
+            url: c[col.url] || ''
+        });
+    });
+}
+
+function parseVotesNP(content) {
+    if (content.charCodeAt(0) === 0xFEFF) content = content.slice(1);
+    const lines = content.split('\n').filter(l => l.trim());
+    if (lines.length < 2) return;
+    const headers = splitLine(lines[0], ',').map(h => h.trim().toLowerCase());
+
+    const col = {
+        scrutin: headers.indexOf('scrutin_id'),
+        senateur: headers.indexOf('senator_slug'),
+        position: headers.indexOf('position'),
+        statut: headers.indexOf('statut')
+    };
+
+    lines.slice(1).forEach(l => {
+        const c = splitCSVLine(l);
+        const slug = c[col.senateur];
+        if (!slug || slug === 'senator_slug') return;
+        if (!state.votesNP.has(slug)) state.votesNP.set(slug, []);
+        state.votesNP.get(slug).push({
+            scrutinId: c[col.scrutin],
+            position: c[col.position] || '',
+            statut: c[col.statut] || ''
+        });
+    });
+}
+
+function finalizeNosParlementaires() {
+    state.npLoaded = true;
+    $('loader').style.display = 'none';
+    const nbActifs = [...state.senateursNP.values()].filter(s => s.active).length;
+    $('progress').textContent = `${state.senateursNP.size} sénateurs (${nbActifs} actifs), ${state.scrutinsNP.size} scrutins, ${state.votesNP.size} votants`;
+
+    if (state.circonscriptions.length > 0) {
+        attachSenateursNP();
+        computeStats();
+        renderGrid();
+        if (state.current) showDetail(state.current.code);
+    }
+}
+
+function attachSenateursNP() {
+    if (!state.npLoaded) return;
+
+    const byDept = new Map();
+    state.senateursNP.forEach(s => {
+        if (!s.deptLabel) return;
+        const key = norm(s.deptLabel);
+        if (!byDept.has(key)) byDept.set(key, []);
+        byDept.get(key).push(s);
+    });
+
+    state.circonscriptions.forEach(c => {
+        const key = norm(c.nom || '');
+        const list = byDept.get(key) || [];
+        c.senateurs = list.map(s => {
+            const votes = state.votesNP.get(s.slug) || [];
+            return {
+                ...s,
+                nbVotes: votes.length,
+                votesPour: votes.filter(v => v.position === 'POUR').length,
+                votesContre: votes.filter(v => v.position === 'CONTRE').length,
+                votesAbst: votes.filter(v => v.position === 'ABSTENTION').length,
+                votesNV: votes.filter(v => v.position === 'NONVOTANT').length
+            };
+        });
+    });
+}
+
 // ---------- AGRÉGATION ----------
 function buildCirconscriptions(maj, prop) {
     const map = new Map();
@@ -1413,7 +1448,7 @@ function buildCirconscriptions(maj, prop) {
         if (!map.has(key)) {
             map.set(key, {
                 code: key, nom: c.libCirco, type: 'majoritaire',
-                candidats: [], listes: [], inscrits: null
+                candidats: [], listes: [], inscrits: null, senateurs: []
             });
         }
         map.get(key).candidats.push(c);
@@ -1424,7 +1459,7 @@ function buildCirconscriptions(maj, prop) {
         if (!map.has(key)) {
             map.set(key, {
                 code: key, nom: c.circo, type: 'proportionnel',
-                candidats: [], listes: [], inscrits: null
+                candidats: [], listes: [], inscrits: null, senateurs: []
             });
         }
         const circo = map.get(key);
@@ -1460,7 +1495,6 @@ function attachInscrits() {
     });
 }
 
-// ---------- STATS ----------
 function computeStats() {
     const nbMaj = state.circonscriptions.filter(c => c.type === 'majoritaire').length;
     const nbProp = state.circonscriptions.filter(c => c.type === 'proportionnel').length;
@@ -1472,37 +1506,25 @@ function computeStats() {
     const totalInscrits = state.circonscriptions
         .reduce((s, c) => s + (c.inscrits || 0), 0);
 
+    let npCard = '';
+    if (state.npLoaded) {
+        const nbActifs = [...state.senateursNP.values()].filter(s => s.active).length;
+        npCard = `<div class="stat-card"><span class="label">Sénateurs en mandat</span><span class="value">${nbActifs.toLocaleString('fr-FR')}</span></div>`;
+    }
+
     $('statsBanner').innerHTML = `
-        <div class="stat-card">
-            <span class="label">Circo. majoritaires</span>
-            <span class="value">${nbMaj}</span>
-        </div>
-        <div class="stat-card">
-            <span class="label">Circo. proportionnelles</span>
-            <span class="value">${nbProp}</span>
-        </div>
-        <div class="stat-card">
-            <span class="label">Candidats (maj.)</span>
-            <span class="value">${nbCand.toLocaleString('fr-FR')}</span>
-        </div>
-        <div class="stat-card">
-            <span class="label">Listes (prop.)</span>
-            <span class="value">${nbListes.toLocaleString('fr-FR')}</span>
-        </div>
-        <div class="stat-card">
-            <span class="label">Colistiers</span>
-            <span class="value">${nbCol.toLocaleString('fr-FR')}</span>
-        </div>
-        <div class="stat-card">
-            <span class="label">Grands électeurs</span>
-            <span class="value">${totalInscrits.toLocaleString('fr-FR')}</span>
-        </div>
+        <div class="stat-card"><span class="label">Circo. majoritaires</span><span class="value">${nbMaj}</span></div>
+        <div class="stat-card"><span class="label">Circo. proportionnelles</span><span class="value">${nbProp}</span></div>
+        <div class="stat-card"><span class="label">Candidats (maj.)</span><span class="value">${nbCand.toLocaleString('fr-FR')}</span></div>
+        <div class="stat-card"><span class="label">Listes (prop.)</span><span class="value">${nbListes.toLocaleString('fr-FR')}</span></div>
+        <div class="stat-card"><span class="label">Colistiers</span><span class="value">${nbCol.toLocaleString('fr-FR')}</span></div>
+        <div class="stat-card"><span class="label">Grands électeurs</span><span class="value">${totalInscrits.toLocaleString('fr-FR')}</span></div>
+        ${npCard}
     `;
 
     $('countHint').textContent = state.circonscriptions.length + ' circonscriptions';
 }
 
-// ---------- GRID ----------
 ['searchInput', 'typeSelect', 'sortSelect'].forEach(id => {
     $(id).addEventListener('input', renderGrid);
     $(id).addEventListener('change', renderGrid);
@@ -1545,6 +1567,9 @@ function renderGrid() {
         const inscritsBadge = c.inscrits
             ? badge(c.inscrits.toLocaleString('fr-FR') + ' électeurs', 'electeurs', '👥')
             : '';
+        const npBadge = c.senateurs && c.senateurs.length > 0
+            ? badge(c.senateurs.length + ' sénateur' + (c.senateurs.length > 1 ? 's' : ''), 'np', '🏛')
+            : '';
 
         return `
             <div class="circo-card ${c.type}" onclick="showDetail('${c.code}')">
@@ -1557,6 +1582,7 @@ function renderGrid() {
                     ${badge(isMaj ? 'Majoritaire' : 'Proportionnel', isMaj ? 'majoritaire' : 'proportionnel', isMaj ? '⚔' : '⚖')}
                     ${badge(count + ' ' + countLabel, 'neutre', '📋')}
                     ${inscritsBadge}
+                    ${npBadge}
                     ${nbSortants > 0 ? badge(nbSortants + ' sortant' + (nbSortants > 1 ? 's' : ''), 'sortant', '★') : ''}
                 </div>
             </div>
@@ -1564,7 +1590,6 @@ function renderGrid() {
     }).join('');
 }
 
-// ---------- DETAIL ----------
 window.showDetail = function(code) {
     const c = state.circonscriptions.find(x => x.code === code);
     if (!c) return;
@@ -1606,7 +1631,6 @@ window.showDetail = function(code) {
         `;
     }
 
-    // Panel
     if (c.type === 'majoritaire') {
         const nuances = {};
         c.candidats.forEach(x => { nuances[x.codeNuance || 'DIV'] = (nuances[x.codeNuance || 'DIV'] || 0) + 1; });
@@ -1633,7 +1657,6 @@ window.showDetail = function(code) {
         `;
     }
 
-    // Chart
     if (state.chart) state.chart.destroy();
     const ctx = $('mainChart').getContext('2d');
     let labels = [], data = [], colors = [];
@@ -1659,7 +1682,7 @@ window.showDetail = function(code) {
             datasets: [{
                 label: c.type === 'majoritaire' ? 'Candidats' : 'Colistiers',
                 data,
-                backgroundColor: colors.map(c => c + 'cc'),
+                backgroundColor: colors.map(col => col + 'cc'),
                 borderColor: colors,
                 borderWidth: 1
             }]
@@ -1686,14 +1709,13 @@ window.showDetail = function(code) {
                     beginAtZero: true
                 },
                 x: {
-                    ticks: { color: '#161616', font: { family: 'Marianne', size: 10 }, maxRotation: 45 },
+                    ticks: { color: '#161616', font: { family: 'Inter', size: 10 }, maxRotation: 45 },
                     grid: { display: false }
                 }
             }
         }
     });
 
-    // Table
     if (c.type === 'majoritaire') {
         $('dataTable').querySelector('thead').innerHTML = `
             <tr>
@@ -1737,6 +1759,62 @@ window.showDetail = function(code) {
             });
         });
         $('dataTable').querySelector('tbody').innerHTML = rows;
+    }
+
+    // Section NosParlementaires
+    const npSection = $('npSection');
+    npSection.innerHTML = '';
+
+    if (state.npLoaded && c.senateurs && c.senateurs.length > 0) {
+        const actifs = c.senateurs.filter(s => s.active);
+        const anciens = c.senateurs.filter(s => !s.active);
+        const sorted = [...actifs, ...anciens];
+
+        const rows = sorted.map(s => {
+            const statut = s.active
+                ? badge('En mandat', 'np', '●')
+                : badge('Ancien', 'neutre', '○');
+            return `
+                <tr class="${s.active ? 'np-active-row' : ''}">
+                    <td><strong>${s.prenom} ${s.nom}</strong></td>
+                    <td>${badge(s.groupe || 'NI', 'neutre')}</td>
+                    <td>${statut}</td>
+                    <td style="font-family:var(--font-mono); text-align:right;">${s.nbVotes.toLocaleString('fr-FR')}</td>
+                    <td style="font-family:var(--font-mono); text-align:right; color:#18753c;">${s.votesPour}</td>
+                    <td style="font-family:var(--font-mono); text-align:right; color:#e1000f;">${s.votesContre}</td>
+                    <td style="font-family:var(--font-mono); text-align:right; color:#666;">${s.votesAbst}</td>
+                </tr>
+            `;
+        }).join('');
+
+        npSection.innerHTML = `
+            <div class="table-wrap" style="margin-top: 24px;">
+                <h3 class="table-title">Activité parlementaire — Sénateurs du département</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Sénateur</th>
+                            <th>Groupe</th>
+                            <th>Statut</th>
+                            <th style="text-align:right;">Votes</th>
+                            <th style="text-align:right;">Pour</th>
+                            <th style="text-align:right;">Contre</th>
+                            <th style="text-align:right;">Abst.</th>
+                        </tr>
+                    </thead>
+                    <tbody>${rows}</tbody>
+                </table>
+            </div>
+        `;
+    } else if (state.npLoaded) {
+        npSection.innerHTML = `
+            <div class="table-wrap" style="margin-top: 24px;">
+                <h3 class="table-title">Activité parlementaire</h3>
+                <p style="padding: 20px; color: var(--text-mention); font-size: 0.85rem;">
+                    Aucun sénateur trouvé pour ce département dans les données NosParlementaires.
+                </p>
+            </div>
+        `;
     }
 
     $('detail').scrollIntoView({ behavior: 'smooth', block: 'start' });
