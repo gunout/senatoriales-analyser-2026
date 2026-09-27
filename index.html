@@ -869,7 +869,7 @@ footer {
                             <th>Effectif actuel</th>
                             <th>Sièges renouvelés</th>
                             <th>Élus 2020</th>
-                            <th>Candidats 2026</th>
+                            <th>Listes + cand. 2026</th>
                             <th>Évolution</th>
                         </tr>
                     </thead>
@@ -984,7 +984,6 @@ const NUANCES = {
 // ============================================================
 // GROUPES POLITIQUES DU SÉNAT
 // ============================================================
-// Effectifs officiels avant le scrutin de septembre 2026 (source : Sénat)
 const GROUPES_SENAT = [
     { code: 'LR',     nom: 'Les Républicains',                              effectif: 130, siegesRenouveles: 77, couleur: '#0066cc' },
     { code: 'SER',    nom: 'Socialiste, Écologiste et Républicain',         effectif: 65,  siegesRenouveles: 31, couleur: '#e4003a' },
@@ -997,7 +996,6 @@ const GROUPES_SENAT = [
     { code: 'NI',     nom: 'Non inscrits (dont RN)',                        effectif: 4,   siegesRenouveles: 3,  couleur: '#8a8a9e' }
 ];
 
-// Mapping nuance politique → groupe parlementaire
 const NUANCE_TO_GROUPE = {
     'LR': 'LR', 'LLR': 'LR', 'DVD': 'LR',
     'SOC': 'SER', 'PS': 'SER', 'SER': 'SER', 'DVG': 'SER', 'RDG': 'SER', 'UG': 'SER', 'GEN': 'SER',
@@ -1014,6 +1012,18 @@ const NUANCE_TO_GROUPE = {
 function nuanceVersGroupe(codeNuance) {
     if (!codeNuance) return 'NI';
     return NUANCE_TO_GROUPE[codeNuance.toUpperCase()] || 'NI';
+}
+
+// Normalise un nom pour comparaison : enlève particules, espaces, accents
+function normalizeName(n) {
+    if (!n) return '';
+    return n
+        .toUpperCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/^(DE |DU |LE |LA |VAN |VON |D'|D )/g, '')
+        .replace(/[-\s']/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
 }
 
 function nuanceBadge(code, label) {
@@ -1068,6 +1078,9 @@ async function init() {
         $('dashboard').style.display = 'block';
         renderGrid();
         renderGroups();
+
+        // Exposer state pour debug en console
+        window.state = state;
 
     } catch (err) {
         console.error(err);
@@ -1220,25 +1233,36 @@ function renderGroups() {
             ...g,
             elus2020: 0,
             candidats2026: 0,
-            sortants2026: 0
+            sortants2026: 0,
+            listes2026: 0
         };
     });
 
     state.circonscriptions.forEach(c => {
-        // Élus 2020 → groupe (via NosParlementaires si dispo)
+        // ---------- ÉLUS 2020 → GROUPE ----------
         if (c.elus2020) {
             c.elus2020.forEach(e => {
                 let groupeKey = 'NI';
-                if (c.senateurs) {
-                    const senateur = c.senateurs.find(s =>
-                        s.nom && s.prenom &&
-                        s.nom.toUpperCase() === e.nom.toUpperCase() &&
-                        s.prenom.toUpperCase() === e.prenom.toUpperCase()
-                    );
+                if (c.senateurs && c.senateurs.length > 0) {
+                    const eNom = normalizeName(e.nom);
+                    const ePrenom = normalizeName(e.prenom);
+
+                    // Recherche par nom + prénom
+                    const senateur = c.senateurs.find(s => {
+                        const sNom = normalizeName(s.nom);
+                        const sPrenom = normalizeName(s.prenom);
+                        return sNom === eNom && sPrenom === ePrenom;
+                    }) || c.senateurs.find(s => {
+                        // Fallback : nom uniquement
+                        const sNom = normalizeName(s.nom);
+                        return sNom === eNom;
+                    });
+
                     if (senateur && senateur.groupe) {
                         groupeKey = NUANCE_TO_GROUPE[senateur.groupe.toUpperCase()] || senateur.groupe;
                     }
                 }
+
                 if (statsParGroupe[groupeKey]) {
                     statsParGroupe[groupeKey].elus2020++;
                     if (e.candidat2026) {
@@ -1248,7 +1272,7 @@ function renderGroups() {
             });
         }
 
-        // Candidats 2026
+        // ---------- CANDIDATS 2026 MAJORITAIRE ----------
         if (c.candidats) {
             c.candidats.forEach(x => {
                 const groupeKey = nuanceVersGroupe(x.codeNuance);
@@ -1259,11 +1283,14 @@ function renderGroups() {
             });
         }
 
+        // ---------- LISTES 2026 PROPORTIONNEL ----------
+        // On compte les LISTES (pas les colistiers)
         if (c.listes) {
             c.listes.forEach(l => {
                 const groupeKey = nuanceVersGroupe(l.codeNuance);
                 if (statsParGroupe[groupeKey]) {
-                    statsParGroupe[groupeKey].candidats2026 += l.membres.length;
+                    statsParGroupe[groupeKey].candidats2026++;  // 1 par liste
+                    statsParGroupe[groupeKey].listes2026++;
                 }
             });
         }
@@ -1281,7 +1308,7 @@ function renderGroups() {
         <div class="stat-card"><span class="label">Sièges renouvelés</span><span class="value">${totalRenouveles}</span></div>
         <div class="stat-card"><span class="label">Groupes politiques</span><span class="value">${groupesArray.length}</span></div>
         <div class="stat-card"><span class="label">Élus 2020</span><span class="value">${totalElus2020}</span></div>
-        <div class="stat-card"><span class="label">Candidats 2026</span><span class="value">${totalCandidats2026.toLocaleString('fr-FR')}</span></div>
+        <div class="stat-card"><span class="label">Listes + cand. 2026</span><span class="value">${totalCandidats2026.toLocaleString('fr-FR')}</span></div>
     `;
 
     // Chart
@@ -1397,7 +1424,10 @@ function renderGroups() {
                     <small style="color: var(--text-mention); font-size: 0.7rem;">(${pctRenouvele}%)</small>
                 </td>
                 <td style="font-family: var(--font-mono);">${g.elus2020}</td>
-                <td style="font-family: var(--font-mono);">${g.candidats2026}</td>
+                <td style="font-family: var(--font-mono);">
+                    ${g.candidats2026}
+                    ${g.listes2026 > 0 ? `<small style="color: var(--text-mention); font-size: 0.7rem;">(dont ${g.listes2026} listes)</small>` : ''}
+                </td>
                 <td>${evoBadge}</td>
             </tr>
         `;
