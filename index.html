@@ -1,789 +1,1437 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Sénatoriales 2026 - Analyseur de Candidatures</title>
-    <meta name="description" content="Analysez les candidatures aux élections sénatoriales 2026. Scrutin majoritaire et proportionnel, par circonscription.">
-    
-    <meta property="og:title" content="Analyseur Sénatoriales 2026" />
-    <meta property="og:description" content="Explorez les candidatures officielles aux sénatoriales 2026." />
-    <meta property="og:type" content="website" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-tactical: #0a1428;
-            --bg-panel: #0f1e38;
-            --grid-line: rgba(255, 255, 255, 0.06);
-            --bleu-france: #0055A4;
-            --bleu-clair: #7f9fd0;
-            --blanc: #FFFFFF;
-            --rouge-marianne: #EF4135;
-            --rouge-clair: #ff7b6b;
-            --neon-white: #f0f4fc;
-            --border-tech: 1px solid rgba(0, 85, 164, 0.6);
-        }
+<title>Sénatoriales 2026 — Analyseur Pro</title>
+<meta name="description" content="Analyseur professionnel des candidatures aux élections sénatoriales 2026.">
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg: #0a0e1a;
+    --bg-2: #101827;
+    --bg-3: #16203a;
+    --border: rgba(120, 145, 200, 0.15);
+    --border-strong: rgba(120, 145, 200, 0.3);
+    --text: #e8eefc;
+    --text-dim: #8ba0c8;
+    --text-mute: #5d7099;
+    --bleu: #3b82f6;
+    --bleu-glow: #60a5fa;
+    --rouge: #ef4444;
+    --rouge-glow: #f87171;
+    --or: #f59e0b;
+    --vert: #10b981;
+    --violet: #8b5cf6;
+    --rose: #ec4899;
+    --grad-tricolore: linear-gradient(90deg, #3b82f6 0%, #3b82f6 33%, #ffffff 33%, #ffffff 66%, #ef4444 66%, #ef4444 100%);
+}
 
-        body {
-            background-color: var(--bg-tactical);
-            color: var(--neon-white);
-            font-family: 'Share Tech Mono', monospace;
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-        }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
-                linear-gradient(var(--grid-line) 1px, transparent 1px),
-                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: 0;
-            pointer-events: none;
-        }
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    background-image:
+        radial-gradient(circle at 20% 10%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 90%, rgba(239, 68, 68, 0.06) 0%, transparent 50%);
+}
 
-        body::after {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 5px;
-            background: linear-gradient(90deg, var(--bleu-france) 0%, var(--bleu-france) 33%, var(--blanc) 33%, var(--blanc) 66%, var(--rouge-marianne) 66%, var(--rouge-marianne) 100%);
-            box-shadow: 0 0 20px rgba(0, 85, 164, 0.6);
-            animation: scan 4s linear infinite;
-            z-index: 1000;
-        }
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(120, 145, 200, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120, 145, 200, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 0;
+    pointer-events: none;
+}
 
-        @keyframes scan {
-            0% { top: 0%; opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { top: 100%; opacity: 0; }
-        }
+body::after {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--grad-tricolore);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    z-index: 1000;
+}
 
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+}
 
-        header {
-            border: var(--border-tech);
-            background: linear-gradient(135deg, rgba(10, 20, 40, 0.95) 0%, rgba(15, 30, 56, 0.95) 100%);
-            padding: 20px;
-            margin-bottom: 30px;
-            position: relative;
-            clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%);
-            border-left: 5px solid var(--bleu-france);
-            border-right: 5px solid var(--rouge-marianne);
-        }
+/* ---------- HEADER ---------- */
+header {
+    background: linear-gradient(135deg, rgba(16, 24, 39, 0.95) 0%, rgba(22, 32, 58, 0.9) 100%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+}
 
-        header .version-tag {
-            position: absolute;
-            top: 5px; right: 10px;
-            font-size: 0.7rem;
-            color: var(--bleu-clair);
-            opacity: 0.9;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+header::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--grad-tricolore);
+}
 
-        h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 900;
-            font-size: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: white;
-            text-shadow: 0 0 12px rgba(0, 85, 164, 0.5);
-        }
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
 
-        h1 span { color: var(--bleu-clair); }
+.version-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    padding: 4px 10px;
+    background: rgba(59, 130, 246, 0.08);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
 
-        .data-source {
-            margin-top: 15px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .btn-download {
-            display: inline-block;
-            padding: 8px 15px;
-            border: 1px solid var(--rouge-marianne);
-            color: var(--rouge-marianne);
-            text-decoration: none;
-            font-size: 0.8rem;
-            transition: all 0.3s;
-            background: rgba(239, 65, 53, 0.08);
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-        .btn-download:hover {
-            background: var(--rouge-marianne);
-            color: white;
-            box-shadow: 0 0 14px rgba(239, 65, 53, 0.6);
-        }
-        .data-source span { font-size: 0.8rem; color: var(--bleu-clair); }
+.version-tag::before {
+    content: "";
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--vert);
+    box-shadow: 0 0 8px var(--vert);
+    animation: pulse 2s ease-in-out infinite;
+}
 
-        .drop-zone {
-            border: 2px dashed var(--bleu-france);
-            background: rgba(0, 85, 164, 0.08);
-            padding: 30px;
-            text-align: center;
-            margin-bottom: 20px;
-            transition: all 0.3s;
-            cursor: pointer;
-            border-radius: 2px;
-        }
-        .drop-zone:hover { background: rgba(0, 85, 164, 0.15); border-color: var(--bleu-clair); }
-        .drop-zone.dragover { border-color: var(--rouge-marianne); background: rgba(239, 65, 53, 0.1); }
-        .drop-zone.loaded { border-color: #4caf50; background: rgba(76, 175, 80, 0.1); }
-        .drop-zone input { display: none; }
-        .drop-zone .icon { font-size: 24px; color: var(--bleu-clair); margin-bottom: 10px; display: block; font-family: 'Orbitron', sans-serif; letter-spacing: 2px; font-weight: 700; }
-        .drop-zone .text { font-size: 1rem; letter-spacing: 1px; color: var(--blanc); }
-        .file-name { margin-top: 12px; display: inline-block; background: var(--bg-panel); padding: 5px 15px; border: 1px solid var(--bleu-france); color: var(--bleu-clair); font-size: 0.85rem; }
-        .drop-zone.loaded .file-name { border-color: #4caf50; color: #81c784; }
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
 
-        .drop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; }
-        @media (max-width: 800px) { .drop-grid { grid-template-columns: 1fr; } }
+h1 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: white;
+    margin-top: 12px;
+}
 
-        .stats-banner { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 30px; }
-        .stat-card { background: var(--bg-panel); border-left: 4px solid var(--bleu-france); padding: 15px; border-right: 1px solid rgba(255,255,255,0.06); }
-        .stat-card:nth-child(2) { border-left-color: var(--blanc); }
-        .stat-card:nth-child(3) { border-left-color: var(--rouge-marianne); }
-        .stat-card:nth-child(4) { border-left-color: var(--bleu-clair); }
-        .stat-card:nth-child(5) { border-left-color: var(--rouge-clair); }
-        .stat-card .label { display: block; font-size: 0.75rem; color: var(--bleu-clair); text-transform: uppercase; margin-bottom: 5px; letter-spacing: 1px; }
-        .stat-card .value { font-family: 'Orbitron', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--blanc); }
+h1 span {
+    background: linear-gradient(90deg, var(--bleu-glow), var(--bleu));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
 
-        .controls { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
-        .search-input { flex: 1; min-width: 200px; background: rgba(0,0,0,0.3); border: var(--border-tech); color: var(--bleu-clair); padding: 12px; font-family: 'Share Tech Mono', monospace; font-size: 1rem; }
-        .search-input::placeholder { color: rgba(127, 159, 208, 0.5); }
-        .search-input:focus { outline: none; box-shadow: 0 0 0 2px rgba(0, 85, 164, 0.4); border-color: var(--bleu-clair); }
-        
-        .sort-btn { background: transparent; border: 1px solid var(--bleu-france); color: var(--bleu-clair); padding: 0 20px; font-family: 'Orbitron', sans-serif; text-transform: uppercase; cursor: pointer; transition: 0.2s; font-size: 0.8rem; }
-        .sort-btn:hover { background: rgba(0, 85, 164, 0.2); color: white; border-color: var(--bleu-clair); }
-        
-        .communes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; max-height: 600px; overflow-y: auto; padding-right: 10px; }
-        .commune-card { background: rgba(15, 30, 56, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); padding: 15px; cursor: pointer; transition: 0.2s; position: relative; }
-        .commune-card:hover { border-color: var(--bleu-clair); background: rgba(0, 85, 164, 0.15); box-shadow: 0 0 12px rgba(0, 85, 164, 0.2); }
-        .commune-card h3 { font-family: 'Orbitron', sans-serif; font-size: 1rem; color: white; margin-bottom: 8px; }
-        .commune-card .meta { font-size: 0.85rem; color: var(--bleu-clair); display: flex; justify-content: space-between; margin-bottom: 10px; }
-        .tag { font-size: 0.7rem; padding: 2px 8px; border: 1px solid; text-transform: uppercase; letter-spacing: 0.5px; }
-        .tag-blue { border-color: var(--bleu-france); color: var(--bleu-clair); background: rgba(0, 85, 164, 0.15); }
-        .tag-red { border-color: var(--rouge-marianne); color: var(--rouge-clair); background: rgba(239, 65, 53, 0.1); }
-        .tag-green { border-color: #4caf50; color: #81c784; background: rgba(76, 175, 80, 0.1); }
+.header-sub {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+}
 
-        .detail-view { display: none; margin-top: 40px; border-top: 2px solid var(--bleu-france); padding-top: 20px; animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.btn-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    color: var(--rouge-glow);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.25s;
+    background: rgba(239, 68, 68, 0.06);
+}
 
-        .detail-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; flex-wrap: wrap; gap: 10px; }
-        .detail-header h2 { font-family: 'Orbitron', sans-serif; font-size: 1.8rem; text-transform: uppercase; color: white; border-left: 5px solid var(--bleu-france); padding-left: 15px; }
+.btn-download:hover {
+    background: rgba(239, 68, 68, 0.15);
+    border-color: var(--rouge);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+}
 
-        .viz-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
-        @media (max-width: 900px) { .viz-grid { grid-template-columns: 1fr; } }
+.header-sub span {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+}
 
-        .chart-box { background: var(--bg-panel); border: var(--border-tech); padding: 20px; height: 400px; position: relative; }
-        .data-panel { background: var(--bg-panel); border: var(--border-tech); padding: 20px; display: flex; flex-direction: column; gap: 10px; max-height: 400px; overflow-y: auto; }
-        
-        .data-row { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding: 8px 0; font-size: 0.9rem; }
-        .data-row.winner { border-left: 3px solid var(--rouge-marianne); background: rgba(239, 65, 53, 0.1); padding-left: 10px; }
-        .data-label { color: var(--bleu-clair); }
-        .data-val { font-weight: bold; color: white; text-align: right; }
+/* ---------- DROP ZONES ---------- */
+.drop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
 
-        .data-table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 0.9rem; }
-        .data-table th { text-align: left; color: var(--bleu-clair); border-bottom: 2px solid var(--bleu-france); padding: 10px; letter-spacing: 0.5px; }
-        .data-table td { padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .winner-row { background: rgba(239, 65, 53, 0.08); }
-        .winner-row td:first-child { color: var(--rouge-clair); font-weight: bold; }
-        .sortant-badge { color: #ffd54f; font-size: 0.75rem; margin-left: 5px; }
-        .tete-badge { color: #81c784; font-size: 0.75rem; margin-left: 5px; }
+.drop-zone {
+    border: 2px dashed var(--border-strong);
+    background: rgba(22, 32, 58, 0.4);
+    padding: 24px 20px;
+    text-align: center;
+    transition: all 0.3s;
+    cursor: pointer;
+    border-radius: 14px;
+    position: relative;
+    overflow: hidden;
+}
 
-        .loading { text-align: center; padding: 50px; color: var(--bleu-clair); }
-        .spinner { width: 40px; height: 40px; border: 4px solid transparent; border-top-color: var(--bleu-france); border-right-color: var(--blanc); border-bottom-color: var(--rouge-marianne); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px; }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        
-        .error { color: var(--rouge-clair); background: rgba(239, 65, 53, 0.12); padding: 20px; border: 1px solid var(--rouge-marianne); margin-top: 20px; font-size: 0.9rem; border-left: 5px solid var(--rouge-marianne); }
-        
-        footer { margin-top: 40px; text-align: center; font-size: 0.8rem; color: var(--bleu-clair); border-top: 1px solid var(--border-tech); padding-top: 20px; }
-        footer span.bleu { color: var(--bleu-france); }
-        footer span.blanc { color: var(--blanc); }
-        footer span.rouge { color: var(--rouge-marianne); }
+.drop-zone:hover {
+    background: rgba(59, 130, 246, 0.06);
+    border-color: var(--bleu);
+}
 
-        .no-data-msg { text-align: center; padding: 40px; color: var(--bleu-clair); font-style: italic; }
-    </style>
+.drop-zone.dragover {
+    border-color: var(--bleu-glow);
+    background: rgba(59, 130, 246, 0.12);
+    transform: scale(1.01);
+}
+
+.drop-zone.loaded {
+    border-color: var(--vert);
+    border-style: solid;
+    background: rgba(16, 185, 129, 0.06);
+}
+
+.drop-zone input { display: none; }
+
+.drop-zone .icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: rgba(59, 130, 246, 0.12);
+    color: var(--bleu-glow);
+    margin-bottom: 12px;
+    font-size: 20px;
+    transition: all 0.3s;
+}
+
+.drop-zone.loaded .icon {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--vert);
+}
+
+.drop-zone .title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 4px;
+    letter-spacing: 0.3px;
+}
+
+.drop-zone .desc {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-bottom: 14px;
+}
+
+.file-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(10, 14, 26, 0.6);
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 0.7rem;
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.drop-zone.loaded .file-name {
+    border-color: rgba(16, 185, 129, 0.4);
+    color: #6ee7b7;
+}
+
+/* ---------- STATS ---------- */
+.stats-banner {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, rgba(22, 32, 58, 0.8) 0%, rgba(16, 24, 39, 0.8) 100%);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.25s;
+}
+
+.stat-card:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-2px);
+}
+
+.stat-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: var(--bleu);
+    opacity: 0.6;
+}
+
+.stat-card:nth-child(2)::before { background: var(--or); }
+.stat-card:nth-child(3)::before { background: var(--rouge); }
+.stat-card:nth-child(4)::before { background: var(--vert); }
+.stat-card:nth-child(5)::before { background: var(--violet); }
+.stat-card:nth-child(6)::before { background: var(--rose); }
+
+.stat-card .label {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    letter-spacing: 0.8px;
+    font-weight: 600;
+}
+
+.stat-card .value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: white;
+    letter-spacing: -0.5px;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ---------- CONTROLS ---------- */
+.controls {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.search-input {
+    flex: 1;
+    min-width: 220px;
+    background: rgba(10, 14, 26, 0.6);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 12px 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    border-radius: 10px;
+    transition: all 0.2s;
+}
+
+.search-input::placeholder { color: var(--text-mute); }
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--bleu);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    background: rgba(10, 14, 26, 0.9);
+}
+
+select.sort-btn {
+    background: rgba(10, 14, 26, 0.6);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 12px 36px 12px 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238ba0c8' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+}
+
+select.sort-btn:hover {
+    border-color: var(--bleu);
+    background-color: rgba(59, 130, 246, 0.08);
+}
+
+select.sort-btn:focus {
+    outline: none;
+    border-color: var(--bleu);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* ---------- GRID ---------- */
+.circo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 14px;
+    max-height: 620px;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+.circo-grid::-webkit-scrollbar { width: 8px; }
+.circo-grid::-webkit-scrollbar-track { background: rgba(10, 14, 26, 0.4); border-radius: 4px; }
+.circo-grid::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 4px; }
+.circo-grid::-webkit-scrollbar-thumb:hover { background: var(--bleu); }
+
+.circo-card {
+    background: linear-gradient(135deg, rgba(22, 32, 58, 0.7) 0%, rgba(16, 24, 39, 0.7) 100%);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+}
+
+.circo-card:hover {
+    border-color: var(--bleu);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.15);
+}
+
+.circo-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--bleu);
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+
+.circo-card.proportionnel::before { background: var(--vert); }
+
+.circo-card:hover::before { opacity: 1; }
+
+.circo-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 10px;
+    letter-spacing: -0.2px;
+}
+
+.circo-card .meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+    font-variant-numeric: tabular-nums;
+}
+
+.badge-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+/* ---------- BADGES ---------- */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    border: 1px solid;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.badge-majoritaire { color: #60a5fa; border-color: rgba(96, 165, 250, 0.4); background: rgba(96, 165, 250, 0.1); }
+.badge-proportionnel { color: #34d399; border-color: rgba(52, 211, 153, 0.4); background: rgba(52, 211, 153, 0.1); }
+.badge-neutre { color: var(--text-dim); border-color: var(--border-strong); background: rgba(139, 160, 200, 0.08); }
+.badge-sortant { color: #fbbf24; border-color: rgba(251, 191, 36, 0.4); background: rgba(251, 191, 36, 0.1); }
+.badge-tete { color: #a78bfa; border-color: rgba(167, 139, 250, 0.4); background: rgba(167, 139, 250, 0.1); }
+.badge-femme { color: #f472b6; border-color: rgba(244, 114, 182, 0.4); background: rgba(244, 114, 182, 0.1); }
+.badge-homme { color: #38bdf8; border-color: rgba(56, 189, 248, 0.4); background: rgba(56, 189, 248, 0.1); }
+.badge-electeurs { color: #facc15; border-color: rgba(250, 204, 21, 0.4); background: rgba(250, 204, 21, 0.08); }
+
+/* ---------- NUANCES ---------- */
+.nuance {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 5px;
+    border: 1px solid;
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
+.nuance-swatch {
+    width: 8px; height: 8px;
+    border-radius: 2px;
+}
+
+/* ---------- DETAIL VIEW ---------- */
+.detail-view {
+    display: none;
+    margin-top: 32px;
+    animation: fadeIn 0.4s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.detail-header {
+    background: linear-gradient(135deg, rgba(22, 32, 58, 0.9) 0%, rgba(16, 24, 39, 0.9) 100%);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.detail-header h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: white;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.detail-header h2::before {
+    content: "";
+    width: 4px; height: 28px;
+    background: var(--grad-tricolore);
+    border-radius: 2px;
+}
+
+.detail-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    padding: 6px 12px;
+    background: rgba(10, 14, 26, 0.6);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+}
+
+.viz-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 900px) { .viz-grid { grid-template-columns: 1fr; } }
+
+.chart-box {
+    background: linear-gradient(135deg, rgba(22, 32, 58, 0.8) 0%, rgba(16, 24, 39, 0.8) 100%);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    height: 400px;
+    position: relative;
+}
+
+.chart-box::before {
+    content: "RÉPARTITION";
+    position: absolute;
+    top: 14px; left: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+}
+
+.data-panel {
+    background: linear-gradient(135deg, rgba(22, 32, 58, 0.8) 0%, rgba(16, 24, 39, 0.8) 100%);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.data-panel h3 {
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-bottom: 10px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+}
+
+.data-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 0.85rem;
+    border-bottom: 1px solid rgba(120, 145, 200, 0.06);
+}
+
+.data-row:last-child { border-bottom: none; }
+.data-label { color: var(--text-dim); font-size: 0.8rem; }
+.data-val { font-weight: 700; color: white; text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ---------- TABLE ---------- */
+.table-wrap {
+    background: linear-gradient(135deg, rgba(22, 32, 58, 0.6) 0%, rgba(16, 24, 39, 0.6) 100%);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.data-table thead {
+    background: rgba(10, 14, 26, 0.8);
+    position: sticky;
+    top: 0;
+}
+
+.data-table th {
+    text-align: left;
+    color: var(--text-dim);
+    padding: 14px 16px;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border-strong);
+}
+
+.data-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(120, 145, 200, 0.06);
+    color: var(--text);
+    vertical-align: middle;
+}
+
+.data-table tbody tr {
+    transition: background 0.15s;
+}
+
+.data-table tbody tr:hover {
+    background: rgba(59, 130, 246, 0.04);
+}
+
+.data-table tbody tr.sortant-row {
+    background: rgba(251, 191, 36, 0.04);
+}
+
+.data-table tbody tr.tete-row {
+    background: rgba(167, 139, 250, 0.05);
+}
+
+.data-table tbody tr:last-child td { border-bottom: none; }
+
+/* ---------- LOADING / ERROR ---------- */
+.loading {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-dim);
+}
+
+.spinner {
+    width: 44px; height: 44px;
+    border: 3px solid rgba(120, 145, 200, 0.15);
+    border-top-color: var(--bleu);
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.error {
+    color: #fca5a5;
+    background: rgba(239, 68, 68, 0.08);
+    padding: 18px 20px;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-left: 3px solid var(--rouge);
+    border-radius: 10px;
+    margin-top: 20px;
+    font-size: 0.85rem;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.no-data {
+    grid-column: 1/-1;
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-mute);
+    font-size: 0.9rem;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+    margin-top: 60px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-mute);
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    line-height: 1.8;
+}
+
+footer .flag-bar {
+    display: inline-flex;
+    height: 4px;
+    width: 60px;
+    margin: 0 8px;
+    border-radius: 2px;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+footer .flag-bar span { flex: 1; }
+footer .flag-bar .b { background: #3b82f6; }
+footer .flag-bar .w { background: #ffffff; }
+footer .flag-bar .r { background: #ef4444; }
+</style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <div class="version-tag">SYSTEM://SENATORIALES_2026_V1.0 · RÉPUBLIQUE FRANÇAISE</div>
-            <h1>ANALYSEUR <span>SÉNATORIALES 2026</span></h1>
-            
-            <div class="data-source">
-                <span>Source officielle :</span>
-                <a href="https://www.data.gouv.fr/datasets/elections-senatoriales-2026-candidatures-aux-scrutins-majoritaire-tour-1-et-proportionnel" target="_blank" class="btn-download">
-                    Télécharger les candidatures (data.gouv.fr)
-                </a>
-            </div>
-        </header>
-
-        <div class="drop-grid">
-            <div class="drop-zone" id="dropMajoritaire">
-                <input type="file" id="fileMajoritaire" accept=".csv">
-                <span class="icon">⚔ SCRUTIN MAJORITAIRE</span>
-                <div class="text">Déposez le CSV des candidatures individuelles</div>
-                <div class="file-name" id="fileNameMajoritaire">AUCUN FICHIER</div>
-            </div>
-
-            <div class="drop-zone" id="dropProportionnel">
-                <input type="file" id="fileProportionnel" accept=".csv">
-                <span class="icon">⚖ SCRUTIN PROPORTIONNEL</span>
-                <div class="text">Déposez le CSV des listes</div>
-                <div class="file-name" id="fileNameProportionnel">AUCUN FICHIER</div>
+<div class="container">
+    <header>
+        <div class="header-top">
+            <div class="version-tag">Système actif · V1.1</div>
+            <div class="version-tag" style="border-color: rgba(239, 68, 68, 0.3); color: #fca5a5;">
+                178 sièges · Série 2 · 64 circonscriptions
             </div>
         </div>
+        <h1>Analyseur <span>Sénatoriales 2026</span></h1>
+        <div class="header-sub">
+            <span>Source officielle :</span>
+            <a href="https://www.data.gouv.fr/datasets/elections-senatoriales-2026-candidatures-aux-scrutins-majoritaire-tour-1-et-proportionnel" target="_blank" class="btn-download">
+                ⬇ Télécharger les candidatures (data.gouv.fr)
+            </a>
+        </div>
+    </header>
 
-        <div id="loader" class="loading" style="display:none;">
-            <div class="spinner"></div>
-            <p>TRAITEMENT DES DONNÉES EN COURS...</p>
-            <p id="progress" style="font-size: 0.8rem; margin-top: 10px; opacity: 0.6;"></p>
+    <div class="drop-grid">
+        <div class="drop-zone" id="dropMajoritaire">
+            <input type="file" id="fileMajoritaire" accept=".csv">
+            <div class="icon">⚔</div>
+            <div class="title">Scrutin majoritaire</div>
+            <div class="desc">Candidatures individuelles (1-2 sièges)</div>
+            <div class="file-name" id="fileNameMajoritaire">Aucun fichier</div>
         </div>
 
-        <div id="errorBox" class="error" style="display:none;"></div>
-
-        <div id="dashboard" style="display:none;">
-            <div class="stats-banner" id="statsBanner"></div>
-
-            <div class="controls">
-                <input type="text" id="searchInput" class="search-input" placeholder="RECHERCHE CIRCONSCRIPTION / DÉPARTEMENT...">
-                <select id="typeSelect" class="sort-btn">
-                    <option value="all">TYPE: TOUS</option>
-                    <option value="majoritaire">MAJORITAIRE (1-2 sièges)</option>
-                    <option value="proportionnel">PROPORTIONNEL (3+ sièges)</option>
-                </select>
-                <select id="sortSelect" class="sort-btn">
-                    <option value="code">TRI: CODE</option>
-                    <option value="nom">TRI: NOM</option>
-                    <option value="candidats">TRI: NB CANDIDATS</option>
-                </select>
-            </div>
-
-            <div class="communes-grid" id="grid"></div>
+        <div class="drop-zone" id="dropProportionnel">
+            <input type="file" id="fileProportionnel" accept=".csv">
+            <div class="icon">⚖</div>
+            <div class="title">Scrutin proportionnel</div>
+            <div class="desc">Listes fermées (3+ sièges)</div>
+            <div class="file-name" id="fileNameProportionnel">Aucun fichier</div>
         </div>
 
-        <div id="detail" class="detail-view">
-            <div class="detail-header">
-                <h2 id="detailTitle">CIRCONSCRIPTION</h2>
-                <span id="detailMeta" style="color: var(--bleu-clair);">METADATA</span>
+        <div class="drop-zone" id="dropInscrits">
+            <input type="file" id="fileInscrits" accept=".csv">
+            <div class="icon">👥</div>
+            <div class="title">Inscrits par bureau</div>
+            <div class="desc">Nombre de grands électeurs</div>
+            <div class="file-name" id="fileNameInscrits">Aucun fichier</div>
+        </div>
+    </div>
+
+    <div id="loader" class="loading" style="display:none;">
+        <div class="spinner"></div>
+        <p>Traitement des données…</p>
+        <p id="progress" style="font-size: 0.8rem; margin-top: 8px; opacity: 0.6;"></p>
+    </div>
+
+    <div id="errorBox" class="error" style="display:none;"></div>
+
+    <div id="dashboard" style="display:none;">
+        <div class="stats-banner" id="statsBanner"></div>
+
+        <div class="controls">
+            <input type="text" id="searchInput" class="search-input" placeholder="🔍 Rechercher une circonscription ou un département…">
+            <select id="typeSelect" class="sort-btn">
+                <option value="all">Type : tous</option>
+                <option value="majoritaire">Majoritaire</option>
+                <option value="proportionnel">Proportionnel</option>
+            </select>
+            <select id="sortSelect" class="sort-btn">
+                <option value="code">Tri : code</option>
+                <option value="nom">Tri : nom</option>
+                <option value="candidats">Tri : nb candidats</option>
+                <option value="inscrits">Tri : nb électeurs</option>
+            </select>
+        </div>
+
+        <div class="circo-grid" id="grid"></div>
+    </div>
+
+    <div id="detail" class="detail-view">
+        <div class="detail-header">
+            <h2 id="detailTitle">Circonscription</h2>
+            <span class="detail-meta" id="detailMeta">—</span>
+        </div>
+
+        <div class="stats-banner" id="detailStats"></div>
+
+        <div class="viz-grid">
+            <div class="chart-box">
+                <canvas id="mainChart"></canvas>
             </div>
+            <div class="data-panel" id="analysisPanel"></div>
+        </div>
 
-            <div class="stats-banner" id="detailStats"></div>
-
-            <div class="viz-grid">
-                <div class="chart-box">
-                    <canvas id="mainChart"></canvas>
-                </div>
-                <div class="data-panel" id="analysisPanel"></div>
-            </div>
-
+        <div class="table-wrap">
             <table class="data-table" id="dataTable">
                 <thead></thead>
                 <tbody></tbody>
             </table>
         </div>
-        
-        <footer>
-            Application Open Source · Données : Ministère de l'Intérieur via data.gouv.fr<br>
-            <span class="bleu">BLEU</span> · <span class="blanc">BLANC</span> · <span class="rouge">ROUGE</span> — Élections sénatoriales 2026 · Série 2 · 178 sièges
-        </footer>
     </div>
 
-    <script>
-        const state = {
-            majoritaire: [],
-            proportionnel: [],
-            circonscriptions: [],
-            filtered: [],
-            current: null,
-            chart: null
+    <footer>
+        Application open source · Données : Ministère de l'Intérieur via data.gouv.fr
+        <span class="flag-bar"><span class="b"></span><span class="w"></span><span class="r"></span></span>
+        Élections sénatoriales 2026 · Série 2 · 178 sièges renouvelés
+    </footer>
+</div>
+
+<script>
+const state = {
+    majoritaire: [],
+    proportionnel: [],
+    inscrits: new Map(), // code_dep -> nb inscrits
+    circonscriptions: [],
+    current: null,
+    chart: null
+};
+const $ = id => document.getElementById(id);
+
+// ---------- NUANCES : palette officielle ----------
+const NUANCES = {
+    'LR':      { label: 'Les Républicains', color: '#0066cc' },
+    'LLR':     { label: 'Liste Les Républicains', color: '#0066cc' },
+    'UC':      { label: 'Union Centriste', color: '#00a0e0' },
+    'HOR':     { label: 'Horizons', color: '#1e90ff' },
+    'ENS':     { label: 'Ensemble', color: '#ff8c00' },
+    'REN':     { label: 'Renaissance', color: '#ff8c00' },
+    'MODEM':   { label: 'MoDem', color: '#ffa500' },
+    'MDM':     { label: 'MoDem', color: '#ffa500' },
+    'UDI':     { label: 'UDI', color: '#5b9bd5' },
+    'SOC':     { label: 'Parti socialiste', color: '#e4003a' },
+    'PS':      { label: 'Parti socialiste', color: '#e4003a' },
+    'SER':     { label: 'Socialiste', color: '#e4003a' },
+    'DVG':     { label: 'Divers gauche', color: '#ff6b9d' },
+    'RDG':     { label: 'Parti radical de gauche', color: '#ff6b9d' },
+    'ECO':     { label: 'Écologiste', color: '#00a651' },
+    'VEC':     { label: 'Les Écologistes', color: '#00a651' },
+    'LFI':     { label: 'La France insoumise', color: '#c9462c' },
+    'FI':      { label: 'La France insoumise', color: '#c9462c' },
+    'COM':     { label: 'Parti communiste', color: '#9b1b30' },
+    'PCF':     { label: 'Parti communiste français', color: '#9b1b30' },
+    'UG':      { label: 'Union de la gauche', color: '#d63384' },
+    'RN':      { label: 'Rassemblement national', color: '#0d1f3c' },
+    'UDR':     { label: 'Union des droites pour la République', color: '#1a3a6e' },
+    'REC':     { label: 'Reconquête', color: '#2d2d44' },
+    'DVD':     { label: 'Divers droite', color: '#4a7ab8' },
+    'DVC':     { label: 'Divers centre', color: '#5b9bd5' },
+    'DLF':     { label: 'Debout la France', color: '#1a3a6e' },
+    'DIV':     { label: 'Divers', color: '#8a8a9e' },
+    'REG':     { label: 'Régionaliste', color: '#ffd700' },
+    'EXG':     { label: 'Extrême gauche', color: '#dc143c' },
+    'EXD':     { label: 'Extrême droite', color: '#0d1f3c' },
+    'GEN':     { label: 'Génération', color: '#8b5cf6' },
+    'PLP':     { label: 'Place publique', color: '#ec4899' },
+    'PR':      { label: 'Parti radical', color: '#5b9bd5' },
+    'DSV':     { label: 'Divers souverainiste', color: '#6b7280' }
+};
+
+function nuanceBadge(code, label) {
+    const meta = NUANCES[code] || { label: label || code || 'Divers', color: '#8a8a9e' };
+    return `<span class="nuance" style="color:${meta.color}; border-color:${meta.color}40; background:${meta.color}1a;" title="${label || meta.label}">
+        <span class="nuance-swatch" style="background:${meta.color};"></span>${code || 'DIV'}
+    </span>`;
+}
+
+function badge(text, type = 'neutre', icon = '') {
+    return `<span class="badge badge-${type}">${icon ? icon + ' ' : ''}${text}</span>`;
+}
+
+// ---------- NORMALISATION ----------
+function norm(h) {
+    return h.replace(/"/g, '')
+        .replace(/’/g, "'")
+        .replace(/\s+/g, ' ')
+        .trim()
+        .toLowerCase()
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, '');
+}
+
+function idx(headers, name) {
+    const n = norm(name);
+    return headers.indexOf(n);
+}
+
+function splitLine(text, delim) {
+    let res = [], curr = '', inQ = false;
+    for (let char of text) {
+        if (char === '"') inQ = !inQ;
+        else if (char === delim && !inQ) { res.push(curr); curr = ''; }
+        else curr += char;
+    }
+    res.push(curr);
+    return res;
+}
+
+// ---------- DROP ZONES ----------
+setupDropZone('dropMajoritaire', 'fileMajoritaire', 'fileNameMajoritaire', 'majoritaire');
+setupDropZone('dropProportionnel', 'fileProportionnel', 'fileNameProportionnel', 'proportionnel');
+setupDropZone('dropInscrits', 'fileInscrits', 'fileNameInscrits', 'inscrits');
+
+function setupDropZone(zoneId, inputId, nameId, type) {
+    const zone = $(zoneId);
+    const input = $(inputId);
+
+    zone.addEventListener('click', () => input.click());
+    input.addEventListener('change', e => {
+        if (e.target.files[0]) processFile(e.target.files[0], type);
+    });
+
+    ['dragenter', 'dragover'].forEach(evt => {
+        zone.addEventListener(evt, e => { e.preventDefault(); zone.classList.add('dragover'); });
+    });
+    ['dragleave', 'drop'].forEach(evt => {
+        zone.addEventListener(evt, e => { e.preventDefault(); zone.classList.remove('dragover'); });
+    });
+    zone.addEventListener('drop', e => {
+        e.preventDefault();
+        if (e.dataTransfer.files[0]) processFile(e.dataTransfer.files[0], type);
+    });
+}
+
+function processFile(file, type) {
+    const map = {
+        majoritaire: ['fileNameMajoritaire', 'dropMajoritaire'],
+        proportionnel: ['fileNameProportionnel', 'dropProportionnel'],
+        inscrits: ['fileNameInscrits', 'dropInscrits']
+    };
+    const [nameId, zoneId] = map[type];
+    $(nameId).textContent = '📄 ' + file.name;
+    $(zoneId).classList.add('loaded');
+
+    $('loader').style.display = 'block';
+    $('errorBox').style.display = 'none';
+
+    const reader = new FileReader();
+    reader.onload = e => {
+        try {
+            if (type === 'majoritaire') {
+                state.majoritaire = parseMajoritaire(e.target.result);
+                $('progress').textContent = `${state.majoritaire.length} candidats majoritaires chargés`;
+            } else if (type === 'proportionnel') {
+                state.proportionnel = parseProportionnel(e.target.result);
+                $('progress').textContent = `${state.proportionnel.length} colistiers proportionnels chargés`;
+            } else if (type === 'inscrits') {
+                parseInscrits(e.target.result);
+                $('progress').textContent = `${state.inscrits.size} circonscriptions avec inscrits`;
+            }
+
+            if (state.majoritaire.length > 0 || state.proportionnel.length > 0) {
+                state.circonscriptions = buildCirconscriptions(state.majoritaire, state.proportionnel);
+                attachInscrits();
+                computeStats();
+                $('loader').style.display = 'none';
+                $('dashboard').style.display = 'block';
+                renderGrid();
+            } else {
+                $('loader').style.display = 'none';
+            }
+        } catch (err) {
+            $('loader').style.display = 'none';
+            $('errorBox').style.display = 'block';
+            $('errorBox').textContent = 'ERREUR : ' + err.message;
+            console.error(err);
+        }
+    };
+    reader.readAsText(file, 'UTF-8');
+}
+
+// ---------- PARSERS ----------
+function parseMajoritaire(content) {
+    if (content.charCodeAt(0) === 0xFEFF) content = content.slice(1);
+    const lines = content.split('\n').filter(l => l.trim());
+    const delim = ';';
+    const headers = splitLine(lines[0], delim).map(norm);
+
+    const col = {
+        codeCirco: idx(headers, 'code circonscription'),
+        libCirco: idx(headers, 'libelle circonscription'),
+        numDepot: idx(headers, 'n° depot'),
+        sexe: idx(headers, 'sexe du candidat'),
+        nom: idx(headers, 'nom du candidat'),
+        prenom: idx(headers, 'prenom du candidat'),
+        codeNuance: idx(headers, 'code nuance'),
+        nuance: idx(headers, 'nuance du candidat'),
+        sortant: idx(headers, 'sortant'),
+        sexeRemp: idx(headers, 'sexe remplacant'),
+        nomRemp: idx(headers, 'nom remplacant'),
+        prenomRemp: idx(headers, 'prenom remplacant')
+    };
+
+    return lines.slice(1).map(l => {
+        const c = splitLine(l, delim).map(x => x.replace(/"/g, '').trim());
+        return {
+            codeCirco: c[col.codeCirco] || '',
+            libCirco: c[col.libCirco] || '',
+            numDepot: c[col.numDepot] || '',
+            sexe: c[col.sexe] || '',
+            nom: c[col.nom] || '',
+            prenom: c[col.prenom] || '',
+            codeNuance: c[col.codeNuance] || '',
+            nuance: c[col.nuance] || '',
+            sortant: (c[col.sortant] || '').toUpperCase() === 'OUI',
+            remplacant: {
+                sexe: c[col.sexeRemp] || '',
+                nom: c[col.nomRemp] || '',
+                prenom: c[col.prenomRemp] || ''
+            }
         };
-        const $ = id => document.getElementById(id);
-        
-        // ---------- SETUP DROP ZONES ----------
-        setupDropZone('dropMajoritaire', 'fileMajoritaire', 'fileNameMajoritaire', 'majoritaire');
-        setupDropZone('dropProportionnel', 'fileProportionnel', 'fileNameProportionnel', 'proportionnel');
+    }).filter(x => x.nom && x.codeCirco);
+}
 
-        function setupDropZone(zoneId, inputId, nameId, type) {
-            const zone = $(zoneId);
-            const input = $(inputId);
-            
-            zone.addEventListener('click', () => input.click());
-            input.addEventListener('change', e => {
-                if (e.target.files[0]) processFile(e.target.files[0], type);
-            });
+function parseProportionnel(content) {
+    if (content.charCodeAt(0) === 0xFEFF) content = content.slice(1);
+    const lines = content.split('\n').filter(l => l.trim());
+    const delim = ';';
+    const headers = splitLine(lines[0], delim).map(norm);
 
-            ['dragenter', 'dragover'].forEach(evt => {
-                zone.addEventListener(evt, e => { e.preventDefault(); zone.classList.add('dragover'); });
-            });
-            ['dragleave', 'drop'].forEach(evt => {
-                zone.addEventListener(evt, e => { e.preventDefault(); zone.classList.remove('dragover'); });
-            });
-            zone.addEventListener('drop', e => {
-                e.preventDefault();
-                if (e.dataTransfer.files[0]) processFile(e.dataTransfer.files[0], type);
+    const col = {
+        codeCirco: idx(headers, 'code circonscription'),
+        circo: idx(headers, 'circonscription'),
+        numDepot: idx(headers, 'n° depot'),
+        libAbrege: idx(headers, 'libelle abrege de liste'),
+        libListe: idx(headers, 'libelle de la liste'),
+        codeNuance: idx(headers, 'code nuance de liste'),
+        nuance: idx(headers, 'nuance de liste'),
+        teteListe: idx(headers, 'tete de liste'),
+        ordre: idx(headers, 'ordre'),
+        sexe: idx(headers, 'sexe'),
+        nom: idx(headers, 'nom sur le bulletin de vote'),
+        prenom: idx(headers, 'prenom sur le bulletin de vote'),
+        sortant: idx(headers, 'sortant')
+    };
+
+    return lines.slice(1).map(l => {
+        const c = splitLine(l, delim).map(x => x.replace(/"/g, '').trim());
+        return {
+            codeCirco: c[col.codeCirco] || '',
+            circo: c[col.circo] || '',
+            numDepot: c[col.numDepot] || '',
+            libAbrege: c[col.libAbrege] || '',
+            libListe: c[col.libListe] || '',
+            codeNuance: c[col.codeNuance] || '',
+            nuance: c[col.nuance] || '',
+            teteListe: (c[col.teteListe] || '').toUpperCase() === 'OUI',
+            ordre: parseInt(c[col.ordre]) || 0,
+            sexe: c[col.sexe] || '',
+            nom: c[col.nom] || '',
+            prenom: c[col.prenom] || '',
+            sortant: (c[col.sortant] || '').toUpperCase() === 'OUI'
+        };
+    }).filter(x => x.nom && x.codeCirco);
+}
+
+function parseInscrits(content) {
+    if (content.charCodeAt(0) === 0xFEFF) content = content.slice(1);
+    const lines = content.split('\n').filter(l => l.trim());
+    const delim = ';';
+    const headers = splitLine(lines[0], delim).map(norm);
+
+    const colCode = idx(headers, 'code circonscription');
+    const colInscrits = headers.findIndex(h => h.includes('nombre') && h.includes('inscrit'));
+
+    if (colCode === -1 || colInscrits === -1) {
+        throw new Error("Colonnes attendues introuvables dans le fichier inscrits");
+    }
+
+    lines.slice(1).forEach(l => {
+        const c = splitLine(l, delim).map(x => x.replace(/"/g, '').trim());
+        const code = c[colCode];
+        // Le nombre peut contenir des espaces insécables ou fines
+        const raw = (c[colInscrits] || '').replace(/[\s\u00A0\u202F]/g, '');
+        const nb = parseInt(raw, 10) || 0;
+        if (code) state.inscrits.set(code, nb);
+    });
+}
+
+// ---------- AGRÉGATION ----------
+function buildCirconscriptions(maj, prop) {
+    const map = new Map();
+
+    maj.forEach(c => {
+        const key = c.codeCirco;
+        if (!map.has(key)) {
+            map.set(key, {
+                code: key, nom: c.libCirco, type: 'majoritaire',
+                candidats: [], listes: [], inscrits: null
             });
         }
+        map.get(key).candidats.push(c);
+    });
 
-        function processFile(file, type) {
-            const nameId = type === 'majoritaire' ? 'fileNameMajoritaire' : 'fileNameProportionnel';
-            const zoneId = type === 'majoritaire' ? 'dropMajoritaire' : 'dropProportionnel';
-            $(nameId).textContent = file.name;
-            $(zoneId).classList.add('loaded');
-            
-            $('loader').style.display = 'block';
-            $('errorBox').style.display = 'none';
-            
-            const reader = new FileReader();
-            reader.onload = e => {
-                try {
-                    if (type === 'majoritaire') {
-                        state.majoritaire = parseMajoritaire(e.target.result);
-                        $('progress').textContent = `${state.majoritaire.length} candidats majoritaires chargés`;
-                    } else {
-                        state.proportionnel = parseProportionnel(e.target.result);
-                        $('progress').textContent = `${state.proportionnel.length} colistiers proportionnels chargés`;
-                    }
-                    
-                    if (state.majoritaire.length > 0 || state.proportionnel.length > 0) {
-                        state.circonscriptions = buildCirconscriptions(state.majoritaire, state.proportionnel);
-                        computeStats();
-                        $('loader').style.display = 'none';
-                        $('dashboard').style.display = 'block';
-                        renderGrid();
-                    } else {
-                        $('loader').style.display = 'none';
-                    }
-                } catch (err) {
-                    $('loader').style.display = 'none';
-                    $('errorBox').style.display = 'block';
-                    $('errorBox').innerHTML = 'ERREUR: ' + err.message;
-                    console.error(err);
-                }
+    prop.forEach(c => {
+        const key = c.codeCirco;
+        if (!map.has(key)) {
+            map.set(key, {
+                code: key, nom: c.circo, type: 'proportionnel',
+                candidats: [], listes: [], inscrits: null
+            });
+        }
+        const circo = map.get(key);
+        let liste = circo.listes.find(l => l.numDepot === c.numDepot);
+        if (!liste) {
+            liste = {
+                numDepot: c.numDepot,
+                libelle: c.libListe,
+                libelleAbrege: c.libAbrege,
+                codeNuance: c.codeNuance,
+                nuance: c.nuance,
+                teteDeListe: null,
+                membres: []
             };
-            reader.readAsText(file, 'UTF-8');
+            circo.listes.push(liste);
         }
+        if (c.teteListe) liste.teteDeListe = c;
+        liste.membres.push(c);
+    });
 
-        // ---------- PARSER SCRUTIN MAJORITAIRE ----------
-        function parseMajoritaire(content) {
-            if (content.charCodeAt(0) === 0xFEFF) content = content.slice(1);
-            const lines = content.split('\n').filter(l => l.trim());
-            const delim = ';';
+    map.forEach(c => {
+        c.listes.forEach(l => l.membres.sort((a, b) => a.ordre - b.ordre));
+        c.listes.sort((a, b) => a.libelle.localeCompare(b.libelle));
+        c.candidats.sort((a, b) => a.nom.localeCompare(b.nom));
+    });
 
-            const headers = splitLine(lines[0], delim).map(h =>
-                h.replace(/"/g, '').trim().toLowerCase()
-                 .normalize("NFD").replace(/[\u0300-\u036f]/g, '')
-            );
+    return Array.from(map.values());
+}
 
-            const col = {
-                codeCirco:  headers.indexOf('code circonscription'),
-                libCirco:   headers.indexOf('libelle circonscription'),
-                numDepot:   headers.indexOf('n° depot'),
-                sexe:       headers.indexOf('sexe du candidat'),
-                nom:        headers.indexOf('nom du candidat'),
-                prenom:     headers.indexOf('prenom du candidat'),
-                naissance:  headers.indexOf('date de naissance du candidat'),
-                codeNuance: headers.indexOf('code nuance'),
-                nuance:     headers.indexOf('nuance du candidat'),
-                profession: headers.indexOf('profession'),
-                sortant:    headers.indexOf('sortant'),
-                sexeRemp:   headers.indexOf('sexe remplacant'),
-                nomRemp:    headers.indexOf('nom remplacant'),
-                prenomRemp: headers.indexOf('prenom remplacant'),
-                naissanceRemp: headers.indexOf('date de naissance remplacant')
-            };
+function attachInscrits() {
+    state.circonscriptions.forEach(c => {
+        c.inscrits = state.inscrits.get(c.code) || null;
+    });
+}
 
-            return lines.slice(1).map(l => {
-                const c = splitLine(l, delim).map(x => x.replace(/"/g, '').trim());
-                return {
-                    codeCirco:  c[col.codeCirco]  || '',
-                    libCirco:   c[col.libCirco]   || '',
-                    numDepot:   c[col.numDepot]   || '',
-                    sexe:       c[col.sexe]       || '',
-                    nom:        c[col.nom]        || '',
-                    prenom:     c[col.prenom]     || '',
-                    naissance:  c[col.naissance]  || '',
-                    codeNuance: c[col.codeNuance] || '',
-                    nuance:     c[col.nuance]     || '',
-                    profession: c[col.profession] || '',
-                    sortant:    (c[col.sortant] || '').toUpperCase() === 'OUI',
-                    remplacant: {
-                        sexe:   c[col.sexeRemp]   || '',
-                        nom:    c[col.nomRemp]    || '',
-                        prenom: c[col.prenomRemp] || '',
-                        naissance: c[col.naissanceRemp] || ''
-                    }
-                };
-            }).filter(x => x.nom && x.codeCirco);
+// ---------- STATS ----------
+function computeStats() {
+    const nbMaj = state.circonscriptions.filter(c => c.type === 'majoritaire').length;
+    const nbProp = state.circonscriptions.filter(c => c.type === 'proportionnel').length;
+    const nbCand = state.majoritaire.length;
+    const nbListes = state.circonscriptions
+        .filter(c => c.type === 'proportionnel')
+        .reduce((s, c) => s + c.listes.length, 0);
+    const nbCol = state.proportionnel.length;
+    const totalInscrits = state.circonscriptions
+        .reduce((s, c) => s + (c.inscrits || 0), 0);
+
+    $('statsBanner').innerHTML = `
+        <div class="stat-card"><span class="label">Circo. majoritaires</span><span class="value">${nbMaj}</span></div>
+        <div class="stat-card"><span class="label">Circo. proportionnelles</span><span class="value">${nbProp}</span></div>
+        <div class="stat-card"><span class="label">Candidats (maj.)</span><span class="value">${nbCand.toLocaleString('fr-FR')}</span></div>
+        <div class="stat-card"><span class="label">Listes (prop.)</span><span class="value">${nbListes.toLocaleString('fr-FR')}</span></div>
+        <div class="stat-card"><span class="label">Colistiers</span><span class="value">${nbCol.toLocaleString('fr-FR')}</span></div>
+        <div class="stat-card"><span class="label">Grands électeurs</span><span class="value">${totalInscrits.toLocaleString('fr-FR')}</span></div>
+    `;
+}
+
+// ---------- GRID ----------
+['searchInput', 'typeSelect', 'sortSelect'].forEach(id => {
+    $(id).addEventListener('input', renderGrid);
+    $(id).addEventListener('change', renderGrid);
+});
+
+function renderGrid() {
+    const s = $('searchInput').value.toLowerCase();
+    const typeFilter = $('typeSelect').value;
+    const sort = $('sortSelect').value;
+
+    let filtered = state.circonscriptions.filter(c =>
+        (c.nom || '').toLowerCase().includes(s) || c.code.includes(s)
+    );
+    if (typeFilter !== 'all') filtered = filtered.filter(c => c.type === typeFilter);
+
+    filtered.sort((a, b) => {
+        if (sort === 'nom') return (a.nom || '').localeCompare(b.nom || '');
+        if (sort === 'inscrits') return (b.inscrits || 0) - (a.inscrits || 0);
+        if (sort === 'candidats') {
+            const ca = a.type === 'majoritaire' ? a.candidats.length : a.listes.length;
+            const cb = b.type === 'majoritaire' ? b.candidats.length : b.listes.length;
+            return cb - ca;
         }
+        return a.code.localeCompare(b.code);
+    });
 
-        // ---------- PARSER SCRUTIN PROPORTIONNEL ----------
-        function parseProportionnel(content) {
-            if (content.charCodeAt(0) === 0xFEFF) content = content.slice(1);
-            const lines = content.split('\n').filter(l => l.trim());
-            const delim = ';';
+    if (filtered.length === 0) {
+        $('grid').innerHTML = '<div class="no-data">Aucune circonscription trouvée</div>';
+        return;
+    }
 
-            const headers = splitLine(lines[0], delim).map(h =>
-                h.replace(/"/g, '').trim().toLowerCase()
-                 .normalize("NFD").replace(/[\u0300-\u036f]/g, '')
-            );
+    $('grid').innerHTML = filtered.map(c => {
+        const isMaj = c.type === 'majoritaire';
+        const count = isMaj ? c.candidats.length : c.listes.length;
+        const countLabel = isMaj ? 'candidats' : 'listes';
+        const seats = isMaj ? '1-2 sièges' : '3+ sièges';
+        const nbSortants = isMaj
+            ? c.candidats.filter(x => x.sortant).length
+            : c.listes.reduce((s, l) => s + l.membres.filter(m => m.sortant).length, 0);
+        const inscritsBadge = c.inscrits
+            ? badge(c.inscrits.toLocaleString('fr-FR') + ' électeurs', 'electeurs', '👥')
+            : '';
 
-            const col = {
-                codeCirco:  headers.indexOf('code circonscription'),
-                circo:      headers.indexOf('circonscription'),
-                numDepot:   headers.indexOf('n° depot'),
-                libAbrege:  headers.indexOf('libelle abrege de liste'),
-                libListe:   headers.indexOf('libelle de la liste'),
-                codeNuance: headers.indexOf('code nuance de liste'),
-                nuance:     headers.indexOf('nuance de liste'),
-                teteListe:  headers.indexOf('tete de liste'),
-                ordre:      headers.indexOf('ordre'),
-                sexe:       headers.indexOf('sexe'),
-                nom:        headers.indexOf('nom sur le bulletin de vote'),
-                prenom:     headers.indexOf('prenom sur le bulletin de vote'),
-                naissance:  headers.indexOf('date de naissance'),
-                profession: headers.indexOf('profession'),
-                sortant:    headers.indexOf('sortant')
-            };
+        return `
+            <div class="circo-card ${c.type}" onclick="showDetail('${c.code}')">
+                <h3>${c.nom || c.code}</h3>
+                <div class="meta">
+                    <span>Dép. ${c.code}</span>
+                    <span>${seats}</span>
+                </div>
+                <div class="badge-row">
+                    ${badge(isMaj ? 'Majoritaire' : 'Proportionnel', isMaj ? 'majoritaire' : 'proportionnel', isMaj ? '⚔' : '⚖')}
+                    ${badge(count + ' ' + countLabel, 'neutre', '📋')}
+                    ${inscritsBadge}
+                    ${nbSortants > 0 ? badge(nbSortants + ' sortant' + (nbSortants > 1 ? 's' : ''), 'sortant', '★') : ''}
+                </div>
+            </div>
+        `;
+    }).join('');
+}
 
-            return lines.slice(1).map(l => {
-                const c = splitLine(l, delim).map(x => x.replace(/"/g, '').trim());
-                return {
-                    codeCirco:  c[col.codeCirco]  || '',
-                    circo:      c[col.circo]      || '',
-                    numDepot:   c[col.numDepot]   || '',
-                    libAbrege:  c[col.libAbrege]  || '',
-                    libListe:   c[col.libListe]   || '',
-                    codeNuance: c[col.codeNuance] || '',
-                    nuance:     c[col.nuance]     || '',
-                    teteListe:  (c[col.teteListe] || '').toUpperCase() === 'OUI',
-                    ordre:      parseInt(c[col.ordre]) || 0,
-                    sexe:       c[col.sexe]       || '',
-                    nom:        c[col.nom]        || '',
-                    prenom:     c[col.prenom]     || '',
-                    naissance:  c[col.naissance]  || '',
-                    profession: c[col.profession] || '',
-                    sortant:    (c[col.sortant]   || '').toUpperCase() === 'OUI'
-                };
-            }).filter(x => x.nom && x.codeCirco);
-        }
+// ---------- DETAIL ----------
+window.showDetail = function(code) {
+    const c = state.circonscriptions.find(x => x.code === code);
+    if (!c) return;
+    state.current = c;
 
-        function splitLine(text, delim) {
-            let res = [], curr = '', inQ = false;
-            for (let char of text) {
-                if (char === '"') inQ = !inQ;
-                else if (char === delim && !inQ) { res.push(curr); curr = ''; }
-                else curr += char;
-            }
-            res.push(curr);
-            return res;
-        }
+    $('detail').style.display = 'block';
+    $('detailTitle').textContent = c.nom || c.code;
+    const inscritsTxt = c.inscrits ? ' · ' + c.inscrits.toLocaleString('fr-FR') + ' électeurs' : '';
+    $('detailMeta').textContent = `Département ${c.code} · ${c.type === 'majoritaire' ? 'Majoritaire' : 'Proportionnel'}${inscritsTxt}`;
 
-        // ---------- AGRÉGATION PAR CIRCONSCRIPTION ----------
-        function buildCirconscriptions(maj, prop) {
-            const map = new Map();
+    if (c.type === 'majoritaire') {
+        const nbSortants = c.candidats.filter(x => x.sortant).length;
+        const nbF = c.candidats.filter(x => x.sexe === 'F').length;
+        const nbH = c.candidats.filter(x => x.sexe === 'M').length;
+        const inscritsCard = c.inscrits
+            ? `<div class="stat-card"><span class="label">Grands électeurs</span><span class="value">${c.inscrits.toLocaleString('fr-FR')}</span></div>`
+            : '';
+        $('detailStats').innerHTML = `
+            <div class="stat-card"><span class="label">Candidats</span><span class="value">${c.candidats.length}</span></div>
+            <div class="stat-card"><span class="label">Sortants</span><span class="value">${nbSortants}</span></div>
+            <div class="stat-card"><span class="label">Femmes</span><span class="value">${nbF}</span></div>
+            <div class="stat-card"><span class="label">Hommes</span><span class="value">${nbH}</span></div>
+            ${inscritsCard}
+        `;
+    } else {
+        const nbL = c.listes.length;
+        const nbCol = c.listes.reduce((s, l) => s + l.membres.length, 0);
+        const nbSort = c.listes.reduce((s, l) => s + l.membres.filter(m => m.sortant).length, 0);
+        const nbF = c.listes.reduce((s, l) => s + l.membres.filter(m => m.sexe === 'F').length, 0);
+        const inscritsCard = c.inscrits
+            ? `<div class="stat-card"><span class="label">Grands électeurs</span><span class="value">${c.inscrits.toLocaleString('fr-FR')}</span></div>`
+            : '';
+        $('detailStats').innerHTML = `
+            <div class="stat-card"><span class="label">Listes</span><span class="value">${nbL}</span></div>
+            <div class="stat-card"><span class="label">Colistiers</span><span class="value">${nbCol}</span></div>
+            <div class="stat-card"><span class="label">Sortants</span><span class="value">${nbSort}</span></div>
+            <div class="stat-card"><span class="label">Femmes</span><span class="value">${nbF}</span></div>
+            ${inscritsCard}
+        `;
+    }
 
-            maj.forEach(c => {
-                const key = c.codeCirco;
-                if (!map.has(key)) {
-                    map.set(key, {
-                        code: key,
-                        nom: c.libCirco,
-                        type: 'majoritaire',
-                        candidats: [],
-                        listes: []
-                    });
+    // Panel analyse
+    if (c.type === 'majoritaire') {
+        const nuances = {};
+        c.candidats.forEach(x => { nuances[x.codeNuance || 'DIV'] = (nuances[x.codeNuance || 'DIV'] || 0) + 1; });
+        $('analysisPanel').innerHTML = `
+            <h3>Répartition politique</h3>
+            ${Object.entries(nuances).sort((a, b) => b[1] - a[1]).map(([n, count]) => `
+                <div class="data-row">
+                    <span>${nuanceBadge(n)}</span>
+                    <span class="data-val">${count}</span>
+                </div>
+            `).join('')}
+        `;
+    } else {
+        const nuances = {};
+        c.listes.forEach(l => { nuances[l.codeNuance || 'DIV'] = (nuances[l.codeNuance || 'DIV'] || 0) + 1; });
+        $('analysisPanel').innerHTML = `
+            <h3>Listes par nuance</h3>
+            ${Object.entries(nuances).sort((a, b) => b[1] - a[1]).map(([n, count]) => `
+                <div class="data-row">
+                    <span>${nuanceBadge(n)}</span>
+                    <span class="data-val">${count}</span>
+                </div>
+            `).join('')}
+        `;
+    }
+
+    // Chart
+    if (state.chart) state.chart.destroy();
+    const ctx = $('mainChart').getContext('2d');
+    let labels = [], data = [], colors = [];
+
+    if (c.type === 'majoritaire') {
+        const nuances = {};
+        c.candidats.forEach(x => { nuances[x.codeNuance || 'DIV'] = (nuances[x.codeNuance || 'DIV'] || 0) + 1; });
+        const sorted = Object.entries(nuances).sort((a, b) => b[1] - a[1]);
+        labels = sorted.map(x => x[0]);
+        data = sorted.map(x => x[1]);
+        colors = sorted.map(x => (NUANCES[x[0]] || { color: '#8a8a9e' }).color);
+    } else {
+        const sorted = [...c.listes].sort((a, b) => b.membres.length - a.membres.length);
+        labels = sorted.map(l => l.libelleAbrege || l.libelle);
+        data = sorted.map(l => l.membres.length);
+        colors = sorted.map(l => (NUANCES[l.codeNuance] || { color: '#8a8a9e' }).color);
+    }
+
+    state.chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels,
+            datasets: [{
+                label: c.type === 'majoritaire' ? 'Candidats' : 'Colistiers',
+                data,
+                backgroundColor: colors.map(c => c + '99'),
+                borderColor: colors,
+                borderWidth: 1.5,
+                borderRadius: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: 'rgba(10,14,26,0.95)',
+                    borderColor: 'rgba(120,145,200,0.3)',
+                    borderWidth: 1,
+                    titleColor: '#fff',
+                    bodyColor: '#e8eefc',
+                    padding: 10,
+                    cornerRadius: 6
                 }
-                map.get(key).candidats.push(c);
-            });
-
-            prop.forEach(c => {
-                const key = c.codeCirco;
-                if (!map.has(key)) {
-                    map.set(key, {
-                        code: key,
-                        nom: c.circo,
-                        type: 'proportionnel',
-                        candidats: [],
-                        listes: []
-                    });
-                }
-                const circo = map.get(key);
-                let liste = circo.listes.find(l => l.numDepot === c.numDepot);
-                if (!liste) {
-                    liste = {
-                        numDepot: c.numDepot,
-                        libelle: c.libListe,
-                        libelleAbrege: c.libAbrege,
-                        codeNuance: c.codeNuance,
-                        nuance: c.nuance,
-                        teteDeListe: null,
-                        membres: []
-                    };
-                    circo.listes.push(liste);
-                }
-                if (c.teteListe) liste.teteDeListe = c;
-                liste.membres.push(c);
-            });
-
-            map.forEach(c => {
-                c.listes.forEach(l => l.membres.sort((a, b) => a.ordre - b.ordre));
-                c.listes.sort((a, b) => a.libelle.localeCompare(b.libelle));
-                c.candidats.sort((a, b) => a.nom.localeCompare(b.nom));
-            });
-
-            return Array.from(map.values());
-        }
-
-        // ---------- STATS GLOBALES ----------
-        function computeStats() {
-            const nbMajoritaire = state.circonscriptions.filter(c => c.type === 'majoritaire').length;
-            const nbProportionnel = state.circonscriptions.filter(c => c.type === 'proportionnel').length;
-            const nbCandidats = state.majoritaire.length;
-            const nbListes = state.circonscriptions
-                .filter(c => c.type === 'proportionnel')
-                .reduce((sum, c) => sum + c.listes.length, 0);
-            const nbColistiers = state.proportionnel.length;
-
-            $('statsBanner').innerHTML = `
-                <div class="stat-card"><span class="label">Circo. majoritaires</span><span class="value">${nbMajoritaire}</span></div>
-                <div class="stat-card"><span class="label">Circo. proportionnelles</span><span class="value">${nbProportionnel}</span></div>
-                <div class="stat-card"><span class="label">Candidats (maj.)</span><span class="value">${nbCandidats.toLocaleString()}</span></div>
-                <div class="stat-card"><span class="label">Listes (prop.)</span><span class="value">${nbListes.toLocaleString()}</span></div>
-                <div class="stat-card"><span class="label">Colistiers</span><span class="value">${nbColistiers.toLocaleString()}</span></div>
-            `;
-        }
-
-        // ---------- AFFICHAGE GRILLE ----------
-        $('searchInput').addEventListener('input', renderGrid);
-        $('typeSelect').addEventListener('change', renderGrid);
-        $('sortSelect').addEventListener('change', renderGrid);
-
-        function renderGrid() {
-            const s = $('searchInput').value.toLowerCase();
-            const typeFilter = $('typeSelect').value;
-            const sort = $('sortSelect').value;
-
-            let filtered = state.circonscriptions.filter(c =>
-                (c.nom || '').toLowerCase().includes(s) || c.code.includes(s)
-            );
-            if (typeFilter !== 'all') {
-                filtered = filtered.filter(c => c.type === typeFilter);
-            }
-
-            filtered.sort((a, b) => {
-                if (sort === 'nom') return (a.nom || '').localeCompare(b.nom || '');
-                if (sort === 'candidats') {
-                    const ca = a.type === 'majoritaire' ? a.candidats.length : a.listes.length;
-                    const cb = b.type === 'majoritaire' ? b.candidats.length : b.listes.length;
-                    return cb - ca;
-                }
-                return a.code.localeCompare(b.code);
-            });
-
-            if (filtered.length === 0) {
-                $('grid').innerHTML = '<div class="no-data-msg" style="grid-column: 1/-1;">AUCUNE CIRCONSCRIPTION TROUVÉE</div>';
-                return;
-            }
-
-            $('grid').innerHTML = filtered.map(c => {
-                const count = c.type === 'majoritaire'
-                    ? c.candidats.length + ' CANDIDATS'
-                    : c.listes.length + ' LISTES';
-                const seats = c.type === 'majoritaire' ? '1-2 SIÈGES' : '3+ SIÈGES';
-                const tagClass = c.type === 'majoritaire' ? 'tag-blue' : 'tag-green';
-
-                return `
-                    <div class="commune-card" onclick="showDetail('${c.code}')">
-                        <h3>${c.nom || c.code}</h3>
-                        <div class="meta">
-                            <span>DEPT: ${c.code}</span>
-                            <span>${seats}</span>
-                        </div>
-                        <div style="display:flex; gap:10px; flex-wrap: wrap;">
-                            <span class="tag ${tagClass}">${c.type.toUpperCase()}</span>
-                            <span class="tag tag-red">${count}</span>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        // ---------- VUE DÉTAIL ----------
-        window.showDetail = function(code) {
-            const c = state.circonscriptions.find(x => x.code === code);
-            if (!c) return;
-            state.current = c;
-
-            $('detail').style.display = 'block';
-            $('detailTitle').textContent = c.nom || c.code;
-            $('detailMeta').textContent = `DÉPARTEMENT: ${c.code} // SCRUTIN: ${c.type.toUpperCase()}`;
-
-            // Stats détail
-            if (c.type === 'majoritaire') {
-                const nbSortants = c.candidats.filter(x => x.sortant).length;
-                const nbFemmes = c.candidats.filter(x => x.sexe === 'F').length;
-                $('detailStats').innerHTML = `
-                    <div class="stat-card"><span class="label">CANDIDATS</span><span class="value">${c.candidats.length}</span></div>
-                    <div class="stat-card"><span class="label">SORTANTS</span><span class="value">${nbSortants}</span></div>
-                    <div class="stat-card"><span class="label">FEMMES</span><span class="value">${nbFemmes}</span></div>
-                    <div class="stat-card"><span class="label">SIÈGES</span><span class="value">1-2</span></div>
-                `;
-            } else {
-                const nbListes = c.listes.length;
-                const nbColistiers = c.listes.reduce((s, l) => s + l.membres.length, 0);
-                const nbSortants = c.listes.reduce((s, l) => s + l.membres.filter(m => m.sortant).length, 0);
-                $('detailStats').innerHTML = `
-                    <div class="stat-card"><span class="label">LISTES</span><span class="value">${nbListes}</span></div>
-                    <div class="stat-card"><span class="label">COLISTIERS</span><span class="value">${nbColistiers}</span></div>
-                    <div class="stat-card"><span class="label">SORTANTS</span><span class="value">${nbSortants}</span></div>
-                    <div class="stat-card"><span class="label">SIÈGES</span><span class="value">3+</span></div>
-                `;
-            }
-
-            // Panel analyse
-            if (c.type === 'majoritaire') {
-                const nuances = {};
-                c.candidats.forEach(x => { nuances[x.nuance] = (nuances[x.nuance] || 0) + 1; });
-                $('analysisPanel').innerHTML = `
-                    <h3 style="color:var(--bleu-clair); font-family:Orbitron; margin-bottom:10px; border-bottom: 1px solid var(--bleu-france); padding-bottom:8px; font-size: 0.95rem;">RÉPARTITION POLITIQUE</h3>
-                    ${Object.entries(nuances).sort((a,b) => b[1]-a[1]).map(([n, count]) => `
-                        <div class="data-row">
-                            <span class="data-label">${n}</span>
-                            <span class="data-val">${count} cand.</span>
-                        </div>
-                    `).join('')}
-                `;
-            } else {
-                const nuances = {};
-                c.listes.forEach(l => { nuances[l.nuance] = (nuances[l.nuance] || 0) + 1; });
-                $('analysisPanel').innerHTML = `
-                    <h3 style="color:var(--bleu-clair); font-family:Orbitron; margin-bottom:10px; border-bottom: 1px solid var(--bleu-france); padding-bottom:8px; font-size: 0.95rem;">LISTES PAR NUANCE</h3>
-                    ${Object.entries(nuances).sort((a,b) => b[1]-a[1]).map(([n, count]) => `
-                        <div class="data-row">
-                            <span class="data-label">${n}</span>
-                            <span class="data-val">${count} liste(s)</span>
-                        </div>
-                    `).join('')}
-                `;
-            }
-
-            // Graphique
-            if (state.chart) state.chart.destroy();
-            const ctx = $('mainChart').getContext('2d');
-            
-            let chartLabels = [], chartData = [], chartColors = [];
-            
-            if (c.type === 'majoritaire') {
-                const nuances = {};
-                c.candidats.forEach(x => { nuances[x.nuance] = (nuances[x.nuance] || 0) + 1; });
-                const sorted = Object.entries(nuances).sort((a,b) => b[1]-a[1]);
-                chartLabels = sorted.map(x => x[0]);
-                chartData = sorted.map(x => x[1]);
-                chartColors = sorted.map((_, i) => i === 0 ? 'rgba(239, 65, 53, 0.85)' : 'rgba(0, 85, 164, 0.55)');
-            } else {
-                const sorted = [...c.listes].sort((a,b) => b.membres.length - a.membres.length);
-                chartLabels = sorted.map(l => l.libelleAbrege || l.libelle);
-                chartData = sorted.map(l => l.membres.length);
-                chartColors = sorted.map((_, i) => i === 0 ? 'rgba(239, 65, 53, 0.85)' : 'rgba(0, 85, 164, 0.55)');
-            }
-
-            state.chart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: chartLabels,
-                    datasets: [{
-                        label: c.type === 'majoritaire' ? 'CANDIDATS' : 'COLISTIERS',
-                        data: chartData,
-                        backgroundColor: chartColors,
-                        borderColor: chartColors.map(c => c.replace('0.85', '1').replace('0.55', '1')),
-                        borderWidth: 1
-                    }]
+            },
+            scales: {
+                y: {
+                    ticks: { color: '#8ba0c8', font: { family: 'JetBrains Mono', size: 10 } },
+                    grid: { color: 'rgba(120,145,200,0.08)' },
+                    beginAtZero: true
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
-                    scales: {
-                        y: { ticks: { color: '#7f9fd0' }, grid: { color: 'rgba(255,255,255,0.08)' }, beginAtZero: true },
-                        x: { ticks: { color: 'white', font: { family: 'Share Tech Mono', size: 10 } }, grid: { display: false } }
-                    }
+                x: {
+                    ticks: { color: '#e8eefc', font: { family: 'Inter', size: 10 }, maxRotation: 45 },
+                    grid: { display: false }
                 }
-            });
-
-            // Tableau
-            if (c.type === 'majoritaire') {
-                $('dataTable').querySelector('thead').innerHTML = `
-                    <tr>
-                        <th>NOM</th>
-                        <th>PRÉNOM</th>
-                        <th>SEXE</th>
-                        <th>NUANCE</th>
-                        <th>REMPLAÇANT(E)</th>
-                        <th>SORTANT</th>
-                    </tr>`;
-                $('dataTable').querySelector('tbody').innerHTML = c.candidats.map(cand => `
-                    <tr class="${cand.sortant ? 'winner-row' : ''}">
-                        <td>${cand.nom}</td>
-                        <td>${cand.prenom}</td>
-                        <td>${cand.sexe}</td>
-                        <td>${cand.nuance} <span style="color:var(--bleu-clair); font-size:0.8rem;">(${cand.codeNuance})</span></td>
-                        <td>${cand.remplacant.prenom} ${cand.remplacant.nom}</td>
-                        <td>${cand.sortant ? '<span class="sortant-badge">● SORTANT</span>' : '-'}</td>
-                    </tr>
-                `).join('');
-            } else {
-                $('dataTable').querySelector('thead').innerHTML = `
-                    <tr>
-                        <th>LISTE</th>
-                        <th>NUANCE</th>
-                        <th>POS.</th>
-                        <th>NOM</th>
-                        <th>PRÉNOM</th>
-                        <th>SEXE</th>
-                        <th>SORTANT</th>
-                    </tr>`;
-                let rows = '';
-                c.listes.forEach(l => {
-                    l.membres.forEach((m, i) => {
-                        rows += `
-                            <tr class="${m.sortant ? 'winner-row' : ''}">
-                                <td>${i === 0 ? `<strong>${l.libelle}</strong>` : ''}</td>
-                                <td>${i === 0 ? `${l.nuance} <span style="color:var(--bleu-clair); font-size:0.8rem;">(${l.codeNuance})</span>` : ''}</td>
-                                <td>${m.ordre}</td>
-                                <td>${m.nom} ${m.teteListe ? '<span class="tete-badge">★ TÊTE</span>' : ''}</td>
-                                <td>${m.prenom}</td>
-                                <td>${m.sexe}</td>
-                                <td>${m.sortant ? '<span class="sortant-badge">● SORTANT</span>' : '-'}</td>
-                            </tr>
-                        `;
-                    });
-                });
-                $('dataTable').querySelector('tbody').innerHTML = rows;
             }
+        }
+    });
 
-            $('detail').scrollIntoView({ behavior: 'smooth' });
-        };
-    </script>
+    // Table
+    if (c.type === 'majoritaire') {
+        $('dataTable').querySelector('thead').innerHTML = `
+            <tr>
+                <th>Nom</th><th>Prénom</th><th>Sexe</th>
+                <th>Nuance</th><th>Remplaçant(e)</th><th>Statut</th>
+            </tr>`;
+        $('dataTable').querySelector('tbody').innerHTML = c.candidats.map(cand => `
+            <tr class="${cand.sortant ? 'sortant-row' : ''}">
+                <td><strong>${cand.nom}</strong></td>
+                <td>${cand.prenom}</td>
+                <td>${badge(cand.sexe === 'F' ? 'F' : 'H', cand.sexe === 'F' ? 'femme' : 'homme')}</td>
+                <td>${nuanceBadge(cand.codeNuance, cand.nuance)}</td>
+                <td>${cand.remplacant.prenom} ${cand.remplacant.nom}</td>
+                <td>${cand.sortant ? badge('Sortant', 'sortant', '★') : badge('—', 'neutre')}</td>
+            </tr>
+        `).join('');
+    } else {
+        $('dataTable').querySelector('thead').innerHTML = `
+            <tr>
+                <th>Liste</th><th>Nuance</th><th>Pos.</th>
+                <th>Nom</th><th>Prénom</th><th>Sexe</th><th>Statut</th>
+            </tr>`;
+        let rows = '';
+        c.listes.forEach(l => {
+            l.membres.forEach((m, i) => {
+                rows += `
+                    <tr class="${m.teteListe ? 'tete-row' : (m.sortant ? 'sortant-row' : '')}">
+                        <td>${i === 0 ? `<strong>${l.libelle}</strong>` : ''}</td>
+                        <td>${i === 0 ? nuanceBadge(l.codeNuance, l.nuance) : ''}</td>
+                        <td style="font-family:'JetBrains Mono'; color:var(--text-dim);">${m.ordre}</td>
+                        <td>${m.teteListe ? '<strong>' + m.nom + '</strong>' : m.nom}</td>
+                        <td>${m.prenom}</td>
+                        <td>${badge(m.sexe === 'F' ? 'F' : 'H', m.sexe === 'F' ? 'femme' : 'homme')}</td>
+                        <td>
+                            ${m.teteListe ? badge('Tête de liste', 'tete', '◆') : ''}
+                            ${m.sortant ? badge('Sortant', 'sortant', '★') : ''}
+                            ${!m.teteListe && !m.sortant ? badge('—', 'neutre') : ''}
+                        </td>
+                    </tr>
+                `;
+            });
+        });
+        $('dataTable').querySelector('tbody').innerHTML = rows;
+    }
+
+    $('detail').scrollIntoView({ behavior: 'smooth', block: 'start' });
+};
+</script>
 </body>
 </html>
