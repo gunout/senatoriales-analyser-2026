@@ -74,11 +74,8 @@ function normalizeDeptCode(raw) {
     return String(n);
 }
 
-// Récupère une valeur dans un objet CSV à partir de plusieurs clés possibles
 function pick(obj, ...keys) {
-    for (const k of keys) {
-        if (obj[k] !== undefined && obj[k] !== '') return obj[k];
-    }
+    for (const k of keys) if (obj[k] !== undefined && obj[k] !== '') return obj[k];
     return '';
 }
 
@@ -103,12 +100,15 @@ console.log(`  Votes NP                : ${votesNP.length}`);
 console.log(`  Élus 2020               : ${elus2020.length}`);
 console.log(`  Élus 2026               : ${elus2026.length}`);
 
-// Diagnostic : afficher les clés du premier élu 2026
 if (elus2026.length > 0) {
     console.log('  Clés élu 2026 exemple   :', Object.keys(elus2026[0]).join(', '));
+    const e0 = elus2026[0];
+    console.log('  Test pick nuance        :', pick(e0, 'codenuance', 'codenua', 'code_nua', 'codnua'));
+    console.log('  Test pick sortant       :', pick(e0, 'sortant'));
+    console.log('  Test pick tour          :', pick(e0, 'tour', 'tour_election'));
 }
 
-// ---------- INSCRITS ----------
+// ---------- INDEX ----------
 const inscritsByCode = new Map();
 inscrits.forEach(r => {
     const code = normalizeDeptCode(r['code circonscription']);
@@ -116,7 +116,6 @@ inscrits.forEach(r => {
     if (code) inscritsByCode.set(code, nb);
 });
 
-// ---------- NOSPARLEMENTAIRES ----------
 const senateursBySlug = new Map();
 senateursNP.forEach(r => {
     const slug = r.slug;
@@ -139,15 +138,9 @@ scrutinsNP.forEach(r => {
     const id = r.id;
     if (!id || id === 'id') return;
     scrutinsById.set(id, {
-        id,
-        date: r.date || '',
-        titre: r.title || '',
-        dossier: r.dossier_ref || '',
-        votants: toInt(r.votants),
-        exprimes: toInt(r.suffrages_exprimes),
-        pour: toInt(r.pour),
-        contre: toInt(r.contre),
-        url: r.url || ''
+        id, date: r.date || '', titre: r.title || '', dossier: r.dossier_ref || '',
+        votants: toInt(r.votants), exprimes: toInt(r.suffrages_exprimes),
+        pour: toInt(r.pour), contre: toInt(r.contre), url: r.url || ''
     });
 });
 
@@ -176,10 +169,9 @@ senateursBySlug.forEach(s => {
 
 const senateursByDept = new Map();
 senateursBySlug.forEach(s => {
-    const code = s.codeDepartement;
-    if (!code) return;
-    if (!senateursByDept.has(code)) senateursByDept.set(code, []);
-    senateursByDept.get(code).push(s);
+    if (!s.codeDepartement) return;
+    if (!senateursByDept.has(s.codeDepartement)) senateursByDept.set(s.codeDepartement, []);
+    senateursByDept.get(s.codeDepartement).push(s);
 });
 
 // ---------- ÉLUS 2020 ----------
@@ -201,16 +193,13 @@ elus2020.forEach(r => {
 console.log(`  elus2020ByCode : ${elus2020ByCode.size} départements`);
 
 // ---------- ÉLUS 2026 ----------
-// Le CSV a pour colonnes : code, nom, prenom, sexe, codeNuance, sortant, tour, codePersonnalite
-// Après norm() : code, nom, prenom, sexe, codenua, sortant, tour, codepersonnalite
 const elus2026ByCode = new Map();
 elus2026.forEach(r => {
     const code = normalizeDeptCode(r['code']);
     if (!code) return;
     if (!elus2026ByCode.has(code)) elus2026ByCode.set(code, []);
 
-    // ⚠️ Accès via bracket-notation car "codenua" est le nom normalisé
-    const codeNuance = pick(r, 'codenua', 'code_nua', 'codnua', 'code nuance');
+    const codeNuance = pick(r, 'codenuance', 'codenua', 'code_nua', 'codnua', 'code nuance');
     const tour = pick(r, 'tour', 'tour_election');
     const sortant = (pick(r, 'sortant') || '').toUpperCase() === 'OUI';
 
@@ -332,14 +321,13 @@ elus2020.forEach(e => {
 let elus2020Candidats2026 = 0;
 circonscriptions.forEach(c => c.elus2020.forEach(e => { if (e.candidat2026) elus2020Candidats2026++; }));
 
-// ---------- STATS ÉLUS 2026 (CORRIGÉ) ----------
+// ---------- STATS ÉLUS 2026 (CORRIGÉ avec 'codenuance') ----------
 const elus2026ParNuance = {};
 const elus2026ParTour = {};
 let elus2026Sortants = 0;
 
 elus2026.forEach(e => {
-    // Accès robuste aux clés normalisées
-    const nuance = pick(e, 'codenua', 'code_nua', 'codnua', 'code nuance') || 'DIV';
+    const nuance = pick(e, 'codenuance', 'codenua', 'code_nua', 'codnua') || 'DIV';
     elus2026ParNuance[nuance] = (elus2026ParNuance[nuance] || 0) + 1;
 
     const tour = pick(e, 'tour', 'tour_election') || 'Inconnu';
