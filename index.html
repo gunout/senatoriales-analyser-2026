@@ -447,6 +447,7 @@ select.sort-btn:focus { outline: none; border-color: var(--bleu-france); box-sha
 .badge-candidat { color: #14532d; background: #dcfce7; border-color: rgba(20,83,45,.25); }
 .badge-elu { color: #7c2d12; background: #ffedd5; border-color: rgba(124,45,18,.3); }
 .badge-nouveau { color: #14532d; background: #bbf7d0; border-color: rgba(20,83,45,.4); font-weight: 800; }
+.badge-lfi { color: #7f1d1d; background: #fee2e2; border-color: rgba(127,29,29,.3); font-weight: 800; }
 
 .nuance {
     display: inline-flex;
@@ -643,6 +644,7 @@ select.sort-btn:focus { outline: none; border-color: var(--bleu-france); box-sha
 .data-table tbody tr.sortant-row { background: #fffbf0; border-left: 3px solid var(--or-marianne); }
 .data-table tbody tr.tete-row { background: #faf5ff; border-left: 3px solid #7c3aed; }
 .data-table tbody tr.elu-row { background: #f0fdf4; border-left: 3px solid var(--vert-emeraude); }
+.data-table tbody tr.lfi-row { background: #fef2f2; border-left: 3px solid #c9462c; }
 .data-table tbody tr.nouveau-groupe-row { background: #dcfce7; border-left: 3px solid #14532d; font-weight: 600; }
 .data-table tbody tr:last-child td { border-bottom: none; }
 
@@ -847,7 +849,8 @@ footer {
                 <strong>Notes de lecture :</strong>
                 Les élus 2020 sont rattachés au groupe parlementaire du Sénateur (source NosParlementaires),
                 les élus 2026 à leur nuance politique officielle (source Ministère de l'Intérieur).
-                Les groupes <strong>RN</strong> (11 élus) et <strong>LFI</strong> (2 élus) sont nouveaux en 2026.
+                Les groupes <strong>RN</strong> (11 élus) et <strong>LFI</strong> (Gabriel Amard sous l'étiquette FI
+                dans le Rhône + Marc Péré sous l'étiquette DVG en Haute-Garonne, rallié LFI) sont nouveaux en 2026.
             </p>
         </section>
 
@@ -937,6 +940,14 @@ const state = {
     groupsChart: null
 };
 const $ = id => document.getElementById(id);
+
+// Personnalités LFI élues sous une autre nuance officielle (ralliées au groupe LFI)
+const LFI_DE_FAIT = ['PÉRÉ', 'PERE'];
+function estLFIFait(nom) {
+    if (!nom) return false;
+    const n = nom.toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    return LFI_DE_FAIT.some(k => n.includes(k));
+}
 
 // ============================================================
 // NUANCES POLITIQUES
@@ -1143,6 +1154,8 @@ function renderGroups() {
         };
     });
 
+    let lfiRallies = 0;
+
     state.circonscriptions.forEach(c => {
         // ÉLUS 2020 → groupe parlementaire
         (c.elus2020 || []).forEach(e => {
@@ -1157,9 +1170,11 @@ function renderGroups() {
             if (statsParGroupe[key]) statsParGroupe[key].elus2020++;
         });
 
-        // ÉLUS 2026 → nuance politique
+        // ÉLUS 2026 → nuance politique (sauf ralliés LFI)
         (c.elus2026 || []).forEach(e => {
-            const key = nuanceVersGroupe(e.codeNuance);
+            const estRallie = estLFIFait(e.nom);
+            const key = estRallie ? 'LFI' : nuanceVersGroupe(e.codeNuance);
+            if (estRallie) lfiRallies++;
             if (statsParGroupe[key]) {
                 statsParGroupe[key].elus2026++;
                 if (e.sortant) statsParGroupe[key].sortants2026++;
@@ -1501,7 +1516,10 @@ window.showDetail = function(code) {
     if (c.elus2026?.length) {
         const rows = c.elus2026.map(e => {
             const statut = e.sortant ? badge('Sortant réélu', 'sortant', '★') : badge('Nouveau', 'elu', '○');
-            return `<tr class="elu-row"><td><strong>${e.prenom} ${e.nom}</strong></td><td>${nuanceBadge(e.codeNuance)}</td><td>${badge(e.sexe === 'F' ? 'F' : 'H', e.sexe === 'F' ? 'femme' : 'homme')}</td><td>${statut}</td><td>${e.tour || '—'}</td></tr>`;
+            const estRallie = estLFIFait(e.nom);
+            const badgeLFI = estRallie ? badge('Rallié LFI', 'lfi', '●') : '';
+            const rowClass = estRallie ? 'lfi-row' : 'elu-row';
+            return `<tr class="${rowClass}"><td><strong>${e.prenom} ${e.nom}</strong> ${badgeLFI}</td><td>${nuanceBadge(e.codeNuance)}</td><td>${badge(e.sexe === 'F' ? 'F' : 'H', e.sexe === 'F' ? 'femme' : 'homme')}</td><td>${statut}</td><td>${e.tour || '—'}</td></tr>`;
         }).join('');
 
         s2026.innerHTML = `
