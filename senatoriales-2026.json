@@ -1,9 +1,9 @@
 {
   "meta": {
     "titre": "Sénatoriales 2026 — Données fusionnées",
-    "source": "data.gouv.fr + NosParlementaires + Sénat (2020)",
+    "source": "data.gouv.fr + NosParlementaires + Sénat (2020, 2026)",
     "licence": "Licence Ouverte 2.0 (Etalab)",
-    "genereLe": "2026-09-27T17:43:50.510Z"
+    "genereLe": "2026-09-28T16:16:15.370Z"
   },
   "stats": {
     "circonscriptionsTotal": 64,
@@ -27,6 +27,15 @@
       "Nouveau": 53
     },
     "elus2020Candidats2026": 114,
+    "elus2026Total": 178,
+    "elus2026Sortants": 111,
+    "elus2026ParNuance": {
+      "DIV": 178
+    },
+    "elus2026ParTour": {
+      "élu T1": 159,
+      "élu T2": 19
+    },
     "candidats2026ParNuance": {
       "LREC": 44,
       "LDVG": 130,
@@ -73,7 +82,7 @@
       "LMDM": 5,
       "GEN": 1
     },
-    "genereLe": "2026-09-27T17:43:50.510Z"
+    "genereLe": "2026-09-28T16:16:15.370Z"
   },
   "circonscriptions": [
     {
@@ -575,6 +584,32 @@
           "reelu": true,
           "candidat2026": true
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "BAUDE",
+          "prenom": "Véronique",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "BLATRIX CONTAT",
+          "prenom": "Florence",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "GOY-CHAVENT",
+          "prenom": "Sylvie",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        }
       ]
     },
     {
@@ -1017,6 +1052,32 @@
           "reelu": true,
           "candidat2026": true
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "MOUGENOT",
+          "prenom": "Paul",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "FRICOTEAUX",
+          "prenom": "Nicolas",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "LEFÈVRE",
+          "prenom": "Antoine",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        }
       ]
     },
     {
@@ -1123,6 +1184,16 @@
           "reelu": true,
           "candidat2026": true
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "PANUNZI",
+          "prenom": "Jean-Jacques",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        }
       ]
     },
     {
@@ -1194,6 +1265,16 @@
           "statut": "Nouveau",
           "reelu": false,
           "candidat2026": false
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "PARIGI",
+          "prenom": "Paul Toussaint",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
         }
       ]
     },
@@ -1377,6 +1458,24 @@
           "reelu": false,
           "candidat2026": true
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "MALHURET",
+          "prenom": "Claude",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "ROJOUAN",
+          "prenom": "Bruno",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        }
       ]
     },
     {
@@ -1500,6 +1599,16 @@
           "reelu": true,
           "candidat2026": true
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "ROUX",
+          "prenom": "Jean-Yves",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        }
       ]
     },
     {
@@ -1605,6 +1714,16 @@
           "statut": "Nouveau",
           "reelu": false,
           "candidat2026": true
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "ARNAUD",
+          "prenom": "Jean-Michel",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
         }
       ]
     },
@@ -2297,6 +2416,48 @@
           "reelu": true,
           "candidat2026": true
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "BORCHIO FONTIMP",
+          "prenom": "Alexandra",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "CASTILLO",
+          "prenom": "Laurent",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "ESTROSI-SASSONE",
+          "prenom": "Dominique",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "DELIA",
+          "prenom": "Jean-Marc",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "FRONTONI",
+          "prenom": "Gaëlle",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        }
       ]
     },
     {
@@ -2496,6 +2657,24 @@
           "reelu": false,
           "candidat2026": true
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "DARNAUD",
+          "prenom": "Mathieu",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "VENTALON",
+          "prenom": "Anne",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        }
       ]
     },
     {
@@ -2678,6 +2857,24 @@
           "reelu": false,
           "candidat2026": true
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "JOSEPH",
+          "prenom": "Else",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "LAMÉNIE",
+          "prenom": "Marc",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T2"
+        }
       ]
     },
     {
@@ -2851,6 +3048,16 @@
           "statut": "Nouveau",
           "reelu": false,
           "candidat2026": true
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "MICHAU",
+          "prenom": "Jean-Jacques",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T2"
         }
       ]
     },
@@ -3051,6 +3258,24 @@
           "reelu": true,
           "candidat2026": true
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "BAZIN-MALGRAS",
+          "prenom": "Valérie",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "PAOLI-GAGIN",
+          "prenom": "Vanina",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        }
       ]
     },
     {
@@ -3249,6 +3474,24 @@
           "statut": "Réélue",
           "reelu": true,
           "candidat2026": false
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "PLA",
+          "prenom": "Sébastien",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "FAUCON MEJEAN",
+          "prenom": "Claudie",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
         }
       ]
     },
@@ -3482,6 +3725,24 @@
           "statut": "Réélu",
           "reelu": true,
           "candidat2026": true
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "ANGLARS",
+          "prenom": "Jean-Claude",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "MARC",
+          "prenom": "Alain",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
         }
       ]
     },
@@ -4677,6 +4938,72 @@
           "reelu": false,
           "candidat2026": true
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "DEVESA",
+          "prenom": "Brigitte",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "CALLET",
+          "prenom": "Marie-Pierre",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "BACCHI",
+          "prenom": "Jérémy",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "BOYER",
+          "prenom": "Valérie",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "MUSELIER",
+          "prenom": "Renaud",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "BRAVI",
+          "prenom": "Fabien",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "CARLOTTI",
+          "prenom": "Marie-Arlette",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "BENARROCHE",
+          "prenom": "Guy",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        }
       ]
     },
     {
@@ -5060,6 +5387,32 @@
           "reelu": true,
           "candidat2026": true
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "DE LA PROVÔTÉ",
+          "prenom": "Sonia",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "AUBEY",
+          "prenom": "François",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "FÉRET",
+          "prenom": "Corinne",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        }
       ]
     },
     {
@@ -5207,6 +5560,24 @@
           "statut": "Nouveau",
           "reelu": false,
           "candidat2026": true
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "DELCROS",
+          "prenom": "Bernard",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "SAUTAREL",
+          "prenom": "Stéphane",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
         }
       ]
     },
@@ -5423,6 +5794,24 @@
           "statut": "Réélue",
           "reelu": true,
           "candidat2026": true
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "BONNEAU",
+          "prenom": "François",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "BONNEFOY",
+          "prenom": "Nicole",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T2"
         }
       ]
     },
@@ -5807,6 +6196,32 @@
           "reelu": true,
           "candidat2026": true
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "IMBERT",
+          "prenom": "Corinne",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "VALLET",
+          "prenom": "Mickaël",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "PLASSARD",
+          "prenom": "Christophe",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        }
       ]
     },
     {
@@ -6040,6 +6455,24 @@
           "reelu": true,
           "candidat2026": false
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "KERVRAN",
+          "prenom": "Loïc",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T2"
+        },
+        {
+          "nom": "RHIMINI",
+          "prenom": "Samir",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T2"
+        }
       ]
     },
     {
@@ -6238,6 +6671,24 @@
           "statut": "Réélu",
           "reelu": true,
           "candidat2026": false
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "COSTE",
+          "prenom": "Pascal",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "BOUNIE",
+          "prenom": "Julien",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
         }
       ]
     },
@@ -6696,6 +7147,32 @@
           "statut": "Réélue",
           "reelu": true,
           "candidat2026": true
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "LOISIER",
+          "prenom": "Anne-Catherine",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "REBSAMEN",
+          "prenom": "François",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "HOUPERT",
+          "prenom": "Alain",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
         }
       ]
     },
@@ -7198,6 +7675,32 @@
           "reelu": false,
           "candidat2026": true
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "LE HOUEROU",
+          "prenom": "Annie",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "CADEC",
+          "prenom": "Alain",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "LAHELLEC",
+          "prenom": "Gérard",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        }
       ]
     },
     {
@@ -7397,6 +7900,24 @@
           "reelu": true,
           "candidat2026": true
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "LOZACH",
+          "prenom": "Jean-Jacques",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "LABAR",
+          "prenom": "Bertrand",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T2"
+        }
       ]
     },
     {
@@ -7595,6 +8116,24 @@
           "statut": "Nouvelle",
           "reelu": false,
           "candidat2026": true
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "VARAILLAS",
+          "prenom": "Marie-Claude",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "MÉRILLOU",
+          "prenom": "Serge",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
         }
       ]
     },
@@ -8038,6 +8577,32 @@
           "reelu": false,
           "candidat2026": true
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "GROSPERRIN",
+          "prenom": "Jacques",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "LONGEOT",
+          "prenom": "Jean-François",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "MARTHEY",
+          "prenom": "Arnaud",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        }
       ]
     },
     {
@@ -8480,6 +9045,32 @@
           "reelu": true,
           "candidat2026": false
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "NIÉSON",
+          "prenom": "Nathalie",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "MOUTON",
+          "prenom": "Marie-Pierre",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "BRUNET",
+          "prenom": "Florent",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        }
       ]
     },
     {
@@ -8921,6 +9512,32 @@
           "statut": "Nouvelle",
           "reelu": false,
           "candidat2026": true
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "DUCHÉ",
+          "prenom": "Frédéric",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "MAUREY",
+          "prenom": "Hervé",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "PLUCHET",
+          "prenom": "Kristina",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
         }
       ]
     },
@@ -9481,6 +10098,32 @@
           "statut": "Réélue",
           "reelu": true,
           "candidat2026": true
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "DE MONTGOLFIER",
+          "prenom": "Albéric",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "QUENTIN",
+          "prenom": "Virginie",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "ROBIN",
+          "prenom": "Alexis",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
         }
       ]
     },
@@ -10285,6 +10928,40 @@
           "reelu": false,
           "candidat2026": true
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "CANÉVET",
+          "prenom": "Michel",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "LECLERC",
+          "prenom": "Patrick",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "DADKHAH",
+          "prenom": "Forough",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "HAVET",
+          "prenom": "Nadège",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        }
       ]
     },
     {
@@ -10667,6 +11344,32 @@
           "statut": "Réélue",
           "reelu": true,
           "candidat2026": false
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "BURGOA",
+          "prenom": "Laurent",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "JOSSERAND",
+          "prenom": "Sylvie",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "BOUAD",
+          "prenom": "Denis",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
         }
       ]
     },
@@ -11596,6 +12299,48 @@
           "reelu": false,
           "candidat2026": false
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "SUAUD",
+          "prenom": "Thierry",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "MEDEVIELLE",
+          "prenom": "Pierre",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "PÉRÉ",
+          "prenom": "Marc",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "GASTO OUSTRIC",
+          "prenom": "Magali",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "MICOULEAU",
+          "prenom": "Brigitte",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        }
       ]
     },
     {
@@ -11879,6 +12624,24 @@
           "statut": "Réélu",
           "reelu": true,
           "candidat2026": false
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "ROLANDO",
+          "prenom": "Carole",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T2"
+        },
+        {
+          "nom": "DUFFOURG",
+          "prenom": "Alain",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T2"
         }
       ]
     },
@@ -12843,6 +13606,56 @@
           "statut": "Réélue",
           "reelu": true,
           "candidat2026": false
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "DELATTRE",
+          "prenom": "Nathalie",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "GILLÉ",
+          "prenom": "Hervé",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "DIAZ",
+          "prenom": "Edwige",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "BREILLAT",
+          "prenom": "Jacques",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "BOST",
+          "prenom": "Chistine",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "AMOUROUX",
+          "prenom": "Géraldine",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
         }
       ]
     },
@@ -13854,6 +14667,40 @@
           "reelu": true,
           "candidat2026": true
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "BOUQUIN",
+          "prenom": "Manon",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "FRANCIS",
+          "prenom": "Joseph",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "BOURGI",
+          "prenom": "Hussein",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "FRÊCHE",
+          "prenom": "Julie",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        }
       ]
     },
     {
@@ -14450,6 +15297,40 @@
           "reelu": true,
           "candidat2026": true
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "ROBERT",
+          "prenom": "Sylvie",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "GATEL",
+          "prenom": "Françoise",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "SALMON",
+          "prenom": "Daniel",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "BELLOIR",
+          "prenom": "Nicolas",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        }
       ]
     },
     {
@@ -14648,6 +15529,24 @@
           "statut": "Réélue",
           "reelu": true,
           "candidat2026": true
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "BELLUROT",
+          "prenom": "Nadine",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "BLANCHET",
+          "prenom": "Régis",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T2"
         }
       ]
     },
@@ -15339,6 +16238,48 @@
           "statut": "Nouvelle",
           "reelu": false,
           "candidat2026": true
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "RICHARDOT",
+          "prenom": "Pernelle",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "MULLER-BRONN",
+          "prenom": "Laurence",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "SCHALCK",
+          "prenom": "Elsa",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "SÉNÉ",
+          "prenom": "Marc",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "DOLLINGER",
+          "prenom": "Isabelle",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
         }
       ]
     },
@@ -16142,6 +17083,40 @@
           "statut": "Réélue",
           "reelu": true,
           "candidat2026": false
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "HAYE",
+          "prenom": "Ludovic",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "HUIN",
+          "prenom": "Benjamin",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "KLINGER",
+          "prenom": "Christian",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "DREXLER",
+          "prenom": "Sabine",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
         }
       ]
     },
@@ -17321,6 +18296,64 @@
           "reelu": false,
           "candidat2026": false
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "MICHEL",
+          "prenom": "Sébastien",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "DOSSUS",
+          "prenom": "Thomas",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "BERARD",
+          "prenom": "Serge",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "GUILLOTEAU",
+          "prenom": "Christophe",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "AMARD",
+          "prenom": "Gabriel",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "FIALAIRE",
+          "prenom": "Bernard",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "DI FOLCO",
+          "prenom": "Catherine",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        }
       ]
     },
     {
@@ -17485,6 +18518,24 @@
           "statut": "Nouveau",
           "reelu": false,
           "candidat2026": true
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "DOUSSOT",
+          "prenom": "Dimitri",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "RIETMANN",
+          "prenom": "Olivier",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
         }
       ]
     },
@@ -17927,6 +18978,32 @@
           "statut": "Réélue",
           "reelu": true,
           "candidat2026": true
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "GENET",
+          "prenom": "Fabien",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "MERCIER",
+          "prenom": "Marie",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "MATRAY",
+          "prenom": "Paulette",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
         }
       ]
     },
@@ -18547,6 +19624,32 @@
           "reelu": true,
           "candidat2026": false
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "VOGEL",
+          "prenom": "Jean Pierre",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "COZIC",
+          "prenom": "Thierry",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "LE MÈNER",
+          "prenom": "Dominique",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        }
       ]
     },
     {
@@ -18711,6 +19814,24 @@
           "statut": "Réélue",
           "reelu": true,
           "candidat2026": true
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "VIAL",
+          "prenom": "Cédric",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "BERTHET",
+          "prenom": "Martine",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
         }
       ]
     },
@@ -19153,6 +20274,32 @@
           "statut": "Réélue",
           "reelu": true,
           "candidat2026": true
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "NOEL",
+          "prenom": "Sylviane",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "HERVÉ",
+          "prenom": "Loïc",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "PELLEVAT",
+          "prenom": "Cyril",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
         }
       ]
     },
@@ -20118,6 +21265,56 @@
           "reelu": true,
           "candidat2026": true
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "CANAYER",
+          "prenom": "Agnès",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "BRULIN",
+          "prenom": "Céline",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "CORITON",
+          "prenom": "Bastien",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "LEVASSEUR",
+          "prenom": "Léon",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "MARTIN",
+          "prenom": "Pascal",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "MORIN-DESAILLY",
+          "prenom": "Catherine",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        }
       ]
     },
     {
@@ -20333,6 +21530,24 @@
           "statut": "Réélu",
           "reelu": true,
           "candidat2026": true
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "MOUILLER",
+          "prenom": "Philippe",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "MISSIOUX",
+          "prenom": "Marie-Pierre",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T2"
         }
       ]
     },
@@ -20835,6 +22050,32 @@
           "reelu": false,
           "candidat2026": true
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "DEMILLY",
+          "prenom": "Stéphane",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "SOMON",
+          "prenom": "Laurent",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "CARDON",
+          "prenom": "Rémi",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        }
       ]
     },
     {
@@ -21084,6 +22325,24 @@
           "statut": "Nouveau",
           "reelu": false,
           "candidat2026": true
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "HOUSSEAU",
+          "prenom": "Marie-Lise",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T2"
+        },
+        {
+          "nom": "FOLLIOT",
+          "prenom": "Philippe",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T2"
         }
       ]
     },
@@ -21351,6 +22610,24 @@
           "statut": "Nouveau",
           "reelu": false,
           "candidat2026": true
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "LEVI",
+          "prenom": "Pierre-Antoine",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T2"
+        },
+        {
+          "nom": "BONHOMME",
+          "prenom": "François",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T2"
         }
       ]
     },
@@ -22224,6 +23501,40 @@
           "reelu": false,
           "candidat2026": true
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "DUMONT",
+          "prenom": "Françoise",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "GILETTI",
+          "prenom": "Frank",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "SIMON",
+          "prenom": "Christian",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "LEROY",
+          "prenom": "Carine",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        }
       ]
     },
     {
@@ -22725,6 +24036,32 @@
           "reelu": false,
           "candidat2026": true
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "BLANC",
+          "prenom": "Jean-Baptiste",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "D'AIGREMONT",
+          "prenom": "Thierry",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "SANTONI",
+          "prenom": "Dominique",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        }
       ]
     },
     {
@@ -23167,6 +24504,32 @@
           "reelu": true,
           "candidat2026": true
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "RETAILLEAU",
+          "prenom": "Bruno",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "BILLON",
+          "prenom": "Annick",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "DE RUGY",
+          "prenom": "Maxence",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        }
       ]
     },
     {
@@ -23314,6 +24677,24 @@
           "statut": "Réélu",
           "reelu": true,
           "candidat2026": false
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "BELLAMY",
+          "prenom": "Marie-Jeanne",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "BELIN",
+          "prenom": "Bruno",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
         }
       ]
     },
@@ -23531,6 +24912,24 @@
           "reelu": false,
           "candidat2026": true
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "REDON-SARRAZY",
+          "prenom": "Christian",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T2"
+        },
+        {
+          "nom": "BRIQUET",
+          "prenom": "Isabelle",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T2"
+        }
       ]
     },
     {
@@ -23712,6 +25111,24 @@
           "statut": "Nouveau",
           "reelu": false,
           "candidat2026": true
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "GREMILLET",
+          "prenom": "Daniel",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "HINGRAY",
+          "prenom": "Jean",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
         }
       ]
     },
@@ -23929,6 +25346,24 @@
           "reelu": true,
           "candidat2026": true
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "LEMOYNE",
+          "prenom": "Jean-Baptiste",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "VERIEN",
+          "prenom": "Dominique",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T2"
+        }
       ]
     },
     {
@@ -24034,6 +25469,16 @@
           "statut": "Réélu",
           "reelu": true,
           "candidat2026": true
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "PERRIN",
+          "prenom": "Cédric",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
         }
       ]
     },
@@ -24235,6 +25680,24 @@
           "reelu": false,
           "candidat2026": false
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "ALEXANDRE",
+          "prenom": "Rodolphe",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "PERSAUD",
+          "prenom": "Ryan",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T2"
+        }
       ]
     },
     {
@@ -24323,6 +25786,16 @@
           "statut": "Nouvelle",
           "reelu": false,
           "candidat2026": true
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "JACQUES",
+          "prenom": "Micheline",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
         }
       ]
     },
@@ -24464,6 +25937,16 @@
           "reelu": false,
           "candidat2026": false
         }
+      ],
+      "elus2026": [
+        {
+          "nom": "GIBBS",
+          "prenom": "Daniel",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T2"
+        }
       ]
     },
     {
@@ -24569,6 +26052,16 @@
           "statut": "Nouveau",
           "reelu": false,
           "candidat2026": true
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "TUKUMULI",
+          "prenom": "Lafaele",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
         }
       ]
     },
@@ -24802,6 +26295,24 @@
           "statut": "Réélue",
           "reelu": true,
           "candidat2026": true
+        }
+      ],
+      "elus2026": [
+        {
+          "nom": "TETUANUI",
+          "prenom": "Lana",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "FRITCH",
+          "prenom": "Edouard",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
         }
       ]
     },
@@ -26075,7 +27586,57 @@
           "votesNonVotant": 40
         }
       ],
-      "elus2020": []
+      "elus2020": [],
+      "elus2026": [
+        {
+          "nom": "CADIC",
+          "prenom": "Olivier",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "BRIANTE-GUILLEMONT",
+          "prenom": "Sophie",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "DUPONT",
+          "prenom": "Bertrand",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "CHANTREL",
+          "prenom": "Yan",
+          "sexe": "M",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "VOGEL",
+          "prenom": "Mélanie",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": true,
+          "tour": "élu T1"
+        },
+        {
+          "nom": "ROUSSELOT",
+          "prenom": "Marie Ange",
+          "sexe": "F",
+          "codeNuance": "",
+          "sortant": false,
+          "tour": "élu T1"
+        }
+      ]
     }
   ],
   "scrutinsSenat": [
