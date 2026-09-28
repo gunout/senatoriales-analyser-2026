@@ -74,6 +74,14 @@ function normalizeDeptCode(raw) {
     return String(n);
 }
 
+// Récupère une valeur dans un objet CSV à partir de plusieurs clés possibles
+function pick(obj, ...keys) {
+    for (const k of keys) {
+        if (obj[k] !== undefined && obj[k] !== '') return obj[k];
+    }
+    return '';
+}
+
 // ---------- LECTURE ----------
 console.log('📖 Lecture des CSV…');
 
@@ -94,6 +102,11 @@ console.log(`  Scrutins NP             : ${scrutinsNP.length}`);
 console.log(`  Votes NP                : ${votesNP.length}`);
 console.log(`  Élus 2020               : ${elus2020.length}`);
 console.log(`  Élus 2026               : ${elus2026.length}`);
+
+// Diagnostic : afficher les clés du premier élu 2026
+if (elus2026.length > 0) {
+    console.log('  Clés élu 2026 exemple   :', Object.keys(elus2026[0]).join(', '));
+}
 
 // ---------- INSCRITS ----------
 const inscritsByCode = new Map();
@@ -188,18 +201,26 @@ elus2020.forEach(r => {
 console.log(`  elus2020ByCode : ${elus2020ByCode.size} départements`);
 
 // ---------- ÉLUS 2026 ----------
+// Le CSV a pour colonnes : code, nom, prenom, sexe, codeNuance, sortant, tour, codePersonnalite
+// Après norm() : code, nom, prenom, sexe, codenua, sortant, tour, codepersonnalite
 const elus2026ByCode = new Map();
 elus2026.forEach(r => {
     const code = normalizeDeptCode(r['code']);
     if (!code) return;
     if (!elus2026ByCode.has(code)) elus2026ByCode.set(code, []);
+
+    // ⚠️ Accès via bracket-notation car "codenua" est le nom normalisé
+    const codeNuance = pick(r, 'codenua', 'code_nua', 'codnua', 'code nuance');
+    const tour = pick(r, 'tour', 'tour_election');
+    const sortant = (pick(r, 'sortant') || '').toUpperCase() === 'OUI';
+
     elus2026ByCode.get(code).push({
         nom: r.nom || '',
         prenom: r.prenom || '',
         sexe: r.sexe || '',
-        codeNuance: r.codeNuance || '',
-        sortant: (r.sortant || '').toUpperCase() === 'OUI',
-        tour: r.tour || ''
+        codeNuance,
+        sortant,
+        tour
     });
 });
 
@@ -311,16 +332,20 @@ elus2020.forEach(e => {
 let elus2020Candidats2026 = 0;
 circonscriptions.forEach(c => c.elus2020.forEach(e => { if (e.candidat2026) elus2020Candidats2026++; }));
 
+// ---------- STATS ÉLUS 2026 (CORRIGÉ) ----------
 const elus2026ParNuance = {};
-elus2026.forEach(e => {
-    const n = e.codeNuance || 'DIV';
-    elus2026ParNuance[n] = (elus2026ParNuance[n] || 0) + 1;
-});
-
 const elus2026ParTour = {};
+let elus2026Sortants = 0;
+
 elus2026.forEach(e => {
-    const t = e.tour || 'Inconnu';
-    elus2026ParTour[t] = (elus2026ParTour[t] || 0) + 1;
+    // Accès robuste aux clés normalisées
+    const nuance = pick(e, 'codenua', 'code_nua', 'codnua', 'code nuance') || 'DIV';
+    elus2026ParNuance[nuance] = (elus2026ParNuance[nuance] || 0) + 1;
+
+    const tour = pick(e, 'tour', 'tour_election') || 'Inconnu';
+    elus2026ParTour[tour] = (elus2026ParTour[tour] || 0) + 1;
+
+    if ((pick(e, 'sortant') || '').toUpperCase() === 'OUI') elus2026Sortants++;
 });
 
 const candidats2026ParNuance = {};
@@ -353,7 +378,7 @@ const stats = {
     elus2020ParStatut,
     elus2020Candidats2026,
     elus2026Total: elus2026.length,
-    elus2026Sortants: elus2026.filter(e => (e.sortant || '').toUpperCase() === 'OUI').length,
+    elus2026Sortants,
     elus2026ParNuance,
     elus2026ParTour,
     candidats2026ParNuance,
@@ -388,9 +413,11 @@ console.log(`   Grands électeurs : ${stats.grandsElecteursTotal.toLocaleString(
 console.log(`   Sénateurs NP     : ${stats.senateursNPTotal} (${stats.senateursNPEnMandat} en mandat)`);
 console.log(`   Élus 2020        : ${stats.elus2020Total} (${stats.elus2020Reelus} réélus, ${stats.elus2020Nouveaux} nouveaux)`);
 console.log(`   Élus 2026        : ${stats.elus2026Total} (${stats.elus2026Sortants} sortants réélus)`);
+
 console.log('\n   Élus 2026 par nuance :');
 Object.entries(elus2026ParNuance).sort((a, b) => b[1] - a[1])
     .forEach(([n, c]) => console.log(`     ${n.padEnd(8)} : ${c}`));
+
 console.log('\n   Élus 2026 par tour :');
 Object.entries(elus2026ParTour).sort((a, b) => b[1] - a[1])
     .forEach(([t, c]) => console.log(`     ${t.padEnd(12)} : ${c}`));
